@@ -11,3 +11,6 @@ Als Ausgabemedium stehen eine *Druckfunktion* und ein *E-Mail-Versand* zur Verf�
 * Druckfunktion
 * Datenbankverwaltung von mehreren Veranstaltungen
 * Übersicht über verkaufte/eingelöste Tickets
+
+# Dokumentation
+Port: 2001 für Server
