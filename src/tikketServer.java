@@ -28,12 +28,29 @@ public class tikketServer {
         connect();
     }
 
-    private void ticketErstellen(){};
+    private void ticketErstellen() {
+    }
 
-    private void ticketPruefen() {};
+    ;
 
-    private void ticketAusgeben() {};
+    private void ticketPruefen() {
+    }
 
-    private void veranstaltungErstellen() {};
+    ;
 
-    private void veranstaltungAusgeben() {};
+    private void ticketAusgeben() {
+    }
+
+    ;
+
+    private void veranstaltungErstellen() {
+    }
+
+    ;
+
+    private void veranstaltungAusgeben() {
+    }
+
+    ;
+
+}
