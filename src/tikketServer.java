@@ -27,4 +27,13 @@ public class tikketServer {
     public static void main(String[] args) {
         connect();
     }
-}
+
+    private void ticketErstellen(){};
+
+    private void ticketPruefen() {};
+
+    private void ticketAusgeben() {};
+
+    private void veranstaltungErstellen() {};
+
+    private void veranstaltungAusgeben() {};
