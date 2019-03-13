@@ -7,12 +7,12 @@ public class tikketServer {
         test();
     }
 
-    /*Bietet eine Spielwiese zum Testen an :) */
+    /*Bietet eine Spielwiese zum Testen an :) 👌👌👌 */
     private static void test() {
         tikketServer tktSrv = new tikketServer();
 
-        tktSrv.veranstalterErstellen("MaxStockhausenIst1nicerDude");
-        tktSrv.veranstalterAusgeben();
+        tktSrv.veranstaltungErstellen("geiles Konzert", "20190311", "hier", 1);
+        tktSrv.veranstaltungAusgeben();
 
         tktSrv.ticketErstellen(1, 1);
         tktSrv.ticketAusgeben();
@@ -72,11 +72,42 @@ public class tikketServer {
         }
     }
 
-    private void veranstaltungErstellen() {
+    private void veranstaltungErstellen(String va_name, String va_datum, String va_ort, int va_vr) {
+        String sql = "INSERT INTO veranstaltungen(va_name, va_datum, va_ort, va_vr) VALUES(?,?,?,?)";
+
+        try (Connection conn = connect()) {
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, va_name);
+                pstmt.setString(2, va_datum);
+                pstmt.setString(3, va_ort);
+                pstmt.setInt(4, va_vr);
+                pstmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void veranstaltungAusgeben() {
+        String sql = "SELECT va_name, va_datum, va_ort, va_vr FROM  veranstaltungen";
 
+        try (Connection conn = connect()) {
+            try (Statement stmt = conn.createStatement()) {
+                try (ResultSet rs = stmt.executeQuery(sql)) {
+                    //ResultSet durchloopen
+                    while (rs.next()) {
+                        System.out.println(
+                                rs.getInt("va_name") + "\t" +
+                                        rs.getString("va_datum") + "\t" +
+                                        rs.getString("va_ort") + "\t" +
+                                        rs.getInt("va_vr")
+                        );
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void veranstalterErstellen(String vr_name) {
@@ -109,7 +140,16 @@ public class tikketServer {
         }
     }
 
-    private void veranstalterEntfernen(){
+    private void veranstalterEntfernen(int vr_ID){ //TODO alles eigentlich
+        String sql = "DELETE FROM veranstalter WHERE vr_ID EQUALS ";
 
+        try (Connection conn = connect()) {
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, vr_name);
+                pstmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
