@@ -140,16 +140,16 @@ public class tikketServer {
         }
     }
 
-    private void veranstalterEntfernen(int vr_ID){ //TODO alles eigentlich
-        String sql = "DELETE FROM veranstalter WHERE vr_ID EQUALS ";
-
-        try (Connection conn = connect()) {
-            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setString(1, vr_name);
-                pstmt.executeUpdate();
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+//    private void veranstalterEntfernen(int vr_ID){ //TODO alles eigentlich
+//        String sql = "DELETE FROM veranstalter WHERE vr_ID EQUALS ";
+//
+//        try (Connection conn = connect()) {
+//            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+//                pstmt.setString(1, vr_name);
+//                pstmt.executeUpdate();
+//            }
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
 }
