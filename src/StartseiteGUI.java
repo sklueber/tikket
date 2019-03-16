@@ -1,7 +1,7 @@
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class StartseiteGUI extends JFrame {
     private JLabel lVeranstaltungsname = new JLabel();
@@ -15,19 +15,17 @@ public class StartseiteGUI extends JFrame {
     private JLabel jNumberField2 = new JLabel();
     private JButton bVeranstaltungsliste = new JButton();
     private JButton bTicketliste = new JButton();
-    private JButton bZurruck = new JButton();
+    private JButton bZurueck = new JButton();
 
     public StartseiteGUI() {
         super();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        int frameWidth = 900; 
-        int frameHeight = 900;
-        setSize(frameWidth, frameHeight);
+        setSize(900, 900);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (d.width - getSize().width) / 2;
         int y = (d.height - getSize().height) / 2;
         setLocation(x, y);
-        setTitle("StartseiteGUI");
+        setTitle("tikket | Prüfen");
         setResizable(false);
         Container cp = getContentPane();
         cp.setLayout(null);
@@ -38,6 +36,7 @@ public class StartseiteGUI extends JFrame {
         lVeranstaltungsname.setFont(new Font("Calibri", Font.BOLD, 48));
         lVeranstaltungsname.setForeground(Color.WHITE);
         cp.add(lVeranstaltungsname);
+
         lUngultigRotGultigGrun.setBounds(275, 120, 350, 100);
         lUngultigRotGultigGrun.setText("Ungültig = Rot // Gültig = Grün");
         lUngultigRotGultigGrun.setFont(new Font("Calibri", Font.BOLD, 20));
@@ -46,16 +45,19 @@ public class StartseiteGUI extends JFrame {
         lUngultigRotGultigGrun.setOpaque(true);
         lUngultigRotGultigGrun.setForeground(Color.WHITE);
         cp.add(lUngultigRotGultigGrun);
+
         lTicketID.setBounds(200, 248, 230, 40);
         lTicketID.setText("  Ticket-ID: ");
         lTicketID.setFont(new Font("Calibri", Font.PLAIN, 24));
         lTicketID.setForeground(Color.WHITE);
         cp.add(lTicketID);
+
         lZeitstempel.setBounds(470, 248, 230, 40);
         lZeitstempel.setFont(new Font("Calibri", Font.PLAIN, 24));
         lZeitstempel.setText("  Zeitstempel: ");
         lZeitstempel.setForeground(Color.WHITE);
         cp.add(lZeitstempel);
+
         bTicketanlegen.setBounds(275, 320, 350, 100);
         bTicketanlegen.setText("Ticket anlegen");
         bTicketanlegen.setMargin(new Insets(2, 2, 2, 2));
@@ -121,23 +123,22 @@ public class StartseiteGUI extends JFrame {
         bTicketliste.setBackground(Color.DARK_GRAY);
         bTicketliste.setForeground(Color.WHITE);
         cp.add(bTicketliste);
-        bZurruck.setBounds(625, 780, 200, 50);
-        bZurruck.setText("Zurrück");
-        bZurruck.setMargin(new Insets(2, 2, 2, 2));
-        bZurruck.addActionListener(new ActionListener() { 
+        bZurueck.setBounds(625, 780, 200, 50);
+        bZurueck.setText("Zurück");
+        bZurueck.setMargin(new Insets(2, 2, 2, 2));
+        bZurueck.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) { 
                     bZurruck_ActionPerformed(evt);
                 }
             });
-        bZurruck.setFont(new Font("Calibri", Font.PLAIN, 24));
-        bZurruck.setBorderPainted(false);
-        bZurruck.setFocusPainted(false);
-        bZurruck.setContentAreaFilled(true);
-        bZurruck.setBackground(Color.DARK_GRAY);
-        bZurruck.setForeground(Color.WHITE);
-        cp.add(bZurruck);
+        bZurueck.setFont(new Font("Calibri", Font.PLAIN, 24));
+        bZurueck.setBorderPainted(false);
+        bZurueck.setFocusPainted(false);
+        bZurueck.setContentAreaFilled(true);
+        bZurueck.setBackground(Color.DARK_GRAY);
+        bZurueck.setForeground(Color.WHITE);
+        cp.add(bZurueck);
         cp.setBackground(Color.BLACK);
-        // Ende Komponenten
 
         setVisible(true);
     }
@@ -168,4 +169,5 @@ public class StartseiteGUI extends JFrame {
         // TODO hier Quelltext einfügen
 
     }
+
 }

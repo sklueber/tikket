@@ -2,9 +2,11 @@ import java.sql.*;
 import java.time.Instant;
 
 public class tikketServer {
+    private static Object StartseiteGUI;
+    private int va_ID;
 
     public static void main(String[] args) {
-        test();
+        new StartseiteGUI();
     }
 
     /*Bietet eine Spielwiese zum Testen an :) 👌👌👌 */
@@ -21,7 +23,7 @@ public class tikketServer {
     private static Connection connect() {
         Connection conn = null;
         try {
-            String url = "jdbc:sqlite:tikket_db.db"; //Location der Datenbank
+            String url = "jdbc:sqlite:src/tikket_db.db"; //Location der Datenbank
             conn = DriverManager.getConnection(url);
             System.out.println("Verbindung zur tikket-Datenbank hergestellt");
             return conn;
