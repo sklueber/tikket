@@ -14,6 +14,7 @@ public class tikketServer {
 
     public tikketServer(int port) throws IOException {
         server = new ServerSocket(port);
+        System.out.println("tikketServer läuft");
     }
 
 /*

@@ -128,7 +128,7 @@ public class StartseiteGUI extends JFrame {
         bZurueck.setMargin(new Insets(2, 2, 2, 2));
         bZurueck.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) { 
-                    bZurruck_ActionPerformed(evt);
+                    bZurueck_ActionPerformed(evt);
                 }
             });
         bZurueck.setFont(new Font("Calibri", Font.PLAIN, 24));
@@ -165,7 +165,7 @@ public class StartseiteGUI extends JFrame {
         setVisible(false);
     }
 
-    public void bZurruck_ActionPerformed(ActionEvent evt) {
+    public void bZurueck_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
 
     }

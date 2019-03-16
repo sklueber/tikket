@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class ServerStarten {
     private JPanel ServerStarten;
@@ -16,30 +17,22 @@ public class ServerStarten {
         frame.setVisible(true);
     }
 
-    private int PortLesen() {
-        String ausgelesen = tServerPort.getText();
-        int ergebnis = Integer.getInteger(ausgelesen);
-        System.out.print(ergebnis);
-        return ergebnis;
+    private void runServer(String port) throws IOException {
+        //System.out.println(Integer.parseInt(port));
+        int portInt = Integer.parseInt(port);
+        new tikketServer(portInt);
     }
 
     public ServerStarten() {
+
         bStarten.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                /*try {*/
-                    //new tikketServer(PortLesen());
-                    System.out.print(PortLesen());
-                } /*catch (IOException e1) {
+                try {
+                    runServer(tServerPort.getText());
+                } catch (IOException e1) {
                     e1.printStackTrace();
-                }*/
-        });
-
-        tServerPort.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
+                }
             }
         });
     }
-
-
 }
