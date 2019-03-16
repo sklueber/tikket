@@ -1,10 +1,10 @@
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.table.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TicketlisteGUI extends JFrame {
-    // Anfang Attribute
     private JLabel lVeranstaltungsliste = new JLabel();
     private JTable Ticketliste = new JTable(5, 4);
     private DefaultTableModel VeranstaltungslisteModel = (DefaultTableModel) Ticketliste.getModel();
@@ -15,10 +15,9 @@ public class TicketlisteGUI extends JFrame {
     private JButton bVeranstaltungsliste = new JButton();
     private JButton bTicketliste = new JButton();
     private JButton bZurruck = new JButton();
-    // Ende Attribute
+    private BestaetigungsGUI bGUI = new BestaetigungsGUI();
 
-    public TicketlisteGUI() { 
-        // Frame-Initialisierung
+    public TicketlisteGUI() {
         super();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         int frameWidth = 900; 
@@ -32,8 +31,8 @@ public class TicketlisteGUI extends JFrame {
         setResizable(false);
         Container cp = getContentPane();
         cp.setLayout(null);
-        // Anfang Komponenten
-
+        
+        bGUI.setVisible(false);
         lVeranstaltungsliste.setBounds(200, 30, 500, 63);
         lVeranstaltungsliste.setText("Ticketliste");
         lVeranstaltungsliste.setForeground(Color.WHITE);
@@ -144,12 +143,10 @@ public class TicketlisteGUI extends JFrame {
         cp.add(bZurruck);
         cp.setBackground(Color.BLACK);
         Ticketliste.setBackground(Color.DARK_GRAY);
-        // Ende Komponenten
 
         setVisible(true);
-    } // end of public gUI
+    }
 
-    // Anfang Methoden
 
     public static void main(String[] args) {
         new TicketlisteGUI();
@@ -157,36 +154,38 @@ public class TicketlisteGUI extends JFrame {
 
     public void bHinzufugen_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
-        new BestaetigungsGUI();
-    } // end of bHinzufugen_ActionPerformed
+        bGUI.labelH();
+        bGUI.setVisible(true);
+    }
 
     public void bEntfernen_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
-        new BestaetigungsGUI();
-    } // end of bEntfernen_ActionPerformed
-
+        bGUI.labelE();
+        bGUI.setVisible(true);
+    }
+    
     public void bAuswahlen_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
-
-    } // end of bAuswahlen_ActionPerformed
+        bGUI.labelA();
+        bGUI.setVisible(true);
+    }
 
     public void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new VeranstaltungslisteGUI();
         setVisible(false);
-    } // end of bVeranstaltungsliste_ActionPerformed
+    }
 
     public void bTicketliste_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new TicketlisteGUI();
         setVisible(false);
-    } // end of bTicketliste_ActionPerformed
+    }
 
     public void bZurruck_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new StartseiteGUI();
         setVisible(false);
-    } // end of bZurruck_ActionPerformed
+    }
 
-    // Ende Methoden
-} // end of class gUI
+}

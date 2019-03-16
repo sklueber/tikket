@@ -1,10 +1,10 @@
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.table.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class VeranstaltungslisteGUI extends JFrame {
-    // Anfang Attribute
     private JLabel lVeranstaltungsliste = new JLabel();
     private JTable Veranstaltungsliste = new JTable(5, 5);
     private DefaultTableModel VeranstaltungslisteModel = (DefaultTableModel) Veranstaltungsliste.getModel();
@@ -15,10 +15,9 @@ public class VeranstaltungslisteGUI extends JFrame {
     private JButton bVeranstaltungsliste = new JButton();
     private JButton bTicketliste = new JButton();
     private JButton bZurruck = new JButton();
-    // Ende Attribute
+    private BestaetigungsGUI bGUI = new BestaetigungsGUI();
 
-    public VeranstaltungslisteGUI() { 
-        // Frame-Initialisierung
+    public VeranstaltungslisteGUI() {
         super();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         int frameWidth = 900; 
@@ -32,8 +31,8 @@ public class VeranstaltungslisteGUI extends JFrame {
         setResizable(false);
         Container cp = getContentPane();
         cp.setLayout(null);
-        // Anfang Komponenten
 
+        bGUI.setVisible(false);
         lVeranstaltungsliste.setBounds(200, 30, 500, 63);
         lVeranstaltungsliste.setText("Veranstaltungsliste");
         lVeranstaltungsliste.setForeground(Color.WHITE);
@@ -90,7 +89,7 @@ public class VeranstaltungslisteGUI extends JFrame {
         bAuswahlen.setText("Auswählen");
         bAuswahlen.setMargin(new Insets(2, 2, 2, 2));
         bAuswahlen.addActionListener(new ActionListener() 
-            { 
+        {
                 public void actionPerformed(ActionEvent evt) { 
                     bAuswahlen_ActionPerformed(evt);
                 }
@@ -155,9 +154,8 @@ public class VeranstaltungslisteGUI extends JFrame {
         // Ende Komponenten
 
         setVisible(true);
-    } // end of public gUI
+    }
 
-    // Anfang Methoden
 
     public static void main(String[] args) {
         new VeranstaltungslisteGUI();
@@ -165,36 +163,40 @@ public class VeranstaltungslisteGUI extends JFrame {
 
     public void bHinzufugen_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
-        new BestaetigungsGUI();
+        bGUI.labelH();
+        bGUI.setVisible(true);
         //BestaetigungsGUI.labelE();
-    } // end of bHinzufugen_ActionPerformed
+    }
 
     public void bEntfernen_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
-        new BestaetigungsGUI();
-    } // end of bEntfernen_ActionPerformed
+        //new BestaetigungsGUI();
+        bGUI.labelE();
+        bGUI.setVisible(true);
+    }
 
     public void bAuswahlen_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
-
-    } // end of bAuswahlen_ActionPerformed
+        bGUI.labelA();
+        bGUI.setVisible(true);
+    }
 
     public void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
-
-    } // end of bVeranstaltungsliste_ActionPerformed
+        new VeranstaltungslisteGUI();
+        setVisible(false);
+    }
 
     public void bTicketliste_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new TicketlisteGUI();
-        setVisible(false);
-    } // end of bTicketliste_ActionPerformed
+        bGUI.setVisible(false);
+    }
 
     public void bZurruck_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new StartseiteGUI();
         setVisible(false);
-    } // end of bZurruck_ActionPerformed
+    }
 
-    // Ende Methoden
-} // end of class gUI
+}

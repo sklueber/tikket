@@ -1,7 +1,7 @@
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class StartseiteGUI extends JFrame {
     private JLabel lVeranstaltungsname = new JLabel();
@@ -137,7 +137,6 @@ public class StartseiteGUI extends JFrame {
         bZurruck.setForeground(Color.WHITE);
         cp.add(bZurruck);
         cp.setBackground(Color.BLACK);
-        // Ende Komponenten
 
         setVisible(true);
     }
@@ -168,4 +167,5 @@ public class StartseiteGUI extends JFrame {
         // TODO hier Quelltext einfügen
 
     }
+
 }

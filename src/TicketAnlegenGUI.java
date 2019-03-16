@@ -1,9 +1,9 @@
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TicketAnlegenGUI extends JFrame {
-
     private JButton bDruckenundSenden = new JButton();
     private JButton bSenden = new JButton();
     private JTextField jTextField1 = new JTextField();
@@ -14,7 +14,7 @@ public class TicketAnlegenGUI extends JFrame {
     private JButton bTicketliste = new JButton();
     private JButton bZurruck = new JButton();
 
-    TicketAnlegenGUI() {
+    public TicketAnlegenGUI() {
         super();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         int frameWidth = 900; 
@@ -146,35 +146,36 @@ public class TicketAnlegenGUI extends JFrame {
         new TicketAnlegenGUI();
     } // end of main
 
-    private void bDruckenundSenden_ActionPerformed(ActionEvent evt) {
+    public void bDruckenundSenden_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new BestaetigungsGUI();
     }
 
-    private void bSenden_ActionPerformed(ActionEvent evt) {
+    public void bSenden_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new BestaetigungsGUI();
     }
 
-    private void bAnlegen_ActionPerformed(ActionEvent evt) {
+    public void bAnlegen_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new BestaetigungsGUI();
     }
 
-    private void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
+    public void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
-
+        new VeranstaltungslisteGUI();
     }
 
-    private void bTicketliste_ActionPerformed(ActionEvent evt) {
+    public void bTicketliste_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new TicketlisteGUI();
         setVisible(false);
     }
 
-    private void bZurruck_ActionPerformed(ActionEvent evt) {
+    public void bZurruck_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new StartseiteGUI();
         setVisible(false);
     }
+
 }
