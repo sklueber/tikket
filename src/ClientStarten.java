@@ -3,13 +3,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ClientStarten {
-    public ClientStarten() {
-        bVerbinden.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-    }
+    private JButton bVerbinden;
+    private JTextField tServerIP;
+    private JTextField tServerPort;
+    private JPanel ClientStarten;
+    private JLabel lServerPort;
+    private JLabel lServerIP;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Client Starten");
@@ -18,8 +17,12 @@ public class ClientStarten {
         frame.pack();
         frame.setVisible(true);
     }
-    private JButton bVerbinden;
-    private JTextField tServerIP;
-    private JTextField tServerPort;
-    private JPanel ClientStarten;
+
+    public ClientStarten() {
+        bVerbinden.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+    }
 }
