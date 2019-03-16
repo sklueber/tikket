@@ -2,10 +2,11 @@ import java.sql.*;
 import java.time.Instant;
 
 public class tikketServer {
-private int va_ID;
+    private static Object StartseiteGUI;
+    private int va_ID;
 
     public static void main(String[] args) {
-        test();
+        new StartseiteGUI();
     }
 
     /*Bietet eine Spielwiese zum Testen an :) 👌👌👌 */
