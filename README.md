@@ -12,5 +12,12 @@ Als Ausgabemedium stehen eine *Druckfunktion* und ein *E-Mail-Versand* zur Verf�
 * Datenbankverwaltung von mehreren Veranstaltungen
 * Übersicht über verkaufte/eingelöste Tickets
 
-# Dokumentation
-Port: 2001 für Server
+# Client starten
+1. ClientStarten Methode aufrufen
+2. IP und Port des Servers eingeben
+3. Client wird gestartet
+
+# Server starten //TODO muss noch geschrieben werden
+1. ServerStarten Methode aufrufen
+2. Port der genutzt werden soll eingeben
+3. tikket-Server wird gestartet
