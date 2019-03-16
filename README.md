@@ -17,7 +17,7 @@ Als Ausgabemedium stehen eine *Druckfunktion* und ein *E-Mail-Versand* zur VerfÃ
 2. IP und Port des Servers eingeben
 3. Client wird gestartet
 
-# Server starten //TODO muss noch geschrieben werden
+# Server starten
 1. ServerStarten Methode aufrufen
 2. Port der genutzt werden soll eingeben
-3. tikket-Server wird gestartet
+3. tikket-Server wird gestartet. Meldet "tikket-Server wurde gestartet" im Terminal
