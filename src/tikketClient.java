@@ -3,10 +3,10 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class tikketClient {
-    public static void main(String[] args) {
+    public tikketClient(String ip, int port) {
         Socket socket = null;
         try {
-            socket = new Socket("localhost", 3141);
+            socket = new Socket(ip, port);
 
             OutputStream output = socket.getOutputStream();
             PrintStream ps = new PrintStream(output, true);

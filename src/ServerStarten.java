@@ -18,7 +18,6 @@ public class ServerStarten {
     }
 
     private void runServer(String port) throws IOException {
-        //System.out.println(Integer.parseInt(port));
         int portInt = Integer.parseInt(port);
         new tikketServer(portInt);
     }

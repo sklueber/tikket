@@ -18,10 +18,15 @@ public class ClientStarten {
         frame.setVisible(true);
     }
 
+    public static void runClient(String ip, String port) {
+        int portInt = Integer.parseInt(port);
+        new tikketClient(ip, portInt);
+    }
+
     public ClientStarten() {
         bVerbinden.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                runClient(tServerIP.getText(), tServerPort.getText());
             }
         });
     }

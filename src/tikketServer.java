@@ -21,7 +21,7 @@ public class tikketServer {
 
     public tikketServer(int port) throws IOException {
         server = new ServerSocket(port);
-        System.out.println("tikketServer wurde auf Port "+ port +" gestartet");
+        System.out.println("tikketServer wurde auf Port "+ server.getLocalPort() +" gestartet");
     }
 
     public static void main(String[] args) throws IOException {
