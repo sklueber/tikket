@@ -25,7 +25,7 @@ public class StartseiteGUI extends JFrame {
         int x = (d.width - getSize().width) / 2;
         int y = (d.height - getSize().height) / 2;
         setLocation(x, y);
-        setTitle("tikket | Prüfen");
+        setTitle("tikket | Einlass");
         setResizable(false);
         Container cp = getContentPane();
         cp.setLayout(null);
@@ -128,7 +128,7 @@ public class StartseiteGUI extends JFrame {
         bZurueck.setMargin(new Insets(2, 2, 2, 2));
         bZurueck.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) { 
-                    bZurruck_ActionPerformed(evt);
+                    bZurueck_ActionPerformed(evt);
                 }
             });
         bZurueck.setFont(new Font("Calibri", Font.PLAIN, 24));
@@ -147,25 +147,25 @@ public class StartseiteGUI extends JFrame {
         new StartseiteGUI();
     } // end of main
 
-    public void bTicketanlegen_ActionPerformed(ActionEvent evt) {
+    private void bTicketanlegen_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new TicketAnlegenGUI();
         setVisible(false);
     }
 
-    public void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
+    private void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new VeranstaltungslisteGUI();
         setVisible(false);
     }
 
-    public void bTicketliste_ActionPerformed(ActionEvent evt) {
+    private void bTicketliste_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new TicketlisteGUI();
         setVisible(false);
     }
 
-    public void bZurruck_ActionPerformed(ActionEvent evt) {
+    private void bZurueck_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
 
     }
