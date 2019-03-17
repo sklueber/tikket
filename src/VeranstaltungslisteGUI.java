@@ -34,7 +34,7 @@ public class VeranstaltungslisteGUI extends JFrame {
 
         bGUI.setVisible(false);
         lVeranstaltungsliste.setBounds(200, 30, 500, 63);
-        lVeranstaltungsliste.setText("Veranstaltungsliste");
+        lVeranstaltungsliste.setText("tikket | Veranstaltungsübersicht");
         lVeranstaltungsliste.setForeground(Color.WHITE);
         lVeranstaltungsliste.setFont(new Font("Calibri", Font.BOLD, 48));
         lVeranstaltungsliste.setHorizontalAlignment(SwingConstants.CENTER);

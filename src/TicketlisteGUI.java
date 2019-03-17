@@ -27,7 +27,7 @@ public class TicketlisteGUI extends JFrame {
         int x = (d.width - getSize().width) / 2;
         int y = (d.height - getSize().height) / 2;
         setLocation(x, y);
-        setTitle("TicketlisteGUI");
+        setTitle("tikket | Ticketübersicht");
         setResizable(false);
         Container cp = getContentPane();
         cp.setLayout(null);

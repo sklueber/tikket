@@ -24,7 +24,7 @@ public class TicketAnlegenGUI extends JFrame {
         int x = (d.width - getSize().width) / 2;
         int y = (d.height - getSize().height) / 2;
         setLocation(x, y);
-        setTitle("TicketAnlegenGUI");
+        setTitle("tikket | Ticket erstellen");
         setResizable(false);
         Container cp = getContentPane();
         cp.setLayout(null);
