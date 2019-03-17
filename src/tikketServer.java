@@ -87,7 +87,7 @@ public class tikketServer {
         int zufall = ThreadLocalRandom.current().nextInt(0, 999999 + 1);
 
         try (Connection conn = DBconnect()) {
-            String sqlInsertTicket = "INSERT INTO tickets(tkt_UUDI, tkt_status, tkt_created, tkt_va) VALUES(? ?,?,?)";
+            String sqlInsertTicket = "INSERT INTO tickets(tkt_UUID, tkt_status, tkt_created, tkt_va) VALUES(?, ?,?,?)";
             try (PreparedStatement pstmt = conn.prepareStatement(sqlInsertTicket)) {
                 pstmt.setInt(1, zufall); //TODO in Java schon Unique machen. Ist bisher nur random
                 pstmt.setInt(2, 1);
