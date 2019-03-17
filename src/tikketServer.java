@@ -104,7 +104,7 @@ public class tikketServer {
     }
 
     private void ticketAusgeben() {
-        String sql = "SELECT tkt_ID, tkt_status, tkt_created, tkt_va FROM  tickets";
+        String sql = "SELECT tkt_ID, tkt_UUID, tkt_status, tkt_created, tkt_va FROM  tickets";
 
         try (Connection conn = DBconnect()) {
             try (Statement stmt = conn.createStatement()) {
@@ -112,9 +112,11 @@ public class tikketServer {
                     //ResultSet durchloopen
                     while (rs.next()) {
                         System.out.println(
-                                rs.getInt("tkt_ID") + "\t" +
-                                rs.getInt("tkt_status") + "\t" +
-                                rs.getString("tkt_created") + "\t" +
+                                "Ticket ID: " +
+                                rs.getInt("tkt_ID") + "; UUID: " +
+                                rs.getInt("tkt_UUID") + "; Status: " +
+                                rs.getInt("tkt_status") + "; Timestamp: " +
+                                rs.getString("tkt_created") + "; Veranstaltungs ID: " +
                                 rs.getInt("tkt_va")
                         );
                     }
