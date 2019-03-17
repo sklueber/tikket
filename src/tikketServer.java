@@ -31,7 +31,7 @@ public class tikketServer {
 //        tktSrv.veranstaltungAusgeben();
 
         tktSrv.ticketAusgeben();
-        tktSrv.ticketErstellen(1);
+        tktSrv.ticketErstellen();
         tktSrv.ticketAusgeben();
     }
 
