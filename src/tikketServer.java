@@ -26,8 +26,13 @@ public class tikketServer {
 //        tktSrv.veranstaltungAusgeben();
 
         tktSrv.ticketAusgeben();
-        tktSrv.ticketErstellen();
-        tktSrv.ticketAusgeben();
+//        tktSrv.ticketErstellen();
+//        tktSrv.ticketAusgeben();
+        if (tktSrv.ticketPruefen(354779)){
+            System.out.println("ticketPruefen: Ticket ist gültig");
+        } else {
+            System.out.println("ticketPruefen: Ticket ist Ungültig");
+        }
     }
 
     private void verbinde() {
@@ -94,7 +99,26 @@ public class tikketServer {
         }
     }
 
-    private void ticketPruefen() {
+    private boolean ticketPruefen(int UUID) {
+        String sql = "SELECT tkt_ID, tkt_UUID, tkt_status, tkt_created, tkt_va FROM  tickets WHERE tkt_UUID = " + UUID + " AND tkt_va = " + SrvVa_ID;
+
+        try (Connection conn = DBconnect()) {
+            try (Statement stmt = conn.createStatement()) {
+                try  (ResultSet rs = stmt.executeQuery(sql)) {
+                    if(rs.getInt("tkt_status") == 1) {
+                        return true;
+                    } if(rs.isClosed()) {
+                        return false;
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            if (e.getMessage() != "ResultSet closed") {
+                System.out.println(e.getMessage());
+            }
+            return false;
+        }
+        return false;
     }
 
     private void ticketAusgeben() {
