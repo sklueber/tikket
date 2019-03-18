@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class tikketServer {
     private int SrvVa_ID;
-    private String va_name;
+    private String SrvVa_name;
     private final ServerSocket server;
 
     public tikketServer(int port) throws IOException {
@@ -25,14 +25,21 @@ public class tikketServer {
 //        tktSrv.veranstaltungErstellen("geiles Konzert", "20190311", "hier", 1);
 //        tktSrv.veranstaltungAusgeben();
 
-        tktSrv.ticketAusgeben();
+//        tktSrv.ticketAusgeben();
 //        tktSrv.ticketErstellen();
 //        tktSrv.ticketAusgeben();
-        if (tktSrv.ticketPruefen(354779)){
-            System.out.println("ticketPruefen: Ticket ist gültig");
-        } else {
-            System.out.println("ticketPruefen: Ticket ist Ungültig");
-        }
+//        tktSrv.ticketPruefen(354779);
+
+        tktSrv.aktuelleVeranstaltungAusgeben();
+
+        tktSrv.veranstalterErstellen("Max Testveranstalter");
+        tktSrv.veranstalterAusgeben();
+        tktSrv.veranstaltungAusgeben();
+        tktSrv.veranstaltungErstellen("Max Testveranstaltung die erste", "heute", "irgendwo", 1);
+        tktSrv.veranstaltungAusgeben();
+        tktSrv.veranstaltungWechseln(99);
+
+        tktSrv.aktuelleVeranstaltungAusgeben();
     }
 
     private void verbinde() {
@@ -59,7 +66,7 @@ public class tikketServer {
         try {
             String url = "jdbc:sqlite:src/tikket_db.db"; //Location der Datenbank
             conn = DriverManager.getConnection(url);
-            System.out.println("Verbindung zur tikket-Datenbank hergestellt");
+//            System.out.println("Verbindung zur tikket-Datenbank hergestellt");
             return conn;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -104,16 +111,17 @@ public class tikketServer {
 
         try (Connection conn = DBconnect()) {
             try (Statement stmt = conn.createStatement()) {
-                try  (ResultSet rs = stmt.executeQuery(sql)) {
-                    if(rs.getInt("tkt_status") == 1) {
+                try (ResultSet rs = stmt.executeQuery(sql)) {
+                    if (rs.getInt("tkt_status") == 1) {
                         return true;
-                    } if(rs.isClosed()) {
+                    }
+                    if (rs.isClosed()) {
                         return false;
                     }
                 }
             }
         } catch (SQLException e) {
-            if (e.getMessage() != "ResultSet closed") {
+            if (e.getMessage().equals("ResultSet closed")) {
                 System.out.println(e.getMessage());
             }
             return false;
@@ -167,10 +175,9 @@ public class tikketServer {
         try (Connection conn = DBconnect()) {
             try (Statement stmt = conn.createStatement()) {
                 try (ResultSet rs = stmt.executeQuery(sql)) {
-                    //ResultSet durchloopen
                     while (rs.next()) {
                         System.out.println(
-                                rs.getInt("va_name") + "\t" +
+                                rs.getString("va_name") + "\t" +
                                         rs.getString("va_datum") + "\t" +
                                         rs.getString("va_ort") + "\t" +
                                         rs.getInt("va_vr")
@@ -226,6 +233,25 @@ public class tikketServer {
     }
 
     private void veranstaltungWechseln(int va_id) {
-        SrvVa_ID = va_id;
+        String sql = "SELECT va_ID, va_name FROM  veranstaltungen WHERE va_ID = " + va_id;
+
+        try (Connection conn = DBconnect()) {
+            try (Statement stmt = conn.createStatement()) {
+                try (ResultSet rs = stmt.executeQuery(sql)) {
+                    SrvVa_name = rs.getString("va_name");
+                    SrvVa_ID = va_id;
+                }
+                catch (SQLException e) {
+                    System.out.println("Keine Veranstaltung mit der ID gefunden. Error: " + e.getMessage());
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void aktuelleVeranstaltungAusgeben() {
+        System.out.println("Aktuelle VA ID: " + SrvVa_ID);
+        System.out.println("Aktueller VA Name: " + SrvVa_name);
     }
 }
