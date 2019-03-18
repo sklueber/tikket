@@ -1,9 +1,5 @@
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,35 +26,20 @@ public class tikketServer {
 //        tktSrv.ticketAusgeben();
 //        tktSrv.ticketPruefen(354779);
 
-        tktSrv.aktuelleVeranstaltungAusgeben();
+//        tktSrv.aktuelleVeranstaltungAusgeben();
+//
+//        tktSrv.veranstalterErstellen("Max Testveranstalter");
+//        tktSrv.veranstalterAusgeben();
+//        tktSrv.veranstaltungAusgeben();
+//        tktSrv.veranstaltungErstellen("Max Testveranstaltung die erste", "heute", "irgendwo", 1);
+//        tktSrv.veranstaltungAusgeben();
+//        tktSrv.veranstaltungWechseln(1);
 
-        tktSrv.veranstalterErstellen("Max Testveranstalter");
-        tktSrv.veranstalterAusgeben();
-        tktSrv.veranstaltungAusgeben();
-        tktSrv.veranstaltungErstellen("Max Testveranstaltung die erste", "heute", "irgendwo", 1);
-        tktSrv.veranstaltungAusgeben();
-        tktSrv.veranstaltungWechseln(99);
-
-        tktSrv.aktuelleVeranstaltungAusgeben();
+//        tktSrv.aktuelleVeranstaltungAusgeben();
     }
 
     private void verbinde() {
-        while (true) {
-            Socket socket = null;
-            try {
-                socket = server.accept();
-                inputOutput(socket);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                if (socket != null)
-                    try {
-                        socket.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-            }
-        }
+
     }
 
     private static Connection DBconnect() {
@@ -72,17 +53,6 @@ public class tikketServer {
             System.out.println(e.getMessage());
         }
         return conn;
-    }
-
-    private void inputOutput(Socket socket) throws IOException {
-        BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        PrintStream output = new PrintStream(socket.getOutputStream());
-        String s;
-
-        while (input.ready()) {
-            s = input.readLine();
-            output.println(s);
-        }
     }
 
     private void ticketErstellen() {
