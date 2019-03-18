@@ -27,8 +27,8 @@ public class tikketServer {
     public static void main(String[] args) throws IOException {
         tikketServer tktSrv = new tikketServer(2001);
 
-//        tktSrv.veranstaltungErstellen("geiles Konzert", "20190311", "hier", 1);
-//        tktSrv.veranstaltungAusgeben();
+        tktSrv.veranstaltungErstellen("Testkonzert", "20190311", "hier", 1);
+        tktSrv.veranstaltungAusgeben();
 
         tktSrv.ticketAusgeben();
         tktSrv.ticketErstellen();
@@ -101,6 +101,7 @@ public class tikketServer {
     }
 
     private void ticketPruefen() {
+
     }
 
     private void ticketAusgeben() {
@@ -152,7 +153,7 @@ public class tikketServer {
                     //ResultSet durchloopen
                     while (rs.next()) {
                         System.out.println(
-                                rs.getInt("va_name") + "\t" +
+                                rs.getString("va_name") + "\t" +
                                         rs.getString("va_datum") + "\t" +
                                         rs.getString("va_ort") + "\t" +
                                         rs.getInt("va_vr")
