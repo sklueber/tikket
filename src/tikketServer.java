@@ -4,24 +4,19 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class tikketServer {
-    private int va_ID;
+    private int SrvVa_ID;
     private String va_name;
     private final ServerSocket server;
 
     public tikketServer(int port) throws IOException {
         server = new ServerSocket(port);
-        System.out.println("tikketServer wurde auf Port "+ port +" gestartet");
+        System.out.println("tikketServer wurde auf Port " + port + " gestartet");
     }
 
     public static void main(String[] args) throws IOException {
@@ -41,8 +36,7 @@ public class tikketServer {
             try {
                 socket = server.accept();
                 inputOutput(socket);
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             } finally {
                 if (socket != null)
@@ -65,7 +59,7 @@ public class tikketServer {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    return conn;
+        return conn;
     }
 
     private void inputOutput(Socket socket) throws IOException {
@@ -73,7 +67,7 @@ public class tikketServer {
         PrintStream output = new PrintStream(socket.getOutputStream());
         String s;
 
-        while(input.ready()) {
+        while (input.ready()) {
             s = input.readLine();
             output.println(s);
         }
@@ -92,7 +86,7 @@ public class tikketServer {
                 pstmt.setInt(1, zufall); //TODO in Java schon Unique machen. Ist bisher nur random
                 pstmt.setInt(2, 1);
                 pstmt.setString(3, currentDate);
-                pstmt.setInt(4, va_ID);
+                pstmt.setInt(4, SrvVa_ID);
                 pstmt.executeUpdate();
             }
         } catch (SQLException e) {
@@ -113,11 +107,11 @@ public class tikketServer {
                     while (rs.next()) {
                         System.out.println(
                                 "Ticket ID: " +
-                                rs.getInt("tkt_ID") + "; UUID: " +
-                                rs.getInt("tkt_UUID") + "; Status: " +
-                                rs.getInt("tkt_status") + "; Timestamp: " +
-                                rs.getString("tkt_created") + "; Veranstaltungs ID: " +
-                                rs.getInt("tkt_va")
+                                        rs.getInt("tkt_ID") + "; UUID: " +
+                                        rs.getInt("tkt_UUID") + "; Status: " +
+                                        rs.getInt("tkt_status") + "; Timestamp: " +
+                                        rs.getString("tkt_created") + "; Veranstaltungs ID: " +
+                                        rs.getInt("tkt_va")
                         );
                     }
                 }
@@ -195,16 +189,19 @@ public class tikketServer {
         }
     }
 
-//    private void veranstalterEntfernen(int vr_ID){ //TODO alles eigentlich
-//        String sql = "DELETE FROM veranstalter WHERE vr_ID EQUALS ";
-//
-//        try (Connection conn = DBconnect()) {
-//            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//                pstmt.setString(1, vr_name);
-//                pstmt.executeUpdate();
-//            }
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//    }
+    private void veranstalterEntfernen(int pVr_ID) {
+        String sql = "DELETE FROM veranstalter WHERE vr_ID = " + pVr_ID;
+
+        try (Connection conn = DBconnect()) {
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void veranstaltungWechseln(int va_id) {
+        SrvVa_ID = va_id;
+    }
 }
