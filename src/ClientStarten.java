@@ -21,7 +21,7 @@ public class ClientStarten {
     public ClientStarten() {
         bVerbinden.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                new tikketClient(tServerIP.getText(), Integer.parseInt(tServerPort.getText()));
             }
         });
     }
