@@ -1,3 +1,5 @@
+
+
 public class tikketClient {
     private String tikketServerIP;
     private int tikketServerPort;
