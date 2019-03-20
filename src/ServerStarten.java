@@ -19,7 +19,11 @@ public class ServerStarten {
 
     private void runServer(String port) throws IOException {
         int portInt = Integer.parseInt(port);
-        new tikketServer(portInt);
+        tikketServer tikketServer = new tikketServer(portInt);
+        tikketServer.veranstalterErstellen("testVr");
+        tikketServer.veranstaltungErstellen("test", "heute", "hier", 1);
+        tikketServer.veranstaltungAusgeben();
+        System.out.println("jo");
     }
 
     public ServerStarten() {

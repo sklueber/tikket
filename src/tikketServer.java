@@ -17,10 +17,6 @@ public class tikketServer {
         System.out.println("Server wartet auf Nutzer...");
         int clientNumber = 0;
 
-        // Try to open a server socket on port 7777
-        // Note that we can't choose a port less than 1023 if we are not
-        // privileged users (root)
-
         try {
             listener = new ServerSocket(port);
         } catch (IOException e) {
@@ -30,9 +26,6 @@ public class tikketServer {
 
         try {
             while (true) {
-                // Accept client connection request
-                // Get new Socket at Server.
-
                 Socket socketOfServer = listener.accept();
                 new ServiceThread(socketOfServer, clientNumber++).start();
             }
@@ -69,16 +62,20 @@ public class tikketServer {
                     // Read data to the server (sent from client).
                     String line = is.readLine();
 
-                    // Write to socket of Server
-                    // (Send to client)
-                    os.write(">> " + line);
-                    // End of line.
-                    os.newLine();
-                    // Flush data.
-                    os.flush();
+//                    os.write(">> " + line);
+//                    os.newLine();
+//                    os.flush();
 
+                    if(line.equals("veranstaltungAuslesen")){
+                        os.write(veranstaltungIDAuslesen());
+                        os.newLine();
+                        os.flush();
+                    }
 
-                    // If users send QUIT (To end conversation).
+                    if(line.equals("veranstaltungSetzen")){
+                        veranstaltungWechseln(1);
+                    }
+
                     if (line.equals("QUIT")) {
                         os.write(">> OK");
                         os.newLine();
@@ -93,28 +90,12 @@ public class tikketServer {
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        tikketServer tktSrv = new tikketServer(2001);
-
-//        tktSrv.veranstaltungErstellen("geiles Konzert", "20190311", "hier", 1);
-//        tktSrv.veranstaltungAusgeben();
-
-//        tktSrv.ticketAusgeben();
-//        tktSrv.ticketErstellen();
-//        tktSrv.ticketAusgeben();
-//        tktSrv.ticketPruefen(354779);
-
-//        tktSrv.aktuelleVeranstaltungAusgeben();
+//    public static void main(String[] args) throws IOException {
+//        tikketServer tktSrv = new tikketServer(2001);
 //
-//        tktSrv.veranstalterErstellen("Max Testveranstalter");
-//        tktSrv.veranstalterAusgeben();
-//        tktSrv.veranstaltungAusgeben();
-//        tktSrv.veranstaltungErstellen("Max Testveranstaltung die erste", "heute", "irgendwo", 1);
-//        tktSrv.veranstaltungAusgeben();
-//        tktSrv.veranstaltungWechseln(1);
-
-//        tktSrv.aktuelleVeranstaltungAusgeben();
-    }
+//        tktSrv.veranstalterErstellen("testVr");
+//        tktSrv.veranstaltungErstellen("test", "heute", "hier", 1);
+//    }
 
     private void verbinde() {
 
@@ -201,7 +182,7 @@ public class tikketServer {
         }
     }
 
-    private void veranstaltungErstellen(String va_name, String va_datum, String va_ort, int va_vr) {
+    public void veranstaltungErstellen(String va_name, String va_datum, String va_ort, int va_vr) {
         String sql = "INSERT INTO veranstaltungen(va_name, va_datum, va_ort, va_vr) VALUES(?,?,?,?)";
 
         try (Connection conn = DBconnect()) {
@@ -217,7 +198,7 @@ public class tikketServer {
         }
     }
 
-    private void veranstaltungAusgeben() {
+    public void veranstaltungAusgeben() {
         String sql = "SELECT va_name, va_datum, va_ort, va_vr FROM  veranstaltungen";
 
         try (Connection conn = DBconnect()) {
@@ -238,7 +219,7 @@ public class tikketServer {
         }
     }
 
-    private void veranstalterErstellen(String vr_name) {
+    void veranstalterErstellen(String vr_name) {
         String sql = "INSERT INTO veranstalter(vr_name) VALUES(?)";
 
         try (Connection conn = DBconnect()) {
@@ -297,6 +278,13 @@ public class tikketServer {
         }
     }
 
+    private int veranstaltungIDAuslesen() {
+        return SrvVa_ID;
+    }
+
+    private String veranstaltungNameAuslesen() {
+        return SrvVa_name;
+    }
     private void aktuelleVeranstaltungAusgeben() {
         System.out.println("Aktuelle VA ID: " + SrvVa_ID);
         System.out.println("Aktueller VA Name: " + SrvVa_name);
