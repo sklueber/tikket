@@ -150,19 +150,22 @@ public class StartseiteGUI extends JFrame {
     private void bTicketanlegen_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new TicketAnlegenGUI();
-        setVisible(false);
+        //setVisible(false);
+        dispose();
     }
 
     private void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new VeranstaltungslisteGUI();
-        setVisible(false);
+        //setVisible(false);
+        dispose();
     }
 
     private void bTicketliste_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new TicketlisteGUI();
-        setVisible(false);
+        //setVisible(false);
+        dispose();
     }
 
     private void bZurueck_ActionPerformed(ActionEvent evt) {

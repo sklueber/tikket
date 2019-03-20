@@ -61,7 +61,8 @@ public class BestaetigungsGUI extends JFrame {
 
     public void bOK_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
-        setVisible(false);
+        //setVisible(false);
+        dispose();
     }
 
     public void labelE ()

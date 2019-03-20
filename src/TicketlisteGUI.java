@@ -173,19 +173,22 @@ public class TicketlisteGUI extends JFrame {
     public void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new VeranstaltungslisteGUI();
-        setVisible(false);
+        //setVisible(false);
+        dispose();
     }
 
     public void bTicketliste_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new TicketlisteGUI();
-        setVisible(false);
+        //setVisible(false);
+        dispose();
     }
 
     public void bZurruck_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new StartseiteGUI();
-        setVisible(false);
+        //setVisible(false);
+        dispose();
     }
 
 }
