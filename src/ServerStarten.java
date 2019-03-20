@@ -27,7 +27,6 @@ public class ServerStarten {
     }
 
     public ServerStarten() {
-
         bStarten.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
