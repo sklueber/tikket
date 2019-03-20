@@ -1,31 +1,66 @@
-import javax.print.DocPrintJob;
-import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
+import javax.print.*;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
-import javax.print.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
 
 public class Drucker {
-private PrintService service;
-private DocPrintJob job;
+private static PrintService service;
+private static DocPrintJob job;
 
     public static void main(String[] args){
-        service = PrintServiceLookup.lookupDefaultPrintService();
-        job = service.createPrintJob();
+
         PrintService[] services = PrintServiceLookup.lookupPrintServices(null, null);
-        for (int i = 0; i < services.length; i++) {
-            System.out.println(services[i].getName());
+        for (PrintService service1 : services) {
+            System.out.println(service1.getName());
         }
-    }
-
-    public void drucken(String pDateiname){
-        String pfad = pDateiname
-                "http://www.apress.com/ApressCorporate/supplement/1/421/bcm.gif ");
-        DocFlavor flavor = DocFlavor.URL.GIF;
-        Doc doc = new SimpleDoc(url, flavor, null);
+        services = PrintServiceLookup.lookupPrintServices(null, null);
+        PrintService svc = PrintServiceLookup.lookupDefaultPrintService();
         PrintRequestAttributeSet attrs = new HashPrintRequestAttributeSet();
-        attrs.add(new Copies(2));
-        job.print(doc, attrs);
+        service = ServiceUI.printDialog(
+                null, 100, 100, services, svc, null, attrs);
+
+        job = service.createPrintJob();
+        System.out.println(service.getName());
+        Drucker.drucken("MyQRCode.png");
     }
 
+   private static void drucken(String pDateiname){
+        String pfad = "./" + pDateiname;
+        DocFlavor flavor = DocFlavor.SERVICE_FORMATTED.PRINTABLE;
+        Doc doc = new SimpleDoc(new MyPrintable(pDateiname), flavor, null);
+       try {
+           job.print(doc, null);
+       } catch (PrintException e) {
+           e.printStackTrace();
+       }
+   }
+
+}
+class MyPrintable implements Printable {
+    private ImageIcon printImage;
+    MyPrintable(String pPfad){
+        printImage = new javax.swing.ImageIcon("./" + pPfad);
+    }
+
+
+    public int print(Graphics g, PageFormat pf, int pageIndex) {
+        Graphics2D g2d = (Graphics2D) g;
+        g.translate((int) (pf.getImageableX()), (int) (pf.getImageableY()));
+        if (pageIndex == 0) {
+            double pageWidth = pf.getImageableWidth();
+            double pageHeight = pf.getImageableHeight();
+            double imageWidth = printImage.getIconWidth();
+            double imageHeight = printImage.getIconHeight();
+            double scaleX = pageWidth / imageWidth;
+            double scaleY = pageHeight / imageHeight;
+            double scaleFactor = Math.min(scaleX, scaleY);
+            g2d.scale(scaleFactor, scaleFactor);
+            g.drawImage(printImage.getImage(), 0, 0, null);
+            return Printable.PAGE_EXISTS;
+        }
+        return Printable.NO_SUCH_PAGE;
+    }
 }
