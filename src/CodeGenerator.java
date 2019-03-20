@@ -23,7 +23,7 @@ public class CodeGenerator {
 
     public static void main(String[] args) {
         try {
-            generateBarcodeImage("This is my first Barcode leeeel", 350, 130, QR_CODE_IMAGE_PATH);
+            generateBarcodeImage("This is my first Barcode leeeel", 350, 130, QR_CODE_IMAGE_PATH); //TODO Parameter einbauen damit Ticketnummer zum Barcode wird
         } catch (WriterException e) {
             System.out.println("Could not generate Code, WriterException :: " + e.getMessage());
         } catch (IOException e) {
