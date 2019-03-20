@@ -1,5 +1,6 @@
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,8 +12,85 @@ public class tikketServer {
     private final ServerSocket server;
 
     public tikketServer(int port) throws IOException {
-        server = new ServerSocket(port);
-        System.out.println("tikketServer wurde auf Port " + port + " gestartet");
+        ServerSocket listener = null;
+
+        System.out.println("Server wartet auf Nutzer...");
+        int clientNumber = 0;
+
+        // Try to open a server socket on port 7777
+        // Note that we can't choose a port less than 1023 if we are not
+        // privileged users (root)
+
+        try {
+            listener = new ServerSocket(port);
+        } catch (IOException e) {
+            System.out.println(e);
+            System.exit(1);
+        }
+
+        try {
+            while (true) {
+                // Accept client connection request
+                // Get new Socket at Server.
+
+                Socket socketOfServer = listener.accept();
+                new ServiceThread(socketOfServer, clientNumber++).start();
+            }
+        } finally {
+            listener.close();
+        }
+    }
+
+    private void log(String message) {
+        System.out.println(message);
+    }
+
+    private class ServiceThread extends Thread {
+
+        private int clientNumber;
+        private Socket socketOfServer;
+
+        public ServiceThread(Socket socketOfServer, int clientNumber) {
+            this.clientNumber = clientNumber;
+            this.socketOfServer = socketOfServer;
+
+            // Log
+            log("New connection with client# " + this.clientNumber + " at " + socketOfServer);
+        }
+
+        @Override
+        public void run() {
+            try {
+                // Open input and output streams
+                BufferedReader is = new BufferedReader(new InputStreamReader(socketOfServer.getInputStream()));
+                BufferedWriter os = new BufferedWriter(new OutputStreamWriter(socketOfServer.getOutputStream()));
+
+                while (true) {
+                    // Read data to the server (sent from client).
+                    String line = is.readLine();
+
+                    // Write to socket of Server
+                    // (Send to client)
+                    os.write(">> " + line);
+                    // End of line.
+                    os.newLine();
+                    // Flush data.
+                    os.flush();
+
+
+                    // If users send QUIT (To end conversation).
+                    if (line.equals("QUIT")) {
+                        os.write(">> OK");
+                        os.newLine();
+                        os.flush();
+                        break;
+                    }
+                }
+            } catch (IOException e) {
+                System.out.println(e);
+                e.printStackTrace();
+            }
+        }
     }
 
     public static void main(String[] args) throws IOException {
@@ -210,8 +288,7 @@ public class tikketServer {
                 try (ResultSet rs = stmt.executeQuery(sql)) {
                     SrvVa_name = rs.getString("va_name");
                     SrvVa_ID = va_id;
-                }
-                catch (SQLException e) {
+                } catch (SQLException e) {
                     System.out.println("Keine Veranstaltung mit der ID gefunden. Error: " + e.getMessage());
                 }
             }
