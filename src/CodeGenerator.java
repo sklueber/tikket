@@ -3,14 +3,13 @@ import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.oned.Code128Writer;
-import com.google.zxing.qrcode.*;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 
 public class CodeGenerator {
-    private static final String QR_CODE_IMAGE_PATH = "./MyQRCode.png";
+    private static final String barcodePfad = "./MyBarcode.png";
 
     private static void generateBarcodeImage(String text, int width, int height, String filePath)
             throws WriterException, IOException {
@@ -21,9 +20,9 @@ public class CodeGenerator {
         MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
     }
 
-    public static void main(String[] args) {
+    public static void barcodeErstellen(String pTicketnummer) {
         try {
-            generateBarcodeImage("This is my first Barcode leeeel", 350, 130, QR_CODE_IMAGE_PATH); //TODO Parameter einbauen damit Ticketnummer zum Barcode wird
+            generateBarcodeImage(pTicketnummer, 350, 130, barcodePfad);
         } catch (WriterException e) {
             System.out.println("Could not generate Code, WriterException :: " + e.getMessage());
         } catch (IOException e) {
