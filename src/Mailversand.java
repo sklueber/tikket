@@ -76,7 +76,7 @@ public class Mailversand {
             String filename = "./MyBarcode.png";
             DataSource source = new FileDataSource(filename);
             messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName(filename);
+            messageBodyPart.setFileName("E-Ticket by tikket. (working title)");
             multipart.addBodyPart(messageBodyPart);
 
             // Send the complete message parts
