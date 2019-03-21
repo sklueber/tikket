@@ -26,7 +26,7 @@ public class Mailversand {
         final String username = "tikket@stockhausenmail.de";//change accordingly
         final String password = "TikketSystem1!";//change accordingly
 
-        // Assuming you are sending email through relay.jangosmtp.net
+
         String host = "sslout.df.eu";
 
         Properties props = new Properties();
