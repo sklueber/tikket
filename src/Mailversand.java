@@ -16,9 +16,9 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 public class Mailversand {
-    public static void main(String[] args) {
+    public static void main(String[] args) { //args: 0: Empfänger, 1: Veranstaltungsname
         // Recipient's email ID needs to be mentioned.
-        String to = "nico.plum@gao-online.de";
+        String to = args[0];
 
         // Sender's email ID needs to be mentioned
         String from = "noreply.tikket@stockhausenmail.de";
@@ -57,13 +57,13 @@ public class Mailversand {
                     InternetAddress.parse(to));
 
             // Set Subject: header field
-            message.setSubject("[TIKKET.] Vielen Dank für ihre Bestellung! Jetzt auch mit SSL!");
+            message.setSubject("[TIKKET.] " + args[1] + ": Vielen Dank für ihre Bestellung!");
 
             // Create the message part
             BodyPart messageBodyPart = new MimeBodyPart();
 
             // Now set the actual message
-            messageBodyPart.setText("ur mom gay");
+            messageBodyPart.setText("Ihr digitales Ticket finden Sie im Anhang.");
 
             // Create a multipar message
             Multipart multipart = new MimeMultipart();
