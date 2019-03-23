@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
         if (scanResult != null) {
             String barcode;
             barcode = scanResult.getContents();
-            EditText ausgabeTicketnummer = (EditText) findViewById(R.id.ausgabeTicketnummer);
-            ausgabeTicketnummer.setText(barcode);
+            TextView textViewTktNr = findViewById(R.id.textViewTktNr);
+            textViewTktNr.setText(barcode);
         }
     }
 }

@@ -10,19 +10,32 @@
         android:id="@+id/buttonScanlos"
         android:layout_width="136dp"
         android:layout_height="104dp"
+        android:layout_marginEnd="138dp"
+        android:layout_marginStart="137dp"
+        android:layout_marginTop="112dp"
         android:onClick="onClick"
         android:text="Drück mich Junge"
-        tools:layout_editor_absoluteX="137dp"
-        tools:layout_editor_absoluteY="92dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/ausgabeTicketnummer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Ticketnummer hier"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="349dp" />
+    <TextView
+        android:id="@+id/textViewTktNr"
+        android:layout_width="187dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="318dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="128dp"
+        android:text="Ticketnummer"
+        android:textAlignment="center"
+        android:textIsSelectable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonScanlos"
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>
