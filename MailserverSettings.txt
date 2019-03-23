@@ -1,0 +1,5 @@
+from: noreply.tikket@stockhausenmail.de
+username: tikket@stockhausenmail.de
+password: TikketSystem1!
+host: sslout.df.eu
+port: 465
