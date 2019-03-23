@@ -34,7 +34,7 @@ public class VeranstaltungslisteGUI extends JFrame {
 
         bGUI.setVisible(false);
         lVeranstaltungsliste.setBounds(200, 30, 500, 63);
-        lVeranstaltungsliste.setText("Veranstaltungsliste");
+        lVeranstaltungsliste.setText("tikket | Veranstaltungsübersicht");
         lVeranstaltungsliste.setForeground(Color.WHITE);
         lVeranstaltungsliste.setFont(new Font("Calibri", Font.BOLD, 48));
         lVeranstaltungsliste.setHorizontalAlignment(SwingConstants.CENTER);
@@ -184,7 +184,8 @@ public class VeranstaltungslisteGUI extends JFrame {
     public void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new VeranstaltungslisteGUI();
-        setVisible(false);
+        //setVisible(false);
+        dispose();
     }
 
     public void bTicketliste_ActionPerformed(ActionEvent evt) {
@@ -196,7 +197,8 @@ public class VeranstaltungslisteGUI extends JFrame {
     public void bZurruck_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new StartseiteGUI();
-        setVisible(false);
+        //setVisible(false);
+        dispose();
     }
 
 }

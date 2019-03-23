@@ -18,13 +18,15 @@ public class ServerStarten {
     }
 
     private void runServer(String port) throws IOException {
-        //System.out.println(Integer.parseInt(port));
         int portInt = Integer.parseInt(port);
-        new tikketServer(portInt);
+        tikketServer tikketServer = new tikketServer(portInt);
+        tikketServer.veranstalterErstellen("testVr");
+        tikketServer.veranstaltungErstellen("test", "heute", "hier", 1);
+        tikketServer.veranstaltungAusgeben();
+        System.out.println("jo");
     }
 
     public ServerStarten() {
-
         bStarten.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {

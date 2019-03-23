@@ -67,7 +67,6 @@ public class BestaetigungsGUI extends JFrame {
     public void labelE ()
     {
         lErfolgreichHinzugefugtH.setText("Erfolgreich entfernt");
-        // Ende Methoden
     }
     
     public void labelA ()

@@ -31,7 +31,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value="192.168.1."/>
+          <text value="localhost"/>
           <toolTipText value="IP des tikketServer"/>
         </properties>
       </component>

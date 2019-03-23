@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static com.sun.deploy.uitoolkit.ToolkitStore.dispose;
+
 public class ClientStarten {
     private JButton bVerbinden;
     private JTextField tServerIP;
@@ -21,8 +23,12 @@ public class ClientStarten {
     public ClientStarten() {
         bVerbinden.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                String ip = tServerIP.getText();
+                int port = Integer.parseInt(tServerPort.getText());
+                new tikketClient(ip, port);
 
-            }
+                new StartseiteGUI();
+        }
         });
     }
 }
