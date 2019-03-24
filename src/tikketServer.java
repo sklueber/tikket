@@ -58,12 +58,11 @@ public class tikketServer {
         @Override
         public void run() {
             try {
-                // Open input and output streams
                 BufferedReader is = new BufferedReader(new InputStreamReader(socketOfServer.getInputStream()));
                 BufferedWriter os = new BufferedWriter(new OutputStreamWriter(socketOfServer.getOutputStream()));
 
                 while (true) {
-                    //Daten von Client lesen
+                    /*Hier wird auf die Befehle aus dem Protokoll reagiert*/
                     String line = is.readLine();
 
                     if (line.equals("ticketErstellen")) {
@@ -100,13 +99,6 @@ public class tikketServer {
         }
     }
 
-//    public static void main(String[] args) throws IOException {
-//        tikketServer tktSrv = new tikketServer(2001);
-//
-//        tktSrv.veranstalterErstellen("testVr");
-//        tktSrv.veranstaltungErstellen("test", "heute", "hier", 1);
-//    }
-
     private void verbinde() {
 
     }
@@ -129,7 +121,7 @@ public class tikketServer {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
         String currentDate = dateFormat.format(date);
 
-        int zufall = ThreadLocalRandom.current().nextInt(0, 999999 + 1);
+        int zufall = ThreadLocalRandom.current().nextInt(0, 1000000000);
 
         try (Connection conn = DBconnect()) {
             String sqlInsertTicket = "INSERT INTO tickets(tkt_UUID, tkt_status, tkt_created, tkt_va) VALUES(?, ?,?,?)";

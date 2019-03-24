@@ -40,3 +40,5 @@ veranstaltungAusgeben||[ID][name][datum][ort][vr_ID]
 veranstaltungLoeschen|[ID]|-->>OK / -->>NOK (Abhängigkeiten)
 veranstaltungSetzen|[ID]|-->>OK / -->>NOK (ID nicht gefunden)
 veranstaltungAuslesen||[ID][name]
+||
+serverTest| |-->>OK

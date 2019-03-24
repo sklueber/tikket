@@ -15,7 +15,7 @@ public class Drucker {
         this.setup();
     }
     public static void main(String[] args) {
-        Drucker d = new Drucker(); //nicht auf IntelliJ hören, das braucht man weil ich alles in den Konstruktor verschoben habe
+        new Drucker();
     }
 
     private void setup(){ //TODO tausende mögliche Errors, v.a. bei Abbruch durch den User
