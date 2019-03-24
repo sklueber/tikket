@@ -34,7 +34,7 @@ public class StartseiteGUI extends JFrame {
         cp.setLayout(null);
 
         lVeranstaltungsname.setBounds(200, 30, 500, 63);
-        lVeranstaltungsname.setText("~Veranstaltungsname~");
+        lVeranstaltungsname.setText(gestartetVon.veranstaltungNameAusgeben());
         lVeranstaltungsname.setHorizontalAlignment(SwingConstants.CENTER);
         lVeranstaltungsname.setFont(new Font("Calibri", Font.BOLD, 48));
         lVeranstaltungsname.setForeground(Color.WHITE);
@@ -50,14 +50,14 @@ public class StartseiteGUI extends JFrame {
         cp.add(lUngultigRotGultigGrun);
 
         lTicketID.setBounds(200, 248, 230, 40);
-        lTicketID.setText("  Ticket-ID: ");
+        lTicketID.setText("Ticket-ID:");
         lTicketID.setFont(new Font("Calibri", Font.PLAIN, 24));
         lTicketID.setForeground(Color.WHITE);
         cp.add(lTicketID);
 
         lZeitstempel.setBounds(470, 248, 230, 40);
         lZeitstempel.setFont(new Font("Calibri", Font.PLAIN, 24));
-        lZeitstempel.setText("  Zeitstempel: ");
+        lZeitstempel.setText("Zeitstempel:");
         lZeitstempel.setForeground(Color.WHITE);
         cp.add(lZeitstempel);
 
@@ -152,9 +152,7 @@ public class StartseiteGUI extends JFrame {
     }
 
     private void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
-        // TODO hier Quelltext einfügen
         new VeranstaltungslisteGUI();
-        //setVisible(false);
         dispose();
     }
 

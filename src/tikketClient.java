@@ -85,7 +85,6 @@ public class tikketClient {
         return null;
     }
 
-
     //Prüft ob das gegebene Ticket gültig ist. Wenn ja wird true zurückgegeben.
     public boolean ticketPruefen(int scan_UUID) {
         try {
@@ -163,6 +162,11 @@ public class tikketClient {
     private void veranstaltungSetzen() {
     }
 
-    private void verantaltungAuslesen() {
+    public int verantaltungIDausgeben() {
+        return SrvVa_ID;
+    }
+
+    public String veranstaltungNameAusgeben() {
+        return SrvVa_name;
     }
 }
