@@ -13,7 +13,7 @@ Als Ausgabemedium stehen eine *Druckfunktion* und ein *E-Mail-Versand* zur Verf�
 * Übersicht über verkaufte/eingelöste Tickets
 
 # Client starten
-1. ClientStarten Methode aufrufen
+1. tikketClient Methode aufrufen
 2. IP und Port des Servers eingeben
 3. Client wird gestartet
 
