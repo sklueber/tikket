@@ -123,11 +123,11 @@ public class TicketAnlegenGUI extends JFrame {
         bTicketliste.setForeground(Color.WHITE);
         cp.add(bTicketliste);
         bZurruck.setBounds(625, 780, 200, 50);
-        bZurruck.setText("Zurrück");
+        bZurruck.setText("Zurück");
         bZurruck.setMargin(new Insets(2, 2, 2, 2));
         bZurruck.addActionListener(new ActionListener() { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bZurruck_ActionPerformed(evt);
+                public void actionPerformed(ActionEvent evt) {
+                    bZurueckActionPerformed(evt);
                 }
             });
         bZurruck.setFont(new Font("Calibri", Font.PLAIN, 24));
@@ -174,7 +174,7 @@ public class TicketAnlegenGUI extends JFrame {
         dispose();
     }
 
-    public void bZurruck_ActionPerformed(ActionEvent evt) {
+    public void bZurueckActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         //new StartseiteGUI();
         //setVisible(false);
