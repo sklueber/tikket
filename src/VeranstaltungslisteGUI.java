@@ -196,7 +196,7 @@ public class VeranstaltungslisteGUI extends JFrame {
 
     public void bZurruck_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
-        new StartseiteGUI();
+        //new StartseiteGUI();
         //setVisible(false);
         dispose();
     }

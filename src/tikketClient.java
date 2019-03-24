@@ -33,7 +33,7 @@ public class tikketClient {
     }
 
     public void GUIstarten() {
-        new StartseiteGUI();
+        new StartseiteGUI(this);
     }
 
     public void ticketErstellen() {

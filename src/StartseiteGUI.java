@@ -17,8 +17,11 @@ public class StartseiteGUI extends JFrame {
     private JButton bTicketliste = new JButton();
     private JButton bZurueck = new JButton();
 
-    public StartseiteGUI() {
+    private tikketClient client;
+
+    public StartseiteGUI(tikketClient gestartetVon) {
         super();
+        client = gestartetVon;
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setSize(900, 900);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -143,14 +146,9 @@ public class StartseiteGUI extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new StartseiteGUI();
-    } // end of main
-
     private void bTicketanlegen_ActionPerformed(ActionEvent evt) {
         //new TicketAnlegenGUI();
-
-        dispose();
+        client.ticketErstellen();
     }
 
     private void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
