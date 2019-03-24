@@ -28,8 +28,10 @@ public class tikketClient {
 
     public tikketClient() {
         new ClientStarten(this);
+    }
 
-        //TODO Hier muss auch ein grundlegender Sync stattfinden
+    public void firstSync() {
+
     }
 
     public void GUIstarten() {
@@ -46,7 +48,7 @@ public class tikketClient {
             // Input stream at Client (Receive data from the server).
             is = new BufferedReader(new InputStreamReader(socketOfClient.getInputStream()));
 
-            System.out.println("ServerSocket erstellt");
+//            System.out.println("ServerSocket erstellt");
         } catch (UnknownHostException e) {
             System.err.println("Unbekannter Host: " + tikketServerHost);
             return;
@@ -65,7 +67,7 @@ public class tikketClient {
             String responseLine;
             while ((responseLine = is.readLine()) != null) {
                 System.out.println("Server: " + responseLine);
-                if (responseLine.equals("OK")) {
+                if (responseLine.equals(">> OK")) {
                     return;
                 }
             }

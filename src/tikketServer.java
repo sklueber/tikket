@@ -68,16 +68,22 @@ public class tikketServer {
 
                     if (line.equals("ticketErstellen")) {
                         ticketErstellen();
+                        os.write(">> OK");
+                        os.newLine();
+                        os.flush();
+                        break;
                     }
 
                     if(line.equals("veranstaltungAuslesen")){
                         os.write(veranstaltungIDAuslesen());
                         os.newLine();
                         os.flush();
+                        break;
                     }
 
                     if(line.equals("veranstaltungSetzen")){
                         veranstaltungWechseln(1);
+                        break;
                     }
 
                     if (line.equals("QUIT")) {
