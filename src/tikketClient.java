@@ -4,6 +4,14 @@ import java.net.UnknownHostException;
 
 
 public class tikketClient {
+    public void setTikketServerHost(String tikketServerHost) {
+        this.tikketServerHost = tikketServerHost;
+    }
+
+    public void setTikketServerPort(int tikketServerPort) {
+        this.tikketServerPort = tikketServerPort;
+    }
+
     private String tikketServerHost;
     private int tikketServerPort;
     //VA, die der Client bedient
@@ -14,12 +22,18 @@ public class tikketClient {
     BufferedWriter os;
     BufferedReader is;
 
-    public tikketClient(String ServerHost, int ServerPort) {
-        tikketServerHost = ServerHost;
-        tikketServerPort = ServerPort;
+    public static void main(String[] args) {
+        new tikketClient();
+    }
 
+    public tikketClient() {
+        new ClientStarten(this);
+
+        //TODO Hier muss auch ein grundlegender Sync stattfinden
+    }
+
+    public void GUIstarten() {
         new StartseiteGUI();
-        //Hier muss auch ein grundlegender Sync stattfinden
     }
 
     public void ticketErstellen() {

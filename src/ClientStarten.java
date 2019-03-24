@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ClientStarten {
+public class ClientStarten extends JFrame {
     private JButton bVerbinden;
     private JTextField tServerIP;
     private JTextField tServerPort;
@@ -10,20 +10,23 @@ public class ClientStarten {
     private JLabel lServerPort;
     private JLabel lServerIP;
 
-    public static void main(String[] args) {
+    public String ip;
+    public int port;
+
+    public ClientStarten(tikketClient gestartetVon) {
         JFrame frame = new JFrame("Client Starten");
-        frame.setContentPane(new ClientStarten().ClientStarten);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setContentPane(this.ClientStarten);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-    }
 
-    public ClientStarten() {
         bVerbinden.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String ip = tServerIP.getText();
-                int port = Integer.parseInt(tServerPort.getText());
-                tikketClient client = new tikketClient(ip, port);
+                ip = tServerIP.getText();
+                port = Integer.parseInt(tServerPort.getText());
+                gestartetVon.setTikketServerHost(ip);
+                gestartetVon.setTikketServerPort(port);
+                gestartetVon.GUIstarten();
         }
         });
     }
