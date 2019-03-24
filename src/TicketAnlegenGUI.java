@@ -1,3 +1,9 @@
+/*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:28.
+ * Zuletzt bearbeitet 24.03.19 21:33.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,7 +23,7 @@ public class TicketAnlegenGUI extends JFrame {
     public TicketAnlegenGUI() {
         super();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        int frameWidth = 900; 
+        int frameWidth = 900;
         int frameHeight = 900;
         setSize(frameWidth, frameHeight);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -32,11 +38,11 @@ public class TicketAnlegenGUI extends JFrame {
         bDruckenundSenden.setBounds(150, 40, 225, 50);
         bDruckenundSenden.setText("Drucken und Senden");
         bDruckenundSenden.setMargin(new Insets(2, 2, 2, 2));
-        bDruckenundSenden.addActionListener(new ActionListener() { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bDruckenundSenden_ActionPerformed(evt);
-                }
-            });
+        bDruckenundSenden.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                bDruckenundSenden_ActionPerformed(evt);
+            }
+        });
         bDruckenundSenden.setFont(new Font("Calibri", Font.PLAIN, 24));
         bDruckenundSenden.setBorderPainted(false);
         bDruckenundSenden.setFocusPainted(false);
@@ -47,11 +53,11 @@ public class TicketAnlegenGUI extends JFrame {
         bSenden.setBounds(550, 40, 225, 50);
         bSenden.setText("Senden");
         bSenden.setMargin(new Insets(2, 2, 2, 2));
-        bSenden.addActionListener(new ActionListener() { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bSenden_ActionPerformed(evt);
-                }
-            });
+        bSenden.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                bSenden_ActionPerformed(evt);
+            }
+        });
         bSenden.setFont(new Font("Calibri", Font.PLAIN, 24));
         bSenden.setBorderPainted(false);
         bSenden.setFocusPainted(false);
@@ -79,11 +85,11 @@ public class TicketAnlegenGUI extends JFrame {
         bAnlegen.setBounds(337, 632, 226, 50);
         bAnlegen.setText("Anlegen");
         bAnlegen.setMargin(new Insets(2, 2, 2, 2));
-        bAnlegen.addActionListener(new ActionListener() { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bAnlegen_ActionPerformed(evt);
-                }
-            });
+        bAnlegen.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                bAnlegen_ActionPerformed(evt);
+            }
+        });
         bAnlegen.setFont(new Font("Calibri", Font.PLAIN, 24));
         bAnlegen.setBorderPainted(false);
         bAnlegen.setFocusPainted(false);
@@ -95,11 +101,11 @@ public class TicketAnlegenGUI extends JFrame {
         bVeranstaltungsliste.setBounds(75, 780, 200, 50);
         bVeranstaltungsliste.setText("Veranstaltungsliste");
         bVeranstaltungsliste.setMargin(new Insets(2, 2, 2, 2));
-        bVeranstaltungsliste.addActionListener(new ActionListener() { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bVeranstaltungsliste_ActionPerformed(evt);
-                }
-            });
+        bVeranstaltungsliste.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                bVeranstaltungsliste_ActionPerformed(evt);
+            }
+        });
         bVeranstaltungsliste.setFont(new Font("Calibri", Font.PLAIN, 24));
         bVeranstaltungsliste.setBorderPainted(false);
         bVeranstaltungsliste.setFocusPainted(false);
@@ -110,11 +116,11 @@ public class TicketAnlegenGUI extends JFrame {
         bTicketliste.setBounds(350, 780, 200, 50);
         bTicketliste.setText("Ticketliste");
         bTicketliste.setMargin(new Insets(2, 2, 2, 2));
-        bTicketliste.addActionListener(new ActionListener() { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bTicketliste_ActionPerformed(evt);
-                }
-            });
+        bTicketliste.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                bTicketliste_ActionPerformed(evt);
+            }
+        });
         bTicketliste.setFont(new Font("Calibri", Font.PLAIN, 24));
         bTicketliste.setBorderPainted(false);
         bTicketliste.setFocusPainted(false);
@@ -125,11 +131,11 @@ public class TicketAnlegenGUI extends JFrame {
         bZurruck.setBounds(625, 780, 200, 50);
         bZurruck.setText("Zurück");
         bZurruck.setMargin(new Insets(2, 2, 2, 2));
-        bZurruck.addActionListener(new ActionListener() { 
-                public void actionPerformed(ActionEvent evt) {
-                    bZurueckActionPerformed(evt);
-                }
-            });
+        bZurruck.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                bZurueckActionPerformed(evt);
+            }
+        });
         bZurruck.setFont(new Font("Calibri", Font.PLAIN, 24));
         bZurruck.setBorderPainted(false);
         bZurruck.setFocusPainted(false);

@@ -1,3 +1,9 @@
+/*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:28.
+ * Zuletzt bearbeitet 24.03.19 21:40.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -64,11 +70,11 @@ public class StartseiteGUI extends JFrame {
         bTicketanlegen.setBounds(275, 320, 350, 100);
         bTicketanlegen.setText("Ticket anlegen");
         bTicketanlegen.setMargin(new Insets(2, 2, 2, 2));
-        bTicketanlegen.addActionListener(new ActionListener() { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bTicketanlegen_ActionPerformed(evt);
-                }
-            });
+        bTicketanlegen.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                bTicketanlegen_ActionPerformed(evt);
+            }
+        });
         bTicketanlegen.setFont(new Font("Calibri", Font.BOLD, 48));
         bTicketanlegen.setBorderPainted(false);
         bTicketanlegen.setFocusPainted(false);
@@ -99,11 +105,11 @@ public class StartseiteGUI extends JFrame {
         bVeranstaltungsliste.setBounds(75, 780, 200, 50);
         bVeranstaltungsliste.setText("Veranstaltungsliste");
         bVeranstaltungsliste.setMargin(new Insets(2, 2, 2, 2));
-        bVeranstaltungsliste.addActionListener(new ActionListener() { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bVeranstaltungsliste_ActionPerformed(evt);
-                }
-            });
+        bVeranstaltungsliste.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                bVeranstaltungsliste_ActionPerformed(evt);
+            }
+        });
         bVeranstaltungsliste.setFont(new Font("Calibri", Font.PLAIN, 24));
         bVeranstaltungsliste.setBorderPainted(false);
         bVeranstaltungsliste.setFocusPainted(false);
@@ -114,11 +120,11 @@ public class StartseiteGUI extends JFrame {
         bTicketliste.setBounds(350, 780, 200, 50);
         bTicketliste.setText("Ticketliste");
         bTicketliste.setMargin(new Insets(2, 2, 2, 2));
-        bTicketliste.addActionListener(new ActionListener() { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bTicketliste_ActionPerformed(evt);
-                }
-            });
+        bTicketliste.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                bTicketliste_ActionPerformed(evt);
+            }
+        });
         bTicketliste.setFont(new Font("Calibri", Font.PLAIN, 24));
         bTicketliste.setBorderPainted(false);
         bTicketliste.setFocusPainted(false);

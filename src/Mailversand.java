@@ -1,4 +1,10 @@
 /*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:28.
+ * Zuletzt bearbeitet 24.03.19 22:24.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
+/*
  * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:23.
  * Zuletzt bearbeitet 23.03.19 18:07.
  * Keiner klaut das hier! (c) 2019.
@@ -108,7 +114,7 @@ public class Mailversand {
         }
     }
 
-    public static String[] txtLesen(){
+    private static String[] txtLesen() {
         String[] serverdaten = new String[5];
         int i = 0;
         try (BufferedReader br = new BufferedReader(new FileReader("./MailserverSettings.txt"))) {

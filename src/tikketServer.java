@@ -1,4 +1,10 @@
 /*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:28.
+ * Zuletzt bearbeitet 24.03.19 22:24.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
+/*
  * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:22.
  * Zuletzt bearbeitet 24.03.19 20:56.
  * Keiner klaut das hier! (c) 2019.

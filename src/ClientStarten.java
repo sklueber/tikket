@@ -1,4 +1,10 @@
 /*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:28.
+ * Zuletzt bearbeitet 24.03.19 22:24.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
+/*
  * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:23.
  * Zuletzt bearbeitet 24.03.19 21:12.
  * Keiner klaut das hier! (c) 2019.
@@ -16,8 +22,8 @@ public class ClientStarten extends JFrame {
     private JLabel lServerPort;
     private JLabel lServerIP;
     private tikketClient gestartetVon;
-    public String ip;
-    public int port;
+    private String ip;
+    private int port;
 
     public ClientStarten(tikketClient client) {
         gestartetVon = client;

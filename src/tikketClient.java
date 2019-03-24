@@ -1,4 +1,10 @@
 /*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:28.
+ * Zuletzt bearbeitet 24.03.19 22:24.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
+/*
  * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:21.
  * Zuletzt bearbeitet 24.03.19 22:19.
  * Keiner klaut das hier! (c) 2019.
@@ -46,10 +52,8 @@ public class tikketClient {
             is = new BufferedReader(new InputStreamReader(socketOfClient.getInputStream()));
         } catch (UnknownHostException e) {
             System.err.println("Unbekannter Host: " + tikketServerHost);
-            return;
         } catch (IOException e) {
             System.err.println("I/O Fehler: " + tikketServerHost);
-            return;
         }
     }
 
@@ -102,10 +106,8 @@ public class tikketClient {
             socketOfClient.close();
         } catch (UnknownHostException e) {
             System.err.println("Server nicht gefunden: " + e);
-            return;
         } catch (IOException e) {
             System.err.println("I/O Fehler:  " + e);
-            return;
         } catch (NullPointerException e) {
             System.out.println("NPE; Vermutlich wurde kein Socket gefunden: " + e);
         }

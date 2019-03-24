@@ -1,3 +1,9 @@
+/*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:28.
+ * Zuletzt bearbeitet 24.03.19 21:24.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,12 +14,12 @@ public class BestaetigungsGUI extends JFrame {
     private JLabel lErfolgreichHinzugefugtE = new JLabel();
     private JLabel lErfolgreichHinzugefugtA = new JLabel();
     private JButton bOK = new JButton();
-    private String H = new String();
+    private String H;
 
     public BestaetigungsGUI() {
         super();
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        int frameWidth = 300; 
+        int frameWidth = 300;
         int frameHeight = 200;
         setSize(frameWidth, frameHeight);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -33,15 +39,15 @@ public class BestaetigungsGUI extends JFrame {
         lErfolgreichHinzugefugtH.setHorizontalAlignment(SwingConstants.CENTER);
         cp.add(lErfolgreichHinzugefugtH);
         lErfolgreichHinzugefugtH.setVisible(true);
-        
+
         bOK.setBounds(112, 100, 74, 35);
         bOK.setText("OK");
         bOK.setMargin(new Insets(2, 2, 2, 2));
-        bOK.addActionListener(new ActionListener() { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bOK_ActionPerformed(evt);
-                }
-            });
+        bOK.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                bOK_ActionPerformed(evt);
+            }
+        });
         //bOK.setBackground(new Color(0x404040));
         bOK.setFont(new Font("Calibri", Font.PLAIN, 24));
         bOK.setBorderPainted(false);
@@ -63,18 +69,15 @@ public class BestaetigungsGUI extends JFrame {
         // TODO hier Quelltext einfügen
     }
 
-    public void labelE ()
-    {
+    public void labelE() {
         lErfolgreichHinzugefugtH.setText("Erfolgreich entfernt");
     }
-    
-    public void labelA ()
-    {
+
+    public void labelA() {
         lErfolgreichHinzugefugtH.setText("Erfolgreich ausgewählt");
     }
-    
-    public void labelH ()
-    {
+
+    public void labelH() {
         lErfolgreichHinzugefugtH.setText("Erfolgreich hinzugefügt");
     }
 }

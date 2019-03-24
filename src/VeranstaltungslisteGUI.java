@@ -1,3 +1,9 @@
+/*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:28.
+ * Zuletzt bearbeitet 24.03.19 21:57.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -19,7 +25,7 @@ public class VeranstaltungslisteGUI extends JFrame {
     public VeranstaltungslisteGUI() {
         super();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        int frameWidth = 900; 
+        int frameWidth = 900;
         int frameHeight = 891;
         setSize(frameWidth, frameHeight);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -56,12 +62,11 @@ public class VeranstaltungslisteGUI extends JFrame {
         bHinzufugen.setBounds(70, 376, 200, 50);
         bHinzufugen.setText("Hinzufügen");
         bHinzufugen.setMargin(new Insets(2, 2, 2, 2));
-        bHinzufugen.addActionListener(new ActionListener() 
-            { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bHinzufugen_ActionPerformed(evt);
-                }
-            }
+        bHinzufugen.addActionListener(new ActionListener() {
+                                          public void actionPerformed(ActionEvent evt) {
+                                              bHinzufugen_ActionPerformed(evt);
+                                          }
+                                      }
         );
         bHinzufugen.setFont(new Font("Calibri", Font.PLAIN, 24));
         bHinzufugen.setBorderPainted(false);
@@ -74,12 +79,11 @@ public class VeranstaltungslisteGUI extends JFrame {
         bEntfernen.setBounds(342, 376, 200, 50);
         bEntfernen.setText("Entfernen");
         bEntfernen.setMargin(new Insets(2, 2, 2, 2));
-        bEntfernen.addActionListener(new ActionListener() 
-            { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bEntfernen_ActionPerformed(evt);
-                }
-            });
+        bEntfernen.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                bEntfernen_ActionPerformed(evt);
+            }
+        });
         bEntfernen.setFont(new Font("Calibri", Font.PLAIN, 24));
         bEntfernen.setBorderPainted(false);
         bEntfernen.setFocusPainted(false);
@@ -90,12 +94,11 @@ public class VeranstaltungslisteGUI extends JFrame {
         bAuswahlen.setBounds(622, 376, 200, 50);
         bAuswahlen.setText("Auswählen");
         bAuswahlen.setMargin(new Insets(2, 2, 2, 2));
-        bAuswahlen.addActionListener(new ActionListener() 
-        {
-                public void actionPerformed(ActionEvent evt) { 
-                    bAuswahlen_ActionPerformed(evt);
-                }
-            });
+        bAuswahlen.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                bAuswahlen_ActionPerformed(evt);
+            }
+        });
         bAuswahlen.setFont(new Font("Calibri", Font.PLAIN, 24));
         bAuswahlen.setBorderPainted(false);
         bAuswahlen.setFocusPainted(false);
@@ -107,12 +110,11 @@ public class VeranstaltungslisteGUI extends JFrame {
         bTicketliste.setBounds(350, 780, 200, 50);
         bTicketliste.setText("Ticketliste");
         bTicketliste.setMargin(new Insets(2, 2, 2, 2));
-        bTicketliste.addActionListener(new ActionListener()
-            { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bTicketliste_ActionPerformed(evt);
-                }
-            });
+        bTicketliste.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                bTicketliste_ActionPerformed(evt);
+            }
+        });
         bTicketliste.setFont(new Font("Calibri", Font.PLAIN, 24));
         bTicketliste.setBorderPainted(false);
         bTicketliste.setFocusPainted(false);
@@ -123,12 +125,11 @@ public class VeranstaltungslisteGUI extends JFrame {
         bZurueck.setBounds(625, 780, 200, 50);
         bZurueck.setText("Zurück");
         bZurueck.setMargin(new Insets(2, 2, 2, 2));
-        bZurueck.addActionListener(new ActionListener()
-            { 
-                public void actionPerformed(ActionEvent evt) {
-                    bZurueck_ActionPerformed(evt);
-                }
-            });
+        bZurueck.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                bZurueck_ActionPerformed(evt);
+            }
+        });
         bZurueck.setFont(new Font("Calibri", Font.PLAIN, 24));
         bZurueck.setBorderPainted(false);
         bZurueck.setFocusPainted(false);
