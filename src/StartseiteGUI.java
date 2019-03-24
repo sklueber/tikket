@@ -148,9 +148,8 @@ public class StartseiteGUI extends JFrame {
     } // end of main
 
     private void bTicketanlegen_ActionPerformed(ActionEvent evt) {
-        // TODO hier Quelltext einfügen
-        new TicketAnlegenGUI();
-        //setVisible(false);
+        //new TicketAnlegenGUI();
+
         dispose();
     }
 

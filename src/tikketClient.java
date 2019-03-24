@@ -1,25 +1,30 @@
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Date;
 
 
 public class tikketClient {
-    final private String tikketServerHost;
-    final private int tikketServerPort;
+    private String tikketServerHost;
+    private int tikketServerPort;
+    //VA, die der Client bedient
     private int SrvVa_ID;
     private String SrvVa_name;
+    //Serverstuff
+    Socket socketOfClient;
+    BufferedWriter os;
+    BufferedReader is;
 
     public tikketClient(String ServerHost, int ServerPort) {
         tikketServerHost = ServerHost;
         tikketServerPort = ServerPort;
 
-        Socket socketOfClient;
-        BufferedWriter os;
-        BufferedReader is;
+        new StartseiteGUI();
+        //Hier muss auch ein grundlegender Sync stattfinden
+    }
 
+    public void ticketErstellen() {
         try {
-            socketOfClient = new Socket(tikketServerHost, ServerPort);
+            socketOfClient = new Socket(tikketServerHost, tikketServerPort);
 
             // Create output stream at the client (to send data to the server)
             os = new BufferedWriter(new OutputStreamWriter(socketOfClient.getOutputStream()));
@@ -27,44 +32,123 @@ public class tikketClient {
             // Input stream at Client (Receive data from the server).
             is = new BufferedReader(new InputStreamReader(socketOfClient.getInputStream()));
 
+            System.out.println("ServerSocket erstellt");
         } catch (UnknownHostException e) {
-            System.err.println("Unbekannter Host " + tikketServerHost);
+            System.err.println("Unbekannter Host: " + tikketServerHost);
             return;
         } catch (IOException e) {
-            System.err.println("I/O Fehler " + tikketServerHost);
+            System.err.println("I/O Fehler: " + tikketServerHost);
             return;
         }
 
         try {
-
-            // Write data to the output stream of the Client Socket.
-            os.write("veranstaltungAuslesen");
-            // End of line
-            os.newLine();
-            // Flush data.
-            os.flush();
-            os.write("QUIT");
+            // In OutputStream schreiben, senden
+            os.write("ticketErstellen");
             os.newLine();
             os.flush();
 
-            // Read data sent from the server.
-            // By reading the input stream of the Client Socket.
+            // Aus InputStream lesen, empfangen
             String responseLine;
             while ((responseLine = is.readLine()) != null) {
                 System.out.println("Server: " + responseLine);
-                if (responseLine.contains("OK")) {
-                    break;
+                if (responseLine.equals("OK")) {
+                    return;
                 }
             }
             os.close();
             is.close();
             socketOfClient.close();
         } catch (UnknownHostException e) {
-            System.err.println("Trying to connect to unknown host: " + e);
+            System.err.println("Unbekannter Host: " + e);
+            return;
         } catch (IOException e) {
-            System.err.println("IOException:  " + e);
+            System.err.println("I/O Fehler:  " + e);
+            return;
+        }
+    }
+
+    private String ticketAusgeben() {
+        return null;
+    }
+
+
+    //Prüft ob das gegebene Ticket gültig ist. Wenn ja wird true zurückgegeben.
+    public boolean ticketPruefen(int scan_UUID) {
+        try {
+            socketOfClient = new Socket(tikketServerHost, tikketServerPort);
+
+            // Create output stream at the client (to send data to the server)
+            os = new BufferedWriter(new OutputStreamWriter(socketOfClient.getOutputStream()));
+
+            // Input stream at Client (Receive data from the server).
+            is = new BufferedReader(new InputStreamReader(socketOfClient.getInputStream()));
+
+            System.out.println("ServerSocket erstellt");
+        } catch (UnknownHostException e) {
+            System.err.println("Unbekannter Host: " + tikketServerHost);
+            return false;
+        } catch (IOException e) {
+            System.err.println("I/O Fehler: " + tikketServerHost);
+            return false;
         }
 
-        //Hier muss auch ein grundlegender Sync stattfinden
+        try {
+            // In OutputStream schreiben, senden
+            os.write("ticketPruefen;" + scan_UUID);
+            os.newLine();
+            os.flush();
+
+            // Aus InputStream lesen, empfangen
+            String responseLine;
+            while ((responseLine = is.readLine()) != null) {
+                System.out.println("Server: " + responseLine);
+                if (responseLine.equals("true")) {
+                    return true;
+                } else if (responseLine.equals("false")) {
+                    return false;
+                }
+            }
+            os.close();
+            is.close();
+            socketOfClient.close();
+        } catch (UnknownHostException e) {
+            System.err.println("Unbekannter Host: " + e);
+            return false;
+        } catch (IOException e) {
+            System.err.println("I/O Fehler:  " + e);
+            return false;
+        }
+        return false;
+    }
+
+    private boolean ticketAuslass() {
+        return false;
+    }
+
+    private void ticketEinlass() {
+    }
+
+    private void veranstalterErstellen() {
+    }
+
+    private void veranstalterAusgeben() {
+    }
+
+    private void veranstalterLoeschen() {
+    }
+
+    private void veranstaltungErstellen() {
+    }
+
+    private void veranstaltungAusgeben() {
+    }
+
+    private void veranstaltungLoeschen() {
+    }
+
+    private void veranstaltungSetzen() {
+    }
+
+    private void verantaltungAuslesen() {
     }
 }

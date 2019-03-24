@@ -14,6 +14,10 @@ public class tikketServer {
     public tikketServer(int port) throws IOException {
         ServerSocket listener = null;
 
+        //TEST
+        SrvVa_ID = 1;
+        SrvVa_name = "testVA";
+
         System.out.println("Server wartet auf Nutzer...");
         int clientNumber = 0;
 
@@ -59,12 +63,12 @@ public class tikketServer {
                 BufferedWriter os = new BufferedWriter(new OutputStreamWriter(socketOfServer.getOutputStream()));
 
                 while (true) {
-                    // Read data to the server (sent from client).
+                    //Daten von Client lesen
                     String line = is.readLine();
 
-//                    os.write(">> " + line);
-//                    os.newLine();
-//                    os.flush();
+                    if (line.equals("ticketErstellen")) {
+                        ticketErstellen();
+                    }
 
                     if(line.equals("veranstaltungAuslesen")){
                         os.write(veranstaltungIDAuslesen());
@@ -124,7 +128,7 @@ public class tikketServer {
         try (Connection conn = DBconnect()) {
             String sqlInsertTicket = "INSERT INTO tickets(tkt_UUID, tkt_status, tkt_created, tkt_va) VALUES(?, ?,?,?)";
             try (PreparedStatement pstmt = conn.prepareStatement(sqlInsertTicket)) {
-                pstmt.setInt(1, zufall); //TODO in Java schon Unique machen. Ist bisher nur random
+                pstmt.setInt(1, zufall); //TODO in Java schon Unique machen. Ist bisher "nur" random
                 pstmt.setInt(2, 1);
                 pstmt.setString(3, currentDate);
                 pstmt.setInt(4, SrvVa_ID);
