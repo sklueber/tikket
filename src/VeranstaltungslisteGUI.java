@@ -12,9 +12,8 @@ public class VeranstaltungslisteGUI extends JFrame {
     private JButton bHinzufugen = new JButton();
     private JButton bEntfernen = new JButton();
     private JButton bAuswahlen = new JButton();
-    private JButton bVeranstaltungsliste = new JButton();
     private JButton bTicketliste = new JButton();
-    private JButton bZurruck = new JButton();
+    private JButton bZurueck = new JButton();
     private BestaetigungsGUI bGUI = new BestaetigungsGUI();
 
     public VeranstaltungslisteGUI() {
@@ -101,22 +100,7 @@ public class VeranstaltungslisteGUI extends JFrame {
         bAuswahlen.setBackground(Color.DARK_GRAY);
         bAuswahlen.setForeground(Color.WHITE);
         cp.add(bAuswahlen);
-        bVeranstaltungsliste.setBounds(75, 780, 200, 50);
-        bVeranstaltungsliste.setText("Veranstaltungsliste");
-        bVeranstaltungsliste.setMargin(new Insets(2, 2, 2, 2));
-        bVeranstaltungsliste.addActionListener(new ActionListener()
-            { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bVeranstaltungsliste_ActionPerformed(evt);
-                }
-            });
-        bVeranstaltungsliste.setFont(new Font("Calibri", Font.PLAIN, 24));
-        bVeranstaltungsliste.setBorderPainted(false);
-        bVeranstaltungsliste.setFocusPainted(false);
-        bVeranstaltungsliste.setContentAreaFilled(true);
-        bVeranstaltungsliste.setBackground(Color.DARK_GRAY);
-        bVeranstaltungsliste.setForeground(Color.WHITE);
-        cp.add(bVeranstaltungsliste);
+
         bTicketliste.setBounds(350, 780, 200, 50);
         bTicketliste.setText("Ticketliste");
         bTicketliste.setMargin(new Insets(2, 2, 2, 2));
@@ -133,22 +117,22 @@ public class VeranstaltungslisteGUI extends JFrame {
         bTicketliste.setBackground(Color.DARK_GRAY);
         bTicketliste.setForeground(Color.WHITE);
         cp.add(bTicketliste);
-        bZurruck.setBounds(625, 780, 200, 50);
-        bZurruck.setText("Zurück");
-        bZurruck.setMargin(new Insets(2, 2, 2, 2));
-        bZurruck.addActionListener(new ActionListener() 
+        bZurueck.setBounds(625, 780, 200, 50);
+        bZurueck.setText("Zurück");
+        bZurueck.setMargin(new Insets(2, 2, 2, 2));
+        bZurueck.addActionListener(new ActionListener()
             { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bZurruck_ActionPerformed(evt);
+                public void actionPerformed(ActionEvent evt) {
+                    bZurueck_ActionPerformed(evt);
                 }
             });
-        bZurruck.setFont(new Font("Calibri", Font.PLAIN, 24));
-        bZurruck.setBorderPainted(false);
-        bZurruck.setFocusPainted(false);
-        bZurruck.setContentAreaFilled(true);
-        bZurruck.setBackground(Color.DARK_GRAY);
-        bZurruck.setForeground(Color.WHITE);
-        cp.add(bZurruck);
+        bZurueck.setFont(new Font("Calibri", Font.PLAIN, 24));
+        bZurueck.setBorderPainted(false);
+        bZurueck.setFocusPainted(false);
+        bZurueck.setContentAreaFilled(true);
+        bZurueck.setBackground(Color.DARK_GRAY);
+        bZurueck.setForeground(Color.WHITE);
+        cp.add(bZurueck);
         Veranstaltungsliste.setBackground(Color.DARK_GRAY);
         cp.setBackground(Color.BLACK);
         setVisible(true);
@@ -163,12 +147,10 @@ public class VeranstaltungslisteGUI extends JFrame {
         // TODO hier Quelltext einfügen
         bGUI.labelH();
         bGUI.setVisible(true);
-        //BestaetigungsGUI.labelE();
     }
 
     public void bEntfernen_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
-        //new BestaetigungsGUI();
         bGUI.labelE();
         bGUI.setVisible(true);
     }
@@ -188,10 +170,9 @@ public class VeranstaltungslisteGUI extends JFrame {
     public void bTicketliste_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new TicketlisteGUI();
-        bGUI.setVisible(false);
     }
 
-    public void bZurruck_ActionPerformed(ActionEvent evt) {
+    public void bZurueck_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         dispose();
     }

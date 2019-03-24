@@ -16,7 +16,7 @@ public class TicketAnlegenGUI extends JFrame {
 
     public TicketAnlegenGUI() {
         super();
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         int frameWidth = 900; 
         int frameHeight = 900;
         setSize(frameWidth, frameHeight);
@@ -170,14 +170,11 @@ public class TicketAnlegenGUI extends JFrame {
     public void bTicketliste_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new TicketlisteGUI();
-        //setVisible(false);
         dispose();
     }
 
     public void bZurueckActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
-        //new StartseiteGUI();
-        //setVisible(false);
         dispose();
     }
 

@@ -13,13 +13,12 @@ public class TicketlisteGUI extends JFrame {
     private JButton bEntfernen = new JButton();
     private JButton bAuswahlen = new JButton();
     private JButton bVeranstaltungsliste = new JButton();
-    private JButton bTicketliste = new JButton();
-    private JButton bZurruck = new JButton();
+    private JButton bZurueck = new JButton();
     private BestaetigungsGUI bGUI = new BestaetigungsGUI();
 
     public TicketlisteGUI() {
         super();
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         int frameWidth = 900; 
         int frameHeight = 900;
         setSize(frameWidth, frameHeight);
@@ -111,36 +110,22 @@ public class TicketlisteGUI extends JFrame {
         bVeranstaltungsliste.setBackground(Color.DARK_GRAY);
         bVeranstaltungsliste.setForeground(Color.WHITE);
         cp.add(bVeranstaltungsliste);
-        bTicketliste.setBounds(350, 780, 200, 50);
-        bTicketliste.setText("Ticketliste");
-        bTicketliste.setMargin(new Insets(2, 2, 2, 2));
-        bTicketliste.addActionListener(new ActionListener() { 
-                public void actionPerformed(ActionEvent evt) { 
-                    bTicketliste_ActionPerformed(evt);
-                }
-            });
-        bTicketliste.setFont(new Font("Calibri", Font.PLAIN, 24));
-        bTicketliste.setBorderPainted(false);
-        bTicketliste.setFocusPainted(false);
-        bTicketliste.setContentAreaFilled(true);
-        bTicketliste.setBackground(Color.DARK_GRAY);
-        bTicketliste.setForeground(Color.WHITE);
-        cp.add(bTicketliste);
-        bZurruck.setBounds(625, 780, 200, 50);
-        bZurruck.setText("Zurück");
-        bZurruck.setMargin(new Insets(2, 2, 2, 2));
-        bZurruck.addActionListener(new ActionListener() { 
+
+        bZurueck.setBounds(625, 780, 200, 50);
+        bZurueck.setText("Zurück");
+        bZurueck.setMargin(new Insets(2, 2, 2, 2));
+        bZurueck.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     bZurueckActionPerformed(evt);
                 }
             });
-        bZurruck.setFont(new Font("Calibri", Font.PLAIN, 24));
-        bZurruck.setBorderPainted(false);
-        bZurruck.setFocusPainted(false);
-        bZurruck.setContentAreaFilled(true);
-        bZurruck.setBackground(Color.DARK_GRAY);
-        bZurruck.setForeground(Color.WHITE);
-        cp.add(bZurruck);
+        bZurueck.setFont(new Font("Calibri", Font.PLAIN, 24));
+        bZurueck.setBorderPainted(false);
+        bZurueck.setFocusPainted(false);
+        bZurueck.setContentAreaFilled(true);
+        bZurueck.setBackground(Color.DARK_GRAY);
+        bZurueck.setForeground(Color.WHITE);
+        cp.add(bZurueck);
         cp.setBackground(Color.BLACK);
         Ticketliste.setBackground(Color.DARK_GRAY);
 

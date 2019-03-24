@@ -140,23 +140,18 @@ public class StartseiteGUI extends JFrame {
     }
 
     private void bTicketanlegen_ActionPerformed(ActionEvent evt) {
-        //new TicketAnlegenGUI();
         client.ticketErstellen();
     }
 
     private void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
         new VeranstaltungslisteGUI();
-        dispose();
     }
 
     private void bTicketliste_ActionPerformed(ActionEvent evt) {
-        // TODO hier Quelltext einfügen
         new TicketlisteGUI();
-        //setVisible(false);
-        dispose();
     }
 
-    private void bZurueck_ActionPerformed(ActionEvent evt) {
+    private void bZurueckActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
 
     }
