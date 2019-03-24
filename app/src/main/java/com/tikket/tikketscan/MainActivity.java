@@ -3,6 +3,8 @@ package com.tikket.tikketscan;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -66,10 +68,12 @@ public class MainActivity extends AppCompatActivity {
         } else {
             if(pTicketnummer.equals("100")){
                 drawable.setColor(ContextCompat.getColor(this, R.color.colorValidGreen));
-                status.setText(R.string.valid);
+                status.setText(R.string.valid); //TODO schöne Sounds
             } else {
                 drawable.setColor(ContextCompat.getColor(this, R.color.colorInvalidRed));
                 status.setText(R.string.invalid);
+                final ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100);
+                tg.startTone(ToneGenerator.TONE_PROP_BEEP2); //vlt durch was cooleres ersetzen
             }
         }
     }
