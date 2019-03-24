@@ -19,7 +19,7 @@ public class VeranstaltungslisteGUI extends JFrame {
 
     public VeranstaltungslisteGUI() {
         super();
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         int frameWidth = 900; 
         int frameHeight = 891;
         setSize(frameWidth, frameHeight);
@@ -27,14 +27,14 @@ public class VeranstaltungslisteGUI extends JFrame {
         int x = (d.width - getSize().width) / 2;
         int y = (d.height - getSize().height) / 2;
         setLocation(x, y);
-        setTitle("GUI");
+        setTitle("tikket | Veranstaltungsübersicht");
         setResizable(false);
         Container cp = getContentPane();
         cp.setLayout(null);
 
         bGUI.setVisible(false);
         lVeranstaltungsliste.setBounds(200, 30, 500, 63);
-        lVeranstaltungsliste.setText("tikket | Veranstaltungsübersicht");
+        lVeranstaltungsliste.setText("Veranstaltungsübersicht");
         lVeranstaltungsliste.setForeground(Color.WHITE);
         lVeranstaltungsliste.setFont(new Font("Calibri", Font.BOLD, 48));
         lVeranstaltungsliste.setHorizontalAlignment(SwingConstants.CENTER);
@@ -134,7 +134,7 @@ public class VeranstaltungslisteGUI extends JFrame {
         bTicketliste.setForeground(Color.WHITE);
         cp.add(bTicketliste);
         bZurruck.setBounds(625, 780, 200, 50);
-        bZurruck.setText("Zurrück");
+        bZurruck.setText("Zurück");
         bZurruck.setMargin(new Insets(2, 2, 2, 2));
         bZurruck.addActionListener(new ActionListener() 
             { 
@@ -151,8 +151,6 @@ public class VeranstaltungslisteGUI extends JFrame {
         cp.add(bZurruck);
         Veranstaltungsliste.setBackground(Color.DARK_GRAY);
         cp.setBackground(Color.BLACK);
-        // Ende Komponenten
-
         setVisible(true);
     }
 
@@ -184,7 +182,6 @@ public class VeranstaltungslisteGUI extends JFrame {
     public void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
         new VeranstaltungslisteGUI();
-        //setVisible(false);
         dispose();
     }
 
@@ -196,8 +193,6 @@ public class VeranstaltungslisteGUI extends JFrame {
 
     public void bZurruck_ActionPerformed(ActionEvent evt) {
         // TODO hier Quelltext einfügen
-        //new StartseiteGUI();
-        //setVisible(false);
         dispose();
     }
 
