@@ -68,7 +68,7 @@ public class tikketServer {
 
                     if (line.equals("ticketErstellen")) {
                         ticketErstellen();
-                        os.write(">> OK");
+                        os.write("-->>OK");
                         os.newLine();
                         os.flush();
                         break;
@@ -87,7 +87,7 @@ public class tikketServer {
                     }
 
                     if (line.equals("QUIT")) {
-                        os.write(">> OK");
+                        os.write("-->>OK");
                         os.newLine();
                         os.flush();
                         break;

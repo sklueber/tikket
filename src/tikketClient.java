@@ -67,7 +67,7 @@ public class tikketClient {
             String responseLine;
             while ((responseLine = is.readLine()) != null) {
                 System.out.println("Server: " + responseLine);
-                if (responseLine.equals(">> OK")) {
+                if (responseLine.equals("-->>OK")) {
                     return;
                 }
             }
