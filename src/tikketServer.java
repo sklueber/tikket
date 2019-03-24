@@ -1,3 +1,9 @@
+/*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:22.
+ * Zuletzt bearbeitet 24.03.19 20:56.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -284,6 +290,7 @@ public class tikketServer {
     private String veranstaltungNameAuslesen() {
         return SrvVa_name;
     }
+
     private void aktuelleVeranstaltungAusgeben() {
         System.out.println("Aktuelle VA ID: " + SrvVa_ID);
         System.out.println("Aktueller VA Name: " + SrvVa_name);

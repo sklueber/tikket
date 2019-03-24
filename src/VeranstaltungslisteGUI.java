@@ -40,17 +40,19 @@ public class VeranstaltungslisteGUI extends JFrame {
         lVeranstaltungsliste.setHorizontalTextPosition(SwingConstants.CENTER);
         cp.add(lVeranstaltungsliste);
         cp.setBackground(new Color(0xC0C0C0));
+
         VeranstaltungslisteScrollPane.setBounds(70, 144, 750, 190);
+
         Veranstaltungsliste.setRowHeight(30);
         Veranstaltungsliste.getColumnModel().getColumn(0).setHeaderValue("Name");
         Veranstaltungsliste.getColumnModel().getColumn(1).setHeaderValue("Ort");
         Veranstaltungsliste.getColumnModel().getColumn(2).setHeaderValue("Datum");
         Veranstaltungsliste.getColumnModel().getColumn(3).setHeaderValue("Veranstalter");
-        Veranstaltungsliste.getColumnModel().getColumn(4).setHeaderValue("Typ");
         Veranstaltungsliste.setFillsViewportHeight(false);
         Veranstaltungsliste.setBackground(new Color(0xC0C0C0));
         Veranstaltungsliste.setForeground(new Color(0x808040));
         cp.add(VeranstaltungslisteScrollPane);
+
         bHinzufugen.setBounds(70, 376, 200, 50);
         bHinzufugen.setText("Hinzufügen");
         bHinzufugen.setMargin(new Insets(2, 2, 2, 2));
@@ -68,6 +70,7 @@ public class VeranstaltungslisteGUI extends JFrame {
         bHinzufugen.setBackground(Color.DARK_GRAY);
         bHinzufugen.setForeground(Color.WHITE);
         cp.add(bHinzufugen);
+
         bEntfernen.setBounds(342, 376, 200, 50);
         bEntfernen.setText("Entfernen");
         bEntfernen.setMargin(new Insets(2, 2, 2, 2));
@@ -144,36 +147,30 @@ public class VeranstaltungslisteGUI extends JFrame {
     } // end of main
 
     public void bHinzufugen_ActionPerformed(ActionEvent evt) {
-        // TODO hier Quelltext einfügen
         bGUI.labelH();
         bGUI.setVisible(true);
     }
 
     public void bEntfernen_ActionPerformed(ActionEvent evt) {
-        // TODO hier Quelltext einfügen
         bGUI.labelE();
         bGUI.setVisible(true);
     }
 
     public void bAuswahlen_ActionPerformed(ActionEvent evt) {
-        // TODO hier Quelltext einfügen
         bGUI.labelA();
         bGUI.setVisible(true);
     }
 
     public void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
-        // TODO hier Quelltext einfügen
         new VeranstaltungslisteGUI();
         dispose();
     }
 
     public void bTicketliste_ActionPerformed(ActionEvent evt) {
-        // TODO hier Quelltext einfügen
         new TicketlisteGUI();
     }
 
     public void bZurueck_ActionPerformed(ActionEvent evt) {
-        // TODO hier Quelltext einfügen
         dispose();
     }
 

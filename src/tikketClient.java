@@ -1,7 +1,12 @@
+/*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:21.
+ * Zuletzt bearbeitet 24.03.19 22:19.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
 
 public class tikketClient {
     public void setTikketServerHost(String tikketServerHost) {

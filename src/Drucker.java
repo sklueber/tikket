@@ -1,3 +1,9 @@
+/*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:23.
+ * Zuletzt bearbeitet 24.03.19 17:45.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
 import javax.print.*;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
@@ -14,6 +20,7 @@ public class Drucker {
     public Drucker() {
         this.setup();
     }
+
     public static void main(String[] args) {
         new Drucker();
     }
@@ -39,7 +46,7 @@ public class Drucker {
             DocFlavor flavor = DocFlavor.SERVICE_FORMATTED.PRINTABLE;
             Doc doc = new SimpleDoc(new MyPrintable(pDateiname), flavor, null);
             try {
-                    job.print(doc, null);
+                job.print(doc, null);
             } catch (PrintException e) {
                 e.printStackTrace();
             }
@@ -49,29 +56,30 @@ public class Drucker {
 
     }
 }
-    class MyPrintable implements Printable {
-        private ImageIcon printImage;
 
-        MyPrintable(String pPfad) {
-            printImage = new javax.swing.ImageIcon("./" + pPfad);
-        }
+class MyPrintable implements Printable {
+    private ImageIcon printImage;
 
-
-        public int print(Graphics g, PageFormat pf, int pageIndex) {
-            Graphics2D g2d = (Graphics2D) g;
-            g.translate((int) (pf.getImageableX()), (int) (pf.getImageableY()));
-            if (pageIndex == 0) {
-                double pageWidth = pf.getImageableWidth();
-                double pageHeight = pf.getImageableHeight();
-                double imageWidth = printImage.getIconWidth();
-                double imageHeight = printImage.getIconHeight();
-                double scaleX = pageWidth / imageWidth;
-                double scaleY = pageHeight / imageHeight;
-                double scaleFactor = Math.min(scaleX, scaleY);
-                g2d.scale(scaleFactor, scaleFactor);
-                g.drawImage(printImage.getImage(), 0, 0, null);
-                return Printable.PAGE_EXISTS;
-            }
-            return Printable.NO_SUCH_PAGE;
-        }
+    MyPrintable(String pPfad) {
+        printImage = new javax.swing.ImageIcon("./" + pPfad);
     }
+
+
+    public int print(Graphics g, PageFormat pf, int pageIndex) {
+        Graphics2D g2d = (Graphics2D) g;
+        g.translate((int) (pf.getImageableX()), (int) (pf.getImageableY()));
+        if (pageIndex == 0) {
+            double pageWidth = pf.getImageableWidth();
+            double pageHeight = pf.getImageableHeight();
+            double imageWidth = printImage.getIconWidth();
+            double imageHeight = printImage.getIconHeight();
+            double scaleX = pageWidth / imageWidth;
+            double scaleY = pageHeight / imageHeight;
+            double scaleFactor = Math.min(scaleX, scaleY);
+            g2d.scale(scaleFactor, scaleFactor);
+            g.drawImage(printImage.getImage(), 0, 0, null);
+            return Printable.PAGE_EXISTS;
+        }
+        return Printable.NO_SUCH_PAGE;
+    }
+}

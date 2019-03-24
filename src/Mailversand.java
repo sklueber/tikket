@@ -1,3 +1,9 @@
+/*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:23.
+ * Zuletzt bearbeitet 23.03.19 18:07.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
