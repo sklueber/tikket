@@ -1,4 +1,10 @@
 /*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico.
+ * Zuletzt bearbeitet 24.03.19 23:29.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
+/*
  * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:28.
  * Zuletzt bearbeitet 24.03.19 21:40.
  * Keiner klaut das hier! (c) 2019.
@@ -150,7 +156,8 @@ public class StartseiteGUI extends JFrame {
     }
 
     private void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
-        new VeranstaltungslisteGUI();
+        client.veranstaltungAusgeben();
+//        new VeranstaltungslisteGUI(client);
     }
 
     private void bTicketliste_ActionPerformed(ActionEvent evt) {

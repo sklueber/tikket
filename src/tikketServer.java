@@ -1,4 +1,10 @@
 /*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico.
+ * Zuletzt bearbeitet 24.03.19 23:51.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
+/*
  * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:28.
  * Zuletzt bearbeitet 24.03.19 22:24.
  * Keiner klaut das hier! (c) 2019.
@@ -76,24 +82,32 @@ public class tikketServer {
                 while (true) {
                     /*Hier wird auf die Befehle aus dem Protokoll reagiert*/
                     String line = is.readLine();
-
+                    if (line.equals("serverTest")) {
+                        os.write("-->>OK");
+                        os.newLine();
+                        os.flush();
+                    }
                     if (line.equals("ticketErstellen")) {
                         ticketErstellen();
                         os.write("-->>OK");
                         os.newLine();
                         os.flush();
                     }
-
-                    if(line.equals("veranstaltungAuslesen")){
-                        os.write(veranstaltungIDAuslesen());
+                    if (line.equals("veranstaltungAuslesen")) {
+                        int id = SrvVa_ID;
+                        String name = SrvVa_name;
+                        os.write(id + "*" + name);
                         os.newLine();
                         os.flush();
                     }
-
-                    if(line.equals("veranstaltungSetzen")){
+                    if (line.equals("veranstaltungSetzen")) {
                         veranstaltungWechseln(1);
                     }
-
+                    if (line.equals("veranstaltungAusgeben")) {
+                        os.write(veranstaltungAusgeben());
+                        os.newLine();
+                        os.flush();
+                    }
                     if (line.equals("-->>QUIT")) {
                         os.write("-->>OK");
                         os.newLine();
@@ -106,10 +120,6 @@ public class tikketServer {
                 e.printStackTrace();
             }
         }
-    }
-
-    private void verbinde() {
-
     }
 
     private static Connection DBconnect() {
@@ -209,25 +219,28 @@ public class tikketServer {
         }
     }
 
-    public void veranstaltungAusgeben() {
-        String sql = "SELECT va_name, va_datum, va_ort, va_vr FROM  veranstaltungen";
+    public String veranstaltungAusgeben() {
+        String sql = "SELECT va_ID, va_name, va_datum, va_ort FROM  veranstaltungen";
 
         try (Connection conn = DBconnect()) {
             try (Statement stmt = conn.createStatement()) {
                 try (ResultSet rs = stmt.executeQuery(sql)) {
+                    String rslt = "";
                     while (rs.next()) {
-                        System.out.println(
-                                rs.getString("va_name") + "\t" +
-                                        rs.getString("va_datum") + "\t" +
-                                        rs.getString("va_ort") + "\t" +
-                                        rs.getInt("va_vr")
-                        );
+                        rslt =
+                                rs.getInt("va_ID") + "*" +
+                                        rs.getString("va_name") + "*" +
+                                        rs.getString("va_datum") + "*" +
+                                        rs.getString("va_ort") + "//" +
+                                        rslt;
                     }
+                    return rslt + "-->>OK";
                 }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return null;
     }
 
     void veranstalterErstellen(String vr_name) {
@@ -287,18 +300,5 @@ public class tikketServer {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    private int veranstaltungIDAuslesen() {
-        return SrvVa_ID;
-    }
-
-    private String veranstaltungNameAuslesen() {
-        return SrvVa_name;
-    }
-
-    private void aktuelleVeranstaltungAusgeben() {
-        System.out.println("Aktuelle VA ID: " + SrvVa_ID);
-        System.out.println("Aktueller VA Name: " + SrvVa_name);
     }
 }

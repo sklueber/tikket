@@ -1,4 +1,10 @@
 /*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico.
+ * Zuletzt bearbeitet 24.03.19 23:16.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
+/*
  * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:28.
  * Zuletzt bearbeitet 24.03.19 21:57.
  * Keiner klaut das hier! (c) 2019.
@@ -22,7 +28,9 @@ public class VeranstaltungslisteGUI extends JFrame {
     private JButton bZurueck = new JButton();
     private BestaetigungsGUI bGUI = new BestaetigungsGUI();
 
-    public VeranstaltungslisteGUI() {
+    private tikketClient client;
+
+    public VeranstaltungslisteGUI(tikketClient gestartetVon) {
         super();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         int frameWidth = 900;
@@ -142,14 +150,10 @@ public class VeranstaltungslisteGUI extends JFrame {
         setVisible(true);
     }
 
-
-    public static void main(String[] args) {
-        new VeranstaltungslisteGUI();
-    } // end of main
-
     public void bHinzufugen_ActionPerformed(ActionEvent evt) {
-        bGUI.labelH();
-        bGUI.setVisible(true);
+        client.veranstaltungAusgeben();
+//        bGUI.labelH();
+//        bGUI.setVisible(true);
     }
 
     public void bEntfernen_ActionPerformed(ActionEvent evt) {
@@ -163,7 +167,6 @@ public class VeranstaltungslisteGUI extends JFrame {
     }
 
     public void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
-        new VeranstaltungslisteGUI();
         dispose();
     }
 
