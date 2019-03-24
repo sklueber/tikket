@@ -25,18 +25,18 @@ Als Ausgabemedium stehen eine *Druckfunktion* und ein *E-Mail-Versand* zur Verf�
 # Protokoll Client -> Server
 Command | Parameter | Response
 --------|-----------|---------
-ticketErstellen||OK
+ticketErstellen||-->>OK
 ticketAusgeben||[ID][UUID][status]
-ticketPruefen|[UUID]|OK / NOK
-ticketAuslass|[UUID]|OK / NOK
-ticketEinlass|[UUID]|OK / NOK
+ticketPruefen|[UUID]|-->>OK / -->>NOK
+ticketAuslass|[UUID]|-->>OK / -->>NOK
+ticketEinlass|[UUID]|-->>OK / -->>NOK
 ||
-veranstalterErstellen|[name]|OK
+veranstalterErstellen|[name]|-->>OK
 veranstalterAusgeben||[ID][name]
-veranstalterLoeschen|[ID]|OK / NOK(Abhängigkeiten)
+veranstalterLoeschen|[ID]|-->>OK / -->>NOK(Abhängigkeiten)
 ||
-veranstaltungErstellen|[name][datum][ort][vr_ID]|OK
+veranstaltungErstellen|[name][datum][ort][vr_ID]|-->>OK
 veranstaltungAusgeben||[ID][name][datum][ort][vr_ID]
-veranstaltungLoeschen|[ID]|OK / NOK (Abhängigkeiten)
-veranstaltungSetzen|[ID]|OK / NOK (ID nicht gefunden)
+veranstaltungLoeschen|[ID]|-->>OK / -->>NOK (Abhängigkeiten)
+veranstaltungSetzen|[ID]|-->>OK / -->>NOK (ID nicht gefunden)
 veranstaltungAuslesen||[ID][name]
