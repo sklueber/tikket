@@ -30,15 +30,7 @@ public class tikketClient {
         new ClientStarten(this);
     }
 
-    public void firstSync() {
-
-    }
-
-    public void GUIstarten() {
-        new StartseiteGUI(this);
-    }
-
-    public void ticketErstellen() {
+    public void socketErstellen() {
         try {
             socketOfClient = new Socket(tikketServerHost, tikketServerPort);
 
@@ -47,8 +39,6 @@ public class tikketClient {
 
             // Input stream at Client (Receive data from the server).
             is = new BufferedReader(new InputStreamReader(socketOfClient.getInputStream()));
-
-//            System.out.println("ServerSocket erstellt");
         } catch (UnknownHostException e) {
             System.err.println("Unbekannter Host: " + tikketServerHost);
             return;
@@ -56,7 +46,38 @@ public class tikketClient {
             System.err.println("I/O Fehler: " + tikketServerHost);
             return;
         }
+    }
 
+    public void firstSync() {
+    }
+
+    public void starten() {
+        new StartseiteGUI(this);
+    }
+
+    public void beenden() {
+        try {
+            os.write("-->>QUIT");
+            os.newLine();
+            os.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            String responseLine;
+            while ((responseLine = is.readLine()) != null) {
+                if (responseLine.equals("-->>OK")) {
+                    System.out.println("Alle Sockets werden geschlossen");
+                    return;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void ticketErstellen() {
         try {
             // In OutputStream schreiben, senden
             os.write("ticketErstellen");
@@ -75,11 +96,13 @@ public class tikketClient {
             is.close();
             socketOfClient.close();
         } catch (UnknownHostException e) {
-            System.err.println("Unbekannter Host: " + e);
+            System.err.println("Server nicht gefunden: " + e);
             return;
         } catch (IOException e) {
             System.err.println("I/O Fehler:  " + e);
             return;
+        } catch (NullPointerException e) {
+            System.out.println("NPE; Vermutlich wurde kein Socket gefunden: " + e);
         }
     }
 

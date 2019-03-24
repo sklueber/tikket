@@ -42,3 +42,4 @@ veranstaltungSetzen|[ID]|-->>OK / -->>NOK (ID nicht gefunden)
 veranstaltungAuslesen||[ID][name]
 ||
 serverTest| |-->>OK
+-->>QUIT | | -->>OK

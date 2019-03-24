@@ -9,11 +9,13 @@ public class ClientStarten extends JFrame {
     private JPanel ClientStarten;
     private JLabel lServerPort;
     private JLabel lServerIP;
-
+    private tikketClient gestartetVon;
     public String ip;
     public int port;
 
-    public ClientStarten(tikketClient gestartetVon) {
+    public ClientStarten(tikketClient client) {
+        gestartetVon = client;
+        Runtime.getRuntime().addShutdownHook(new ShutdownThread());
         JFrame frame = new JFrame("Client Starten");
         frame.setContentPane(this.ClientStarten);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -26,8 +28,15 @@ public class ClientStarten extends JFrame {
                 port = Integer.parseInt(tServerPort.getText());
                 gestartetVon.setTikketServerHost(ip);
                 gestartetVon.setTikketServerPort(port);
-                gestartetVon.GUIstarten();
+                gestartetVon.socketErstellen();
+                gestartetVon.starten();
         }
         });
+    }
+
+    class ShutdownThread extends Thread {
+        public void run() {
+            gestartetVon.beenden();
+        }
     }
 }

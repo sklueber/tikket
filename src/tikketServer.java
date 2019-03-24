@@ -52,7 +52,7 @@ public class tikketServer {
             this.socketOfServer = socketOfServer;
 
             // Log
-            log("New connection with client# " + this.clientNumber + " at " + socketOfServer);
+            log("Neuer tikketClient registriert. tikketClient# " + this.clientNumber + " auf " + socketOfServer);
         }
 
         @Override
@@ -70,22 +70,19 @@ public class tikketServer {
                         os.write("-->>OK");
                         os.newLine();
                         os.flush();
-                        break;
                     }
 
                     if(line.equals("veranstaltungAuslesen")){
                         os.write(veranstaltungIDAuslesen());
                         os.newLine();
                         os.flush();
-                        break;
                     }
 
                     if(line.equals("veranstaltungSetzen")){
                         veranstaltungWechseln(1);
-                        break;
                     }
 
-                    if (line.equals("QUIT")) {
+                    if (line.equals("-->>QUIT")) {
                         os.write("-->>OK");
                         os.newLine();
                         os.flush();

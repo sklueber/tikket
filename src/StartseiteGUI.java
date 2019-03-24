@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class StartseiteGUI extends JFrame {
     private JLabel lVeranstaltungsname = new JLabel();
-    private JLabel lUngultigRotGultigGrun = new JLabel();
+    private JLabel lgueltigkeit = new JLabel();
     private JLabel lTicketID = new JLabel();
     private JLabel lZeitstempel = new JLabel();
     private JButton bTicketanlegen = new JButton();
@@ -40,14 +40,14 @@ public class StartseiteGUI extends JFrame {
         lVeranstaltungsname.setForeground(Color.WHITE);
         cp.add(lVeranstaltungsname);
 
-        lUngultigRotGultigGrun.setBounds(275, 120, 350, 100);
-        lUngultigRotGultigGrun.setText("Ungültig = Rot // Gültig = Grün");
-        lUngultigRotGultigGrun.setFont(new Font("Calibri", Font.BOLD, 20));
-        lUngultigRotGultigGrun.setHorizontalAlignment(SwingConstants.CENTER);
-        lUngultigRotGultigGrun.setBackground(Color.RED);
-        lUngultigRotGultigGrun.setOpaque(true);
-        lUngultigRotGultigGrun.setForeground(Color.WHITE);
-        cp.add(lUngultigRotGultigGrun);
+        lgueltigkeit.setBounds(275, 120, 350, 100);
+        lgueltigkeit.setText("-");
+        lgueltigkeit.setFont(new Font("Calibri", Font.BOLD, 20));
+        lgueltigkeit.setHorizontalAlignment(SwingConstants.CENTER);
+        lgueltigkeit.setBackground(Color.GRAY);
+        lgueltigkeit.setOpaque(true);
+        lgueltigkeit.setForeground(Color.WHITE);
+        cp.add(lgueltigkeit);
 
         lTicketID.setBounds(200, 248, 230, 40);
         lTicketID.setText("Ticket-ID:");
@@ -126,14 +126,7 @@ public class StartseiteGUI extends JFrame {
         bTicketliste.setBackground(Color.DARK_GRAY);
         bTicketliste.setForeground(Color.WHITE);
         cp.add(bTicketliste);
-        bZurueck.setBounds(625, 780, 200, 50);
-        bZurueck.setText("Zurück");
-        bZurueck.setMargin(new Insets(2, 2, 2, 2));
-        bZurueck.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent evt) { 
-                    bZurueck_ActionPerformed(evt);
-                }
-            });
+
         bZurueck.setFont(new Font("Calibri", Font.PLAIN, 24));
         bZurueck.setBorderPainted(false);
         bZurueck.setFocusPainted(false);
