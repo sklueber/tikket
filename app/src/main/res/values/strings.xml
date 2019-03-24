@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">tikket. Scan</string>
+    <string name="scan">Scan</string>
+    <string name="number">Ticketnummer</string>
+    <string name="status">Bereit</string>
+    <string name="cancelled">Scan abgebrochen</string>
+    <string name="valid">Gültig</string>
+    <string name="invalid">Ungültig</string>
+    <string name="used">Verwendet</string>
 </resources>

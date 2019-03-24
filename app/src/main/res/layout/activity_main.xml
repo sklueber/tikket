@@ -8,34 +8,50 @@
 
     <Button
         android:id="@+id/buttonScanlos"
-        android:layout_width="136dp"
-        android:layout_height="104dp"
-        android:layout_marginEnd="138dp"
-        android:layout_marginStart="137dp"
-        android:layout_marginTop="112dp"
+        android:layout_width="298dp"
+        android:layout_height="85dp"
+        android:layout_marginBottom="34dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginStart="56dp"
         android:onClick="onClick"
-        android:text="Drück mich Junge"
+        android:text="@string/scan"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textViewTktNr"
         android:layout_width="187dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="318dp"
-        android:layout_marginEnd="126dp"
-        android:layout_marginStart="98dp"
-        android:layout_marginTop="128dp"
-        android:text="Ticketnummer"
+        android:layout_height="41dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:padding="1dp"
+        android:text="@string/number"
         android:textAlignment="center"
         android:textIsSelectable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonScanlos"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewStatus"
+        style="@android:style/Widget.TextView.PopupMenu"
+        android:layout_width="290dp"
+        android:layout_height="149dp"
+        android:layout_marginEnd="97dp"
+        android:layout_marginStart="97dp"
+        android:layout_marginTop="64dp"
+        android:background="#303f9f"
+        android:focusableInTouchMode="false"
+        android:gravity="center_vertical|center"
+        android:text="@string/status"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTktNr" />
 
 </android.support.constraint.ConstraintLayout>
