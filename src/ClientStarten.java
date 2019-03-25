@@ -1,6 +1,6 @@
 /*
- * Informatikprojekt aus 2019. Erstellt von Simon, und Max.
- * Zuletzt bearbeitet 24.03.19 22:31.
+ * Informatikprojekt aus 2019. Erstellt von Simon und Max.
+ * Zuletzt bearbeitet 26.03.19 00:01.
  * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
 
@@ -15,11 +15,23 @@ public class ClientStarten extends JFrame {
     private JPanel ClientStarten;
     private JLabel lServerPort;
     private JLabel lServerIP;
+    private JLabel lClientStarten;
     private tikketClient gestartetVon;
     private String ip;
     private int port;
 
     public ClientStarten(tikketClient client) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         gestartetVon = client;
         Runtime.getRuntime().addShutdownHook(new ShutdownThread());
         JFrame frame = new JFrame("Client Starten");

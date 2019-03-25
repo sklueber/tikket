@@ -1,6 +1,6 @@
 /*
- * Informatikprojekt aus 2019. Erstellt von Simon, und Max.
- * Zuletzt bearbeitet 24.03.19 22:29.
+ * Informatikprojekt aus 2019. Erstellt von Simon und Max.
+ * Zuletzt bearbeitet 25.03.19 23:54.
  * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
 
@@ -14,8 +14,20 @@ public class ServerStarten {
     private JLabel lServerPort;
     private JTextField tServerPort;
     private JButton bStarten;
+    private JLabel lServerStarten;
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         JFrame frame = new JFrame("Server Starten");
         frame.setContentPane(new ServerStarten().ServerStarten);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
