@@ -1,7 +1,7 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon, und Max.
- * Zuletzt bearbeitet 25.03.19 08:25.
- * Keiner klaut das hier! (c) 2019.
+ * Zuletzt bearbeitet 25.03.19 23:18.
+ * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
 
 import javax.swing.*;
