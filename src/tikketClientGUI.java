@@ -31,10 +31,9 @@ public class tikketClientGUI {
         e.printStackTrace();
         }
 
-        JFrame frame = new JFrame("tikketClientGUI");
+        JFrame frame = new JFrame("tikketClient");
         frame.setContentPane(new tikketClientGUI().tikketClientGUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         frame.pack();
         frame.setVisible(true);
     }
