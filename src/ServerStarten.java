@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 25.03.19 23:54.
+ * Zuletzt bearbeitet 26.03.19 00:19.
  * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
 
@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.URL;
 
 public class ServerStarten {
     private JPanel ServerStarten;
@@ -28,9 +29,13 @@ public class ServerStarten {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
+        URL iconURL = ServerStarten.class.getResource("tikket_iconServer.png"); //Icon auslesen
+        System.out.println(iconURL);
+        ImageIcon icon = new ImageIcon(iconURL);
         JFrame frame = new JFrame("Server Starten");
         frame.setContentPane(new ServerStarten().ServerStarten);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setIconImage(icon.getImage()); //Icon einfügen
         frame.pack();
         frame.setVisible(true);
     }

@@ -1,12 +1,13 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 26.03.19 00:01.
+ * Zuletzt bearbeitet 26.03.19 00:18.
  * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 public class ClientStarten extends JFrame {
     private JButton bVerbinden;
@@ -32,9 +33,12 @@ public class ClientStarten extends JFrame {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
+        URL iconURL = ClientStarten.class.getResource("tikket_icon.png"); //Icon auslesen
+        ImageIcon icon = new ImageIcon(iconURL);
         gestartetVon = client;
         Runtime.getRuntime().addShutdownHook(new ShutdownThread());
         JFrame frame = new JFrame("Client Starten");
+        frame.setIconImage(icon.getImage()); //Icon einfügen
         frame.setContentPane(this.ClientStarten);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
