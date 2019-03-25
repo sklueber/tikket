@@ -1,97 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="tikketClientGUI">
-  <grid id="27dc6" binding="GUIeinlass" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="tikketClientGUI" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="586" height="400"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-13619152"/>
+      <foreground color="-13619152"/>
+    </properties>
     <border type="none"/>
     <children>
-      <tabbedpane id="ac638" binding="tabbedPane1" default-binding="true">
+      <tabbedpane id="ac638" binding="tabPane">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="200" height="200"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-13619152"/>
+          <toolTipText value=""/>
+        </properties>
         <border type="none"/>
         <children>
-          <grid id="16809" binding="panelEinlass" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="16809" binding="panelEinlass" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <tabbedpane title="Einlass"/>
+              <tabbedpane title="Einlass">
+                <tooltip value="Überprüft Tickets beim Einlass"/>
+              </tabbedpane>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-13619152"/>
+            </properties>
             <border type="none"/>
-            <children/>
+            <children>
+              <component id="b5043" class="javax.swing.JLabel" binding="lStatistik">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="true"/>
+                  <foreground color="-1"/>
+                  <text value="Statistik"/>
+                </properties>
+              </component>
+              <vspacer id="7f57">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+              <component id="26760" class="javax.swing.JLabel" binding="lScanergebnis">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <foreground color="-1"/>
+                  <text value="Scanergebnis"/>
+                </properties>
+              </component>
+            </children>
           </grid>
           <grid id="e1bf6" binding="panelAuslass" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <tabbedpane title="Auslass"/>
+              <tabbedpane title="Auslass">
+                <tooltip value="Lässt Tickets wieder aus"/>
+              </tabbedpane>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-13619152"/>
+            </properties>
             <border type="none"/>
             <children/>
           </grid>
           <grid id="c75c7" binding="panelTickets" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <tabbedpane title="Tickets"/>
+              <tabbedpane title="Tickets">
+                <tooltip value="Verwaltung von Tickets"/>
+              </tabbedpane>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-13619152"/>
+            </properties>
             <border type="none"/>
             <children/>
           </grid>
           <grid id="dedd4" binding="panelVeranstaltungen" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <tabbedpane title="Veranstaltungen"/>
+              <tabbedpane title="Veranstaltungen">
+                <tooltip value="Verwaltung der Veranstaltungen"/>
+              </tabbedpane>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-13619152"/>
+            </properties>
             <border type="none"/>
             <children/>
           </grid>
           <grid id="91599" binding="panelInfo" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <tabbedpane title="Info"/>
+              <tabbedpane title="Info">
+                <tooltip value="Infos über tikket."/>
+              </tabbedpane>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-13619152"/>
+            </properties>
             <border type="none"/>
             <children/>
           </grid>
-          <grid id="fe602" binding="panelStatus" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
-            <constraints>
-              <tabbedpane title="Untitled"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="20edc" class="javax.swing.JLabel" binding="status">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Label"/>
-                </properties>
-              </component>
-              <hspacer id="b7f3a">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </hspacer>
-              <vspacer id="a7aa5">
-                <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-                </constraints>
-              </vspacer>
-            </children>
-          </grid>
         </children>
       </tabbedpane>
+      <grid id="f2af7" binding="panelStatus" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-13619152"/>
+          <foreground color="-15418624"/>
+        </properties>
+        <border type="none"/>
+        <children/>
+      </grid>
     </children>
   </grid>
 </form>
