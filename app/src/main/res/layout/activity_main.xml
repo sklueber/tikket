@@ -13,7 +13,7 @@
         android:layout_marginBottom="34dp"
         android:layout_marginEnd="57dp"
         android:layout_marginStart="56dp"
-        android:onClick="onClick"
+        android:onClick="ScanOnClick"
         android:text="@string/scan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,5 +65,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/grosseslogo" />
+
+    <Button
+        android:id="@+id/buttonClient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="31dp"
+        android:layout_marginEnd="133dp"
+        android:layout_marginStart="141dp"
+        android:onClick="ClientOnClick"
+        android:text="Client starten"
+        app:layout_constraintBottom_toTopOf="@+id/buttonScanlos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
