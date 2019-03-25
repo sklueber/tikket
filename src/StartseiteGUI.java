@@ -1,5 +1,11 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico.
+ * Zuletzt bearbeitet 25.03.19 01:10.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
+/*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico.
  * Zuletzt bearbeitet 24.03.19 23:29.
  * Keiner klaut das hier! (c) 2019.
  */
@@ -161,7 +167,8 @@ public class StartseiteGUI extends JFrame {
     }
 
     private void bTicketliste_ActionPerformed(ActionEvent evt) {
-        new TicketlisteGUI();
+        client.ticketAusgeben();
+//        new TicketlisteGUI();
     }
 
     private void bZurueckActionPerformed(ActionEvent evt) {

@@ -1,5 +1,11 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico.
+ * Zuletzt bearbeitet 25.03.19 01:18.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
+/*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico.
  * Zuletzt bearbeitet 24.03.19 23:36.
  * Keiner klaut das hier! (c) 2019.
  */
@@ -64,10 +70,12 @@ public class tikketClient {
     }
 
     public void firstSync() {
+
     }
 
     public void starten() {
         new StartseiteGUI(this);
+        firstSync();
     }
 
     public void beenden() {
@@ -119,8 +127,32 @@ public class tikketClient {
         }
     }
 
-    private String ticketAusgeben() {
-        return null;
+    public void ticketAusgeben() {
+        try {
+            // In OutputStream schreiben, senden
+            os.write("ticketAusgeben");
+            os.newLine();
+            os.flush();
+
+            // Aus InputStream lesen, empfangen
+            String responseLine;
+
+            while ((responseLine = is.readLine()) != null) {
+                System.out.println("Server: " + responseLine);
+                if (responseLine.contains("-->>OK")) {
+                    return;
+                }
+            }
+            os.close();
+            is.close();
+            socketOfClient.close();
+        } catch (UnknownHostException e) {
+            System.err.println("Server nicht gefunden: " + e);
+        } catch (IOException e) {
+            System.err.println("I/O Fehler:  " + e);
+        } catch (NullPointerException e) {
+            System.out.println("NPE; Vermutlich wurde kein Socket gefunden: " + e);
+        }
     }
 
     //Prüft ob das gegebene Ticket gültig ist. Wenn ja wird true zurückgegeben.

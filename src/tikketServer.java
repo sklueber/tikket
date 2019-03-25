@@ -1,5 +1,11 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico.
+ * Zuletzt bearbeitet 25.03.19 01:20.
+ * Keiner klaut das hier! (c) 2019.
+ */
+
+/*
+ * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico.
  * Zuletzt bearbeitet 24.03.19 23:51.
  * Keiner klaut das hier! (c) 2019.
  */
@@ -93,6 +99,11 @@ public class tikketServer {
                         os.newLine();
                         os.flush();
                     }
+                    if (line.equals("ticketAusgeben")) {
+                        os.write(ticketAusgeben());
+                        os.newLine();
+                        os.flush();
+                    }
                     if (line.equals("veranstaltungAuslesen")) {
                         int id = SrvVa_ID;
                         String name = SrvVa_name;
@@ -102,6 +113,9 @@ public class tikketServer {
                     }
                     if (line.equals("veranstaltungSetzen")) {
                         veranstaltungWechseln(1);
+                        os.write("-->>OK");
+                        os.newLine();
+                        os.flush();
                     }
                     if (line.equals("veranstaltungAusgeben")) {
                         os.write(veranstaltungAusgeben());
@@ -179,28 +193,27 @@ public class tikketServer {
         return false;
     }
 
-    private void ticketAusgeben() {
-        String sql = "SELECT tkt_ID, tkt_UUID, tkt_status, tkt_created, tkt_va FROM  tickets";
+    private String ticketAusgeben() {
+        String sql = "SELECT tkt_ID, tkt_UUID, tkt_status FROM  tickets WHERE tkt_va = " + SrvVa_ID;
 
         try (Connection conn = DBconnect()) {
             try (Statement stmt = conn.createStatement()) {
                 try (ResultSet rs = stmt.executeQuery(sql)) {
-                    //ResultSet durchloopen
+                    String rslt = "";
                     while (rs.next()) {
-                        System.out.println(
-                                "Ticket ID: " +
-                                        rs.getInt("tkt_ID") + "; UUID: " +
-                                        rs.getInt("tkt_UUID") + "; Status: " +
-                                        rs.getInt("tkt_status") + "; Timestamp: " +
-                                        rs.getString("tkt_created") + "; Veranstaltungs ID: " +
-                                        rs.getInt("tkt_va")
-                        );
+                        rslt =
+                                rs.getInt("tkt_ID") + "*" +
+                                        rs.getInt("tkt_UUID") + "*" +
+                                        rs.getInt("tkt_status") + "*" +
+                                        rslt;
                     }
+                    return rslt + "-->>OK";
                 }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return null;
     }
 
     public void veranstaltungErstellen(String va_name, String va_datum, String va_ort, int va_vr) {
@@ -273,7 +286,7 @@ public class tikketServer {
         }
     }
 
-    private void veranstalterEntfernen(int pVr_ID) {
+/*    private void veranstalterEntfernen(int pVr_ID) {
         String sql = "DELETE FROM veranstalter WHERE vr_ID = " + pVr_ID;
 
         try (Connection conn = DBconnect()) {
@@ -283,7 +296,7 @@ public class tikketServer {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 
     private void veranstaltungWechseln(int va_id) {
         String sql = "SELECT va_ID, va_name FROM  veranstaltungen WHERE va_ID = " + va_id;
