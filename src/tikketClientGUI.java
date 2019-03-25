@@ -9,6 +9,13 @@ import javax.swing.*;
 public class tikketClientGUI {
     private JPanel GUIeinlass;
     private JTabbedPane tabbedPane1;
+    private JPanel panelEinlass;
+    private JPanel panelAuslass;
+    private JPanel panelTickets;
+    private JPanel panelVeranstaltungen;
+    private JPanel panelInfo;
+    private JPanel panelStatus;
+    private JLabel status;
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
