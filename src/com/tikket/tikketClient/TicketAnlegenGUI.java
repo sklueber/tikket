@@ -1,8 +1,10 @@
 /*
- * Informatikprojekt aus 2019. Erstellt von Simon, und Max.
- * Zuletzt bearbeitet 24.03.19 23:51.
+ * Informatikprojekt aus 2019. Erstellt von Simon und Max.
+ * Zuletzt bearbeitet 26.03.19 01:08.
  * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
+
+package com.tikket.tikketClient;
 
 import javax.swing.*;
 import java.awt.*;

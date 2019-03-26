@@ -1,8 +1,10 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 26.03.19 00:18.
+ * Zuletzt bearbeitet 26.03.19 01:08.
  * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
+
+package com.tikket.tikketClient;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -33,7 +35,7 @@ public class ClientStarten extends JFrame {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        URL iconURL = ClientStarten.class.getResource("tikket_icon.png"); //Icon auslesen
+        URL iconURL = this.getClass().getClassLoader().getResource("resources/images/tikket_icon.png"); //Icon auslesen
         ImageIcon icon = new ImageIcon(iconURL);
         gestartetVon = client;
         Runtime.getRuntime().addShutdownHook(new ShutdownThread());

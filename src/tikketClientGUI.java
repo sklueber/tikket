@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 26.03.19 00:14.
+ * Zuletzt bearbeitet 26.03.19 00:59.
  * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
 
@@ -31,10 +31,10 @@ public class tikketClientGUI {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        URL iconURL = tikketClientGUI.class.getResource("tikket_icon.png"); //Icon auslesen
+        URL iconURL = tikketClientGUI.class.getResource("resources/images/tikket_icon.png"); //Icon auslesen
         ImageIcon icon = new ImageIcon(iconURL);
         System.out.println(iconURL);
-        JFrame frame = new JFrame("tikketClient");
+        JFrame frame = new JFrame("com.tikket.tikketClient.tikketClient");
         frame.setIconImage(icon.getImage()); //Icon einfügen
         frame.setContentPane(new tikketClientGUI().tikketClientGUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

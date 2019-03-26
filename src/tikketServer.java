@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 25.03.19 23:19.
+ * Zuletzt bearbeitet 26.03.19 00:38.
  * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
 
@@ -58,7 +58,7 @@ public class tikketServer {
             this.socketOfServer = socketOfServer;
 
             // Log
-            log("Neuer tikketClient registriert. tikketClient# " + this.clientNumber + " auf " + socketOfServer);
+            log("Neuer com.tikket.tikketClient.tikketClient registriert. com.tikket.tikketClient.tikketClient# " + this.clientNumber + " auf " + socketOfServer);
         }
 
         @Override

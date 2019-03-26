@@ -1,8 +1,10 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 25.03.19 23:21.
+ * Zuletzt bearbeitet 26.03.19 01:08.
  * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
+
+package com.tikket.tikketClient;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,7 +28,7 @@ public class BestaetigungsGUI extends JFrame {
         int x = (d.width - getSize().width) / 2;
         int y = (d.height - getSize().height) / 2;
         setLocation(x, y);
-        setTitle("BestaetigungsGUI");
+        setTitle("com.tikket.tikketClient.BestaetigungsGUI");
         setResizable(false);
         Container cp = getContentPane();
         cp.setLayout(null);

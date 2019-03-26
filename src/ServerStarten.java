@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 26.03.19 00:19.
+ * Zuletzt bearbeitet 26.03.19 01:05.
  * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
 
@@ -29,7 +29,7 @@ public class ServerStarten {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        URL iconURL = ServerStarten.class.getResource("tikket_iconServer.png"); //Icon auslesen
+        URL iconURL = ServerStarten.class.getResource("resources/images/tikket_iconServer.png"); //Icon auslesen
         System.out.println(iconURL);
         ImageIcon icon = new ImageIcon(iconURL);
         JFrame frame = new JFrame("Server Starten");
