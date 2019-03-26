@@ -1,4 +1,4 @@
-/*
+package com.tikket.tikketServer;/*
  * Informatikprojekt aus 2019. Erstellt von Simon, und Max.
  * Zuletzt bearbeitet 24.03.19 22:29.
  * Keiner klaut das hier! Copyright oder so (c) 2019.

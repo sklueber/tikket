@@ -11,13 +11,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="clientlib">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/core-3.3.0.jar!/" />
-          <root url="jar://$MODULE_DIR$/lib/javase-3.3.0.jar!/" />
-          <root url="jar://$MODULE_DIR$/lib/activation-1.1.1.jar!/" />
-          <root url="jar://$MODULE_DIR$/lib/javax.mail.jar!/" />
-          <root url="jar://$MODULE_DIR$/lib/sqlite-jdbc-3.23.1.jar!/" />
-        </CLASSES>
+        <CLASSES />
         <JAVADOC />
         <SOURCES />
       </library>

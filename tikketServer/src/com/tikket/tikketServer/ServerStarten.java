@@ -1,4 +1,4 @@
-/*
+package com.tikket.tikketServer;/*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
  * Zuletzt bearbeitet 26.03.19 01:05.
  * Keiner klaut das hier! Copyright oder so (c) 2019.
@@ -29,12 +29,13 @@ public class ServerStarten {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        URL iconURL = ServerStarten.class.getResource("resources/images/tikket_iconServer.png"); //Icon auslesen
-        ImageIcon icon = new ImageIcon(iconURL);
+        URL iconURL = ServerStarten.class.getResource("tikketServer/src/resources/images/tikket_iconServer.png"); //Icon auslesen // TODO: 26.03.2019 Hardcoded String entfernen
+        System.out.println(iconURL);
+//        ImageIcon icon = new ImageIcon(iconURL);
         JFrame frame = new JFrame("Server Starten");
         frame.setContentPane(new ServerStarten().ServerStarten);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setIconImage(icon.getImage()); //Icon einfügen
+//        frame.setIconImage(icon.getImage()); //Icon einfügen
         frame.pack();
         frame.setVisible(true);
     }

@@ -1,4 +1,4 @@
-/*
+package com.tikket.tikketClient;/*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
  * Zuletzt bearbeitet 26.03.19 00:59.
  * Keiner klaut das hier! Copyright oder so (c) 2019.

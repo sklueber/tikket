@@ -35,12 +35,13 @@ public class ClientStarten extends JFrame {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        URL iconURL = this.getClass().getClassLoader().getResource("resources/images/tikket_icon.png"); //Icon auslesen
-        ImageIcon icon = new ImageIcon(iconURL);
+        URL iconURL = this.getClass().getClassLoader().getResource("C:\\Users\\max.stockhausen\\IdeaProjects\\tikket\\tikketClient\\src\\resources\\images\\tikket_icon.png"); //Icon auslesen // TODO: 26.03.2019 Hardcoded string entfernen
+        System.out.println(iconURL);
+//        ImageIcon icon = new ImageIcon(iconURL);
         gestartetVon = client;
         Runtime.getRuntime().addShutdownHook(new ShutdownThread());
         JFrame frame = new JFrame("Client Starten");
-        frame.setIconImage(icon.getImage()); //Icon einfügen
+//        frame.setIconImage(icon.getImage()); //Icon einfügen
         frame.setContentPane(this.ClientStarten);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();

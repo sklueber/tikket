@@ -1,4 +1,4 @@
-/*
+package com.tikket.tikketServer;/*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
  * Zuletzt bearbeitet 26.03.19 00:38.
  * Keiner klaut das hier! Copyright oder so (c) 2019.
@@ -121,7 +121,7 @@ public class tikketServer {
     public static Connection DBconnect() {
         Connection conn = null;
         try {
-            String url = "jdbc:sqlite:tikketClient/src/resources/database/tikket_db.db"; //Location der Datenbank
+            String url = "jdbc:sqlite:tikketServer/src/resources/database/tikket_db.db"; //Location der Datenbank
             conn = DriverManager.getConnection(url);
             System.out.println("Verbindung zur tikket-Datenbank hergestellt");
             return conn;
