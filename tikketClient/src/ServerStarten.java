@@ -30,23 +30,13 @@ public class ServerStarten {
             e.printStackTrace();
         }
         URL iconURL = ServerStarten.class.getResource("resources/images/tikket_iconServer.png"); //Icon auslesen
-        System.out.println(iconURL);
         ImageIcon icon = new ImageIcon(iconURL);
         JFrame frame = new JFrame("Server Starten");
         frame.setContentPane(new ServerStarten().ServerStarten);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setIconImage(icon.getImage()); //Icon einfügen
         frame.pack();
         frame.setVisible(true);
-    }
-
-    private void runServer(String port) throws IOException {
-        int portInt = Integer.parseInt(port);
-        tikketServer tikketServer = new tikketServer(portInt);
-        tikketServer.veranstalterErstellen("testVr");
-        tikketServer.veranstaltungErstellen("test", "heute", "hier", 1);
-        tikketServer.veranstaltungAusgeben();
-        System.out.println("jo");
     }
 
     public ServerStarten() {
@@ -60,4 +50,13 @@ public class ServerStarten {
             }
         });
     }
+
+    private void runServer(String port) throws IOException {
+        int portInt = Integer.parseInt(port);
+        tikketServer Server = new tikketServer(portInt);
+        tikketServer.DBconnect();
+        System.out.println("jo");
+    }
+
+
 }

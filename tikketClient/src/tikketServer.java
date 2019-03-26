@@ -58,7 +58,7 @@ public class tikketServer {
             this.socketOfServer = socketOfServer;
 
             // Log
-            log("Neuer com.tikket.tikketClient.tikketClient registriert. com.tikket.tikketClient.tikketClient# " + this.clientNumber + " auf " + socketOfServer);
+            log("Neuer tikketClient registriert. tikketClient# " + this.clientNumber + " auf " + socketOfServer);
         }
 
         @Override
@@ -118,12 +118,12 @@ public class tikketServer {
         }
     }
 
-    private static Connection DBconnect() {
+    public static Connection DBconnect() {
         Connection conn = null;
         try {
-            String url = "jdbc:sqlite:src/tikket_db.db"; //Location der Datenbank
+            String url = "jdbc:sqlite:tikketClient/src/resources/database/tikket_db.db"; //Location der Datenbank
             conn = DriverManager.getConnection(url);
-//            System.out.println("Verbindung zur tikket-Datenbank hergestellt");
+            System.out.println("Verbindung zur tikket-Datenbank hergestellt");
             return conn;
         } catch (SQLException e) {
             System.out.println(e.getMessage());

@@ -25,7 +25,7 @@ public class Drucker {
         new Drucker();
     }
 
-    private void setup(){ //TODO tausende mögliche Errors, v.a. bei Abbruch durch den User
+    private void setup() { //TODO tausende mögliche Errors, v.a. bei Abbruch durch den User
         PrintService[] services = PrintServiceLookup.lookupPrintServices(null, null);
         for (PrintService service1 : services) {
             System.out.println(service1.getName());

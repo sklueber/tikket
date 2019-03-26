@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/tikketClient.iml" filepath="$PROJECT_DIR$/.idea/tikketClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tikketClient.iml" filepath="$PROJECT_DIR$/tikketClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/tikketServer/tikketServer.iml" filepath="$PROJECT_DIR$/tikketServer/tikketServer.iml" />
     </modules>
   </component>
