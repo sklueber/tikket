@@ -89,7 +89,7 @@ public class Mailversand {
 
             // Part two is attachment
             messageBodyPart = new MimeBodyPart();
-            String filename = "C:\\Users\\max.stockhausen\\IdeaProjects\\tikket\\tikketClient\\src\\resources\\development\\MyBarcode.png"; //TODO: Hardcoded!
+            String filename = "tikketClient/src/resources/development/MyBarcode.png";
             DataSource source = new FileDataSource(filename);
             messageBodyPart.setDataHandler(new DataHandler(source));
             messageBodyPart.setFileName("E-Ticket by tikket. (working title)");
@@ -111,7 +111,7 @@ public class Mailversand {
     private static String[] txtLesen() {
         String[] serverdaten = new String[5];
         int i = 0;
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\max.stockhausen\\IdeaProjects\\tikket\\tikketClient\\src\\resources\\config\\MailserverSettings.txt"))) { //TODO HARDCODED!
+        try (BufferedReader br = new BufferedReader(new FileReader("tikketClient/src/resources/config/MailserverSettings.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 serverdaten[i] = line;
