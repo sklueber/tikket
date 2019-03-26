@@ -15,7 +15,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //Design wird für die abgerundeten Ecken hier angepasst
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView status = findViewById(R.id.textViewStatus);
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         GradientDrawable drawable = (GradientDrawable) status.getBackground();
         drawable.setColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
     }
-    public void onClick (View vie){
+    public void ScanOnClick (View vie){ //Scan-Button wird gedrückt
         IntentIntegrator scanDing = new IntentIntegrator(this);
         scanDing.initiateScan();
     }
@@ -44,22 +44,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*public void statusAnzeigen(String pTicketnummer){
-        TextView status = findViewById(R.id.textViewStatus);
-    if(!android.text.TextUtils.isDigitsOnly(pTicketnummer)){ //ob das gescannte Ergebnis überhaupt aus Zahlen besteht
-        status.setBackgroundColor(ContextCompat.getColor(this, R.color.colorCancelYellow));
-        status.setText(R.string.cancelled);
-    } else {
-        if(pTicketnummer.equals("100")){
-            status.setBackgroundColor(ContextCompat.getColor(this, R.color.colorValidGreen));
-            status.setText(R.string.valid);
-        } else {
-            status.setBackgroundColor(ContextCompat.getColor(this, R.color.colorInvalidRed));
-            status.setText(R.string.invalid);
-        }
-    }
-    }*/
-    public void statusAnzeigen(String pTicketnummer){
+    public void statusAnzeigen(String pTicketnummer){ //Das Ergebnis des Barcode-Aufrufs wird hier nach Gültigkeit überprüft
         TextView status = findViewById(R.id.textViewStatus);
         GradientDrawable drawable = (GradientDrawable) status.getBackground();
         if(!android.text.TextUtils.isDigitsOnly(pTicketnummer)){ //ob das gescannte Ergebnis überhaupt aus Zahlen besteht
@@ -76,5 +61,13 @@ public class MainActivity extends AppCompatActivity {
                 tg.startTone(ToneGenerator.TONE_PROP_BEEP2); //vlt durch was cooleres ersetzen
             }
         }
+    }
+
+    public void ClientOnClick(View view) { //Button Client Starten
+    tikketClient gestartetVon = new tikketClient();
+        gestartetVon.setTikketServerHost("192.168.178.1");
+        gestartetVon.setTikketServerPort(2001);
+        gestartetVon.socketErstellen();
+       // gestartetVon.ticketErstellen();
     }
 }
