@@ -64,11 +64,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ClientOnClick(View view) { //Button Client Starten
-   /* tikketClient gestartetVon = new tikketClient();
+   tikketClient gestartetVon = new tikketClient();
         gestartetVon.setTikketServerHost("192.168.178.1");
         gestartetVon.setTikketServerPort(2001);
         gestartetVon.socketErstellen();
-       // gestartetVon.ticketErstellen();*/
-        ClientStackOver sdaf = new ClientStackOver();
+       //gestartetVon.ticketErstellen();*/
     }
 }
