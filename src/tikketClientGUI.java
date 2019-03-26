@@ -1,10 +1,11 @@
 /*
- * Informatikprojekt aus 2019. Erstellt von Simon, und Max.
- * Zuletzt bearbeitet 25.03.19 08:25.
- * Keiner klaut das hier! (c) 2019.
+ * Informatikprojekt aus 2019. Erstellt von Simon und Max.
+ * Zuletzt bearbeitet 26.03.19 00:59.
+ * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
 
 import javax.swing.*;
+import java.net.URL;
 
 public class tikketClientGUI {
     private JPanel tikketClientGUI;
@@ -20,18 +21,21 @@ public class tikketClientGUI {
 
     public static void main(String[] args) {
         try {
-        UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException e) {
-        e.printStackTrace();
+            e.printStackTrace();
         } catch (InstantiationException e) {
-        e.printStackTrace();
+            e.printStackTrace();
         } catch (IllegalAccessException e) {
-        e.printStackTrace();
+            e.printStackTrace();
         } catch (UnsupportedLookAndFeelException e) {
-        e.printStackTrace();
+            e.printStackTrace();
         }
-
-        JFrame frame = new JFrame("tikketClient");
+        URL iconURL = tikketClientGUI.class.getResource("resources/images/tikket_icon.png"); //Icon auslesen
+        ImageIcon icon = new ImageIcon(iconURL);
+        System.out.println(iconURL);
+        JFrame frame = new JFrame("com.tikket.tikketClient.tikketClient");
+        frame.setIconImage(icon.getImage()); //Icon einfügen
         frame.setContentPane(new tikketClientGUI().tikketClientGUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

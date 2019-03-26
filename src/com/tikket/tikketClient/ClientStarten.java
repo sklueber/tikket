@@ -1,18 +1,15 @@
 /*
- * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:28.
- * Zuletzt bearbeitet 24.03.19 22:24.
- * Keiner klaut das hier! (c) 2019.
+ * Informatikprojekt aus 2019. Erstellt von Simon und Max.
+ * Zuletzt bearbeitet 26.03.19 01:08.
+ * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
 
-/*
- * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:23.
- * Zuletzt bearbeitet 24.03.19 21:12.
- * Keiner klaut das hier! (c) 2019.
- */
+package com.tikket.tikketClient;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 public class ClientStarten extends JFrame {
     private JButton bVerbinden;
@@ -21,14 +18,29 @@ public class ClientStarten extends JFrame {
     private JPanel ClientStarten;
     private JLabel lServerPort;
     private JLabel lServerIP;
+    private JLabel lClientStarten;
     private tikketClient gestartetVon;
     private String ip;
     private int port;
 
     public ClientStarten(tikketClient client) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+        URL iconURL = this.getClass().getClassLoader().getResource("resources/images/tikket_icon.png"); //Icon auslesen
+        ImageIcon icon = new ImageIcon(iconURL);
         gestartetVon = client;
         Runtime.getRuntime().addShutdownHook(new ShutdownThread());
         JFrame frame = new JFrame("Client Starten");
+        frame.setIconImage(icon.getImage()); //Icon einfügen
         frame.setContentPane(this.ClientStarten);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();

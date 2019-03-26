@@ -1,26 +1,10 @@
 /*
- * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico.
- * Zuletzt bearbeitet 25.03.19 01:18.
- * Keiner klaut das hier! (c) 2019.
+ * Informatikprojekt aus 2019. Erstellt von Simon und Max.
+ * Zuletzt bearbeitet 26.03.19 01:08.
+ * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
 
-/*
- * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico.
- * Zuletzt bearbeitet 24.03.19 23:36.
- * Keiner klaut das hier! (c) 2019.
- */
-
-/*
- * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:28.
- * Zuletzt bearbeitet 24.03.19 22:24.
- * Keiner klaut das hier! (c) 2019.
- */
-
-/*
- * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:21.
- * Zuletzt bearbeitet 24.03.19 22:19.
- * Keiner klaut das hier! (c) 2019.
- */
+package com.tikket.tikketClient;
 
 import java.io.*;
 import java.net.Socket;
@@ -41,9 +25,9 @@ public class tikketClient {
     private int SrvVa_ID;
     private String SrvVa_name;
     //Serverstuff
-    Socket socketOfClient;
-    BufferedWriter os;
-    BufferedReader is;
+    private Socket socketOfClient;
+    private BufferedWriter os;
+    private BufferedReader is;
 
     public static void main(String[] args) {
         new tikketClient();

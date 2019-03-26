@@ -1,20 +1,10 @@
 /*
- * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico.
- * Zuletzt bearbeitet 25.03.19 01:10.
- * Keiner klaut das hier! (c) 2019.
+ * Informatikprojekt aus 2019. Erstellt von Simon und Max.
+ * Zuletzt bearbeitet 26.03.19 00:38.
+ * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
 
-/*
- * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico.
- * Zuletzt bearbeitet 24.03.19 23:29.
- * Keiner klaut das hier! (c) 2019.
- */
-
-/*
- * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:28.
- * Zuletzt bearbeitet 24.03.19 21:40.
- * Keiner klaut das hier! (c) 2019.
- */
+package com.tikket.tikketClient;
 
 import javax.swing.*;
 import java.awt.*;
@@ -163,12 +153,12 @@ public class StartseiteGUI extends JFrame {
 
     private void bVeranstaltungsliste_ActionPerformed(ActionEvent evt) {
         client.veranstaltungAusgeben();
-//        new VeranstaltungslisteGUI(client);
+//        new com.tikket.tikketClient.VeranstaltungslisteGUI(client);
     }
 
     private void bTicketliste_ActionPerformed(ActionEvent evt) {
         client.ticketAusgeben();
-//        new TicketlisteGUI();
+//        new com.tikket.tikketClient.TicketlisteGUI();
     }
 
     private void bZurueckActionPerformed(ActionEvent evt) {

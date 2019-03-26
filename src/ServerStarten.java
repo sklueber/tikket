@@ -1,30 +1,41 @@
 /*
- * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:28.
- * Zuletzt bearbeitet 24.03.19 22:24.
- * Keiner klaut das hier! (c) 2019.
- */
-
-/*
- * Informatikprojekt aus 2019. Erstellt von Simon, Max, Nico am 24.03.19 22:23.
- * Zuletzt bearbeitet 23.03.19 18:07.
- * Keiner klaut das hier! (c) 2019.
+ * Informatikprojekt aus 2019. Erstellt von Simon und Max.
+ * Zuletzt bearbeitet 26.03.19 01:05.
+ * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.URL;
 
 public class ServerStarten {
     private JPanel ServerStarten;
     private JLabel lServerPort;
     private JTextField tServerPort;
     private JButton bStarten;
+    private JLabel lServerStarten;
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+        URL iconURL = ServerStarten.class.getResource("resources/images/tikket_iconServer.png"); //Icon auslesen
+        System.out.println(iconURL);
+        ImageIcon icon = new ImageIcon(iconURL);
         JFrame frame = new JFrame("Server Starten");
         frame.setContentPane(new ServerStarten().ServerStarten);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setIconImage(icon.getImage()); //Icon einfügen
         frame.pack();
         frame.setVisible(true);
     }
