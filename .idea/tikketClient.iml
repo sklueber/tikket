@@ -6,6 +6,7 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$/tikketClient">
       <sourceFolder url="file://$MODULE_DIR$/tikketClient/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tikketClient/resources" type="java-resource" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

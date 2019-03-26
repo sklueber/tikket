@@ -31,10 +31,10 @@ public class tikketClientGUI {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        URL iconURL = tikketClientGUI.class.getResource("resources/images/tikket_icon.png"); //Icon auslesen
-        ImageIcon icon = new ImageIcon(iconURL);
+        URL iconURL = tikketClientGUI.class.getClassLoader().getResource("images/tikket_icon.png"); //Icon auslesen
         System.out.println(iconURL);
-        JFrame frame = new JFrame("com.tikket.tikketClient.tikketClient");
+        ImageIcon icon = new ImageIcon(iconURL);
+        JFrame frame = new JFrame("tikketClient");
         frame.setIconImage(icon.getImage()); //Icon einfügen
         frame.setContentPane(new tikketClientGUI().tikketClientGUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
