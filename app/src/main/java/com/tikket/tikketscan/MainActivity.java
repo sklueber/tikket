@@ -1,7 +1,6 @@
 package com.tikket.tikketscan;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
@@ -9,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -64,10 +62,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ClientOnClick(View view) { //Button Client Starten
-   tikketClient gestartetVon = new tikketClient();
+   /*tikketClient gestartetVon = new tikketClient();
         gestartetVon.setTikketServerHost("192.168.178.1");
         gestartetVon.setTikketServerPort(2001);
         gestartetVon.socketErstellen();
        //gestartetVon.ticketErstellen();*/
+        ClientAsync client = new ClientAsync();
+        client.execute("whatever dude");
+    client.ticketErstellen();
+
     }
 }
