@@ -86,7 +86,9 @@ public class tikketServer {
                         os.newLine();
                         os.flush();
                     }
-                    if (line.equals("veranstaltungAuslesen")) {
+                    if (line.contains("ticketPruefen")) { // TODO: 27.03.2019 schreiben
+                    }
+                    if (line.equals("aktuelleVeranstaltungAuslesen")) {
                         int id = SrvVa_ID;
                         String name = SrvVa_name;
                         os.write(id + "*" + name);
@@ -101,6 +103,11 @@ public class tikketServer {
                     }
                     if (line.equals("veranstaltungAusgeben")) {
                         os.write(veranstaltungAusgeben());
+                        os.newLine();
+                        os.flush();
+                    }
+                    if (line.equals("serverTest")) {
+                        os.write("-->>OK");
                         os.newLine();
                         os.flush();
                     }
