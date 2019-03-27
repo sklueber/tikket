@@ -58,8 +58,9 @@ public class tikketClient {
     }
 
     public void starten() {
-        new StartseiteGUI(this);
-        firstSync();
+        System.out.println("tikketClient wird gestartet");
+        new tikketClientGUI(this);
+//        firstSync();
     }
 
     public void beenden() {

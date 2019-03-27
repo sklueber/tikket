@@ -30,6 +30,7 @@ public class StartseiteGUI extends JFrame {
     public StartseiteGUI(tikketClient gestartetVon) {
         super();
         client = gestartetVon;
+
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setSize(900, 900);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();

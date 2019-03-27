@@ -87,6 +87,12 @@ public class tikketServer {
                         os.flush();
                     }
                     if (line.contains("ticketPruefen")) { // TODO: 27.03.2019 schreiben
+                        String[] split = line.split(":");
+                        System.out.println(split[1]);
+                    }
+                    if (line.contains("ticketAuslass")) { // TODO: 28.03.2019 schreiben
+                    }
+                    if (line.contains("ticketEinlass")) { // TODO: 28.03.2019 schreiben
                     }
                     if (line.equals("aktuelleVeranstaltungAuslesen")) {
                         int id = SrvVa_ID;
@@ -95,7 +101,8 @@ public class tikketServer {
                         os.newLine();
                         os.flush();
                     }
-                    if (line.equals("veranstaltungSetzen")) {
+                    if (line.equals("veranstaltungSetzen")) { // TODO: 28.03.2019 NOK Fall hinzufügen
+
                         veranstaltungWechseln(1);
                         os.write("-->>OK");
                         os.newLine();
@@ -105,6 +112,12 @@ public class tikketServer {
                         os.write(veranstaltungAusgeben());
                         os.newLine();
                         os.flush();
+                    }
+                    if (line.contains("veranstalterErstellen")) { // TODO: 28.03.2019 schreiben
+                    }
+                    if (line.equals("veranstalterAusgeben")) { // TODO: 28.03.2019 schreiben
+                    }
+                    if (line.contains("veranstaltungLoeschen")) {// TODO: 28.03.2019 schreiben
                     }
                     if (line.equals("serverTest")) {
                         os.write("-->>OK");
@@ -182,7 +195,7 @@ public class tikketServer {
         return false;
     }
 
-    private String ticketAusgeben() {
+    public String ticketAusgeben() {
         String sql = "SELECT tkt_ID, tkt_UUID, tkt_status FROM  tickets WHERE tkt_va = " + SrvVa_ID;
 
         try (Connection conn = DBconnect()) {

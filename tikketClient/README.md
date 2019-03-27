@@ -13,7 +13,7 @@ Als Ausgabemedium stehen eine *Druckfunktion* und ein *E-Mail-Versand* zur Verf�
 * Übersicht über verkaufte/eingelöste Tickets
 
 # Client starten
-1. com.tikket.tikketClient.tikketClient Methode aufrufen
+1. tikketClient Methode aufrufen
 2. IP und Port des Servers eingeben
 3. Client wird gestartet
 
@@ -27,7 +27,7 @@ Command | Parameter | Response | Status
 --------|-----------|----------|-------
 ticketErstellen||-->>OK|Fertig
 ticketAusgeben||[ID][UUID][status]|Fertig
-ticketPruefen|[UUID]|-->>OK / -->>NOK|
+ticketPruefen|[:UUID]|-->>OK / -->>NOK|
 ticketAuslass|[UUID]|-->>OK / -->>NOK|Nicht geschrieben
 ticketEinlass|[UUID]|-->>OK / -->>NOK|Nicht geschrieben
 |||
