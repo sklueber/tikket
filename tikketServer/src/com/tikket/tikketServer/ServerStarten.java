@@ -4,8 +4,6 @@ package com.tikket.tikketServer;/*
  * Keiner klaut das hier! Copyright oder so (c) 2019.
  */
 
-import com.sun.security.ntlm.Server;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
