@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class ClientNet extends AsyncTask<Void, Void, String> {
+public class ClientNet extends AsyncTask<Void, Void, String> { //von Website, nur noch zum Vergleich da
 
     String dstAddress;
     int dstPort;
@@ -50,11 +50,11 @@ public class ClientNet extends AsyncTask<Void, Void, String> {
         } catch (UnknownHostException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            Log.d("dasf", "UnknownHostException: " + e.toString());
+            Log.d("myTag", "UnknownHostException: " + e.toString());
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            Log.d("saf","IOException: " + e.toString());
+            Log.d("myTag","IOException: " + e.toString());
         } finally {
             if (socket != null) {
                 try {

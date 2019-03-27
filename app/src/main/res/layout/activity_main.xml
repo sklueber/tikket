@@ -13,7 +13,7 @@
         android:layout_marginBottom="34dp"
         android:layout_marginEnd="57dp"
         android:layout_marginStart="56dp"
-        android:onClick="ScanOnClick"
+        android:onClick="scanOnClick"
         android:text="@string/scan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,13 +68,36 @@
 
     <Button
         android:id="@+id/buttonClient"
-        android:layout_width="wrap_content"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="31dp"
-        android:layout_marginEnd="133dp"
-        android:layout_marginStart="141dp"
-        android:onClick="ClientOnClick"
+        android:layout_marginBottom="72dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="clientOnClick"
         android:text="Client starten"
+        app:layout_constraintBottom_toTopOf="@+id/buttonScanlos"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="173dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="29dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="17dp"
+        android:onClick="testOnClick"
+        android:text="TEST"
+        app:layout_constraintBottom_toTopOf="@+id/textViewtTest"
+        app:layout_constraintEnd_toStartOf="@+id/buttonClient"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewStatus" />
+
+    <TextView
+        android:id="@+id/textViewtTest"
+        android:layout_width="110dp"
+        android:layout_height="18dp"
+        android:layout_marginBottom="25dp"
+        android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/buttonScanlos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -7,11 +7,13 @@ import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ClientAsync client;
     @Override
     protected void onCreate(Bundle savedInstanceState) { //Design wird für die abgerundeten Ecken hier angepasst
         super.onCreate(savedInstanceState);
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         GradientDrawable drawable = (GradientDrawable) status.getBackground();
         drawable.setColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
     }
-    public void ScanOnClick (View vie){ //Scan-Button wird gedrückt
+    public void scanOnClick (View vie){ //Scan-Button wird gedrückt
         IntentIntegrator scanDing = new IntentIntegrator(this);
         scanDing.initiateScan();
     }
@@ -45,31 +47,50 @@ public class MainActivity extends AppCompatActivity {
     public void statusAnzeigen(String pTicketnummer){ //Das Ergebnis des Barcode-Aufrufs wird hier nach Gültigkeit überprüft
         TextView status = findViewById(R.id.textViewStatus);
         GradientDrawable drawable = (GradientDrawable) status.getBackground();
-        if(!android.text.TextUtils.isDigitsOnly(pTicketnummer)){ //ob das gescannte Ergebnis überhaupt aus Zahlen besteht
+        int ticketnummer;
+        try{  //ob das gescannte Ergebnis überhaupt aus Zahlen besteht
+            ticketnummer = Integer.parseInt(pTicketnummer);
+        }
+        catch (NumberFormatException e){ //Ticketnummer war keine Zahl oder Scan wurde abgebrochen
             drawable.setColor(ContextCompat.getColor(this, R.color.colorCancelYellow));
             status.setText(R.string.cancelled);
+            return;
+        }
+        if(true){
+            drawable.setColor(ContextCompat.getColor(this, R.color.colorValidGreen));
+            status.setText(R.string.valid); //TODO schöne Sounds
         } else {
-            if(pTicketnummer.equals("100")){
-                drawable.setColor(ContextCompat.getColor(this, R.color.colorValidGreen));
-                status.setText(R.string.valid); //TODO schöne Sounds
-            } else {
-                drawable.setColor(ContextCompat.getColor(this, R.color.colorInvalidRed));
-                status.setText(R.string.invalid);
-                final ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100);
-                tg.startTone(ToneGenerator.TONE_PROP_BEEP2); //vlt durch was cooleres ersetzen
-            }
+            drawable.setColor(ContextCompat.getColor(this, R.color.colorInvalidRed));
+            status.setText(R.string.invalid);
+            final ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100);
+            tg.startTone(ToneGenerator.TONE_PROP_BEEP2); //vlt durch was cooleres ersetzen
         }
     }
 
-    public void ClientOnClick(View view) { //Button Client Starten
-   /*tikketClient gestartetVon = new tikketClient();
-        gestartetVon.setTikketServerHost("192.168.178.1");
+    public void clientOnClick(View view) { //Button Client Starten
+        /*tikketClient gestartetVon = new tikketClient();
+        gestartetVon.setTikketServerHost("192.168.178.109");
         gestartetVon.setTikketServerPort(2001);
         gestartetVon.socketErstellen();
-       //gestartetVon.ticketErstellen();*/
-       ClientNet client = new ClientNet("192.168.178.1", 2001, null);
-        client.execute();
-
-
+       gestartetVon.ticketErstellen();
+       //ClientNet client = new ClientNet("192.168.178.109", 2001, null);
+        //client.execute();*/
+        client = new ClientAsync("192.168.178.109", 2001);
+        client.execute("");
     }
+
+    public void testOnClick(View view) {
+        //AsyncTikketPruefen pruef = new AsyncTikketPruefen("192.168.178.109", 2001);
+        //pruef.execute(40023);
+        AsyncTktErstellen erstell = new AsyncTktErstellen("192.168.178.109", 2001);
+        erstell.execute();
+    }
+
+    public static void tktGueltig() {
+    Log.d("myTag", "yeah dude du darfst rein");
+    }
+    public static void tktUngueltig(){
+        Log.d("myTag", "was willste hier du spast");
+    }
+
 }

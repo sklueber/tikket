@@ -18,7 +18,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class tikketClient {
+public class tikketClient { //funktioniert nicht auf Android, nur zur Referenz für die Methoden
     public void setTikketServerHost(String tikketServerHost) {
         this.tikketServerHost = tikketServerHost;
     }
