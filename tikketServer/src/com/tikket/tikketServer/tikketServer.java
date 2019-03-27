@@ -123,7 +123,6 @@ public class tikketServer {
         try {
             String url = "jdbc:sqlite:" + tikketServer.class.getClassLoader().getResource("database/tikket_db.db").toString(); //Location der Datenbank
             conn = DriverManager.getConnection(url);
-            System.out.println(url);
             System.out.println("Verbindung zur tikket-Datenbank hergestellt");
             return conn;
         } catch (SQLException e) {
