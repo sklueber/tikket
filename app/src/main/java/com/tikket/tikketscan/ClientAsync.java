@@ -6,13 +6,14 @@ import android.util.Log;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.net.SocketAddress;
 
 public class ClientAsync extends AsyncTask<String, Integer, String> {
     private String tikketServerHost;
     private int tikketServerPort;
     private BufferedWriter os;
     private BufferedReader is;
-    Socket socketOfClient;
+    private Socket socketOfClient;
     @Override
     protected String doInBackground(String... strings) {
         Log.d("myTag", "wenigstens in doBackground");
@@ -22,13 +23,12 @@ public class ClientAsync extends AsyncTask<String, Integer, String> {
         String SrvVa_name;
         //Serverstuff
 
-
         tikketServerHost = "192.168.178.1";
         tikketServerPort = 2001;
         try {
             Log.d("myTag", "haaaeeee");
             socketOfClient = new Socket(tikketServerHost, tikketServerPort);
-            Log.d("myTag", "socket: " + (socketOfClient.isConnected()));
+            Log.d("myTag", "socket: ");
             // Create output stream at the client (to send data to the server)
             os = new BufferedWriter(new OutputStreamWriter(socketOfClient.getOutputStream()));
 

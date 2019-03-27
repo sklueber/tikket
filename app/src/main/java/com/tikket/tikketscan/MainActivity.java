@@ -67,9 +67,9 @@ public class MainActivity extends AppCompatActivity {
         gestartetVon.setTikketServerPort(2001);
         gestartetVon.socketErstellen();
        //gestartetVon.ticketErstellen();*/
-        ClientAsync client = new ClientAsync();
-        client.execute("whatever dude");
-    client.ticketErstellen();
+       ClientNet client = new ClientNet("192.168.178.1", 2001, null);
+        client.execute();
+
 
     }
 }
