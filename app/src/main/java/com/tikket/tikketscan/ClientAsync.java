@@ -99,10 +99,8 @@ public class ClientAsync{
             } else {
                MainActivity.tktUngueltig();
             }
-
         }
     }
-
 
  class AsyncTktErstellen extends AsyncTask<Void, Boolean, Boolean> {
 

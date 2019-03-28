@@ -3,6 +3,7 @@ package com.tikket.tikketscan;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
@@ -15,17 +16,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     private ClientAsync client;
     @Override
-    protected void onCreate(Bundle savedInstanceState) { //Design wird für die abgerundeten Ecken hier angepasst
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        TextView status = findViewById(R.id.textViewStatus);
-        status.setBackgroundResource(R.drawable.rounded_corner);
-        GradientDrawable drawable = (GradientDrawable) status.getBackground();
-        drawable.setColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+        starteGUI();
+
     }
     public void scanOnClick (View vie){ //Scan-Button wird gedrückt
         IntentIntegrator scanDing = new IntentIntegrator(this);
@@ -84,6 +86,14 @@ public class MainActivity extends AppCompatActivity {
     }
     public static void tktUngueltig(){
         Log.d("myTag", "du kommst hier nicht rein");
+    }
+
+    private void starteGUI(){ //abgerundete Ecken!
+        setContentView(R.layout.activity_main);
+        TextView status = findViewById(R.id.textViewStatus);
+        status.setBackgroundResource(R.drawable.rounded_corner);
+        GradientDrawable drawable = (GradientDrawable) status.getBackground();
+        drawable.setColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
     }
 
 }
