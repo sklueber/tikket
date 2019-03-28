@@ -26,19 +26,19 @@ Als Ausgabemedium stehen eine *Druckfunktion* und ein *E-Mail-Versand* zur Verf�
 Command | Parameter | Response | Status
 --------|-----------|----------|-------
 ticketErstellen||-->>OK|Fertig
-ticketAusgeben||[ID][UUID][status]|Fertig
+ticketAusgeben||*[ID]//[UUID]//[status]|Fertig
 ticketPruefen|[:UUID]|-->>TRUE / -->>FALSE|Fertig
-ticketAuslass|[UUID]|-->>OK / -->>NOK|Nicht geschrieben
-ticketEinlass|[UUID]|-->>OK / -->>NOK|Nicht geschrieben
+ticketAuslass|[:UUID]|-->>OK / -->>NOK|Nicht geschrieben
+ticketEinlass|[:UUID]|-->>OK / -->>NOK|Nicht geschrieben
 |||
-veranstalterErstellen|[name]|-->>OK|Nicht geschrieben
-veranstalterAusgeben||[ID][name]|Nicht geschrieben
-veranstalterLoeschen|[ID]|-->>OK / -->>NOK(Abhängigkeiten)|
+veranstalterErstellen|[:name]|-->>OK|Nicht geschrieben
+veranstalterAusgeben||[:ID][:name]|Nicht geschrieben
+veranstalterLoeschen|[:ID]|-->>OK / -->>NOK(Abhängigkeiten)|
 |||
-veranstaltungErstellen|[name][datum][ort][vr_ID]|-->>OK|Nicht geschrieben
+veranstaltungErstellen|[:name][datum][ort][vr_ID]|-->>OK|Nicht geschrieben
 veranstaltungAusgeben||[ID][name][datum][ort][vr_ID]|Fertig
-veranstaltungLoeschen|[ID]|-->>OK / -->>NOK (Abhängigkeiten)|Nicht geschrieben
-veranstaltungSetzen|[ID]|-->>OK / -->>NOK (ID nicht gefunden)|NOK fehlt noch
+veranstaltungLoeschen|[:ID]|-->>OK / -->>NOK (Abhängigkeiten)|Nicht geschrieben
+veranstaltungSetzen|[:ID]|-->>OK / -->>NOK (ID nicht gefunden)|NOK fehlt noch
 aktuelleVeranstaltungAuslesen||[ID][name]|Fertig
 |||
 serverTest| |-->>OK|Fertig

@@ -298,18 +298,6 @@ public class tikketServer {
         }
     }
 
-/*    private void veranstalterEntfernen(int pVr_ID) {
-        String sql = "DELETE FROM veranstalter WHERE vr_ID = " + pVr_ID;
-
-        try (Connection conn = DBconnect()) {
-            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.executeUpdate();
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }*/
-
     private void veranstaltungWechseln(int va_id) {
         String sql = "SELECT va_ID, va_name FROM  veranstaltungen WHERE va_ID = " + va_id;
 
