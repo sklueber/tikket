@@ -23,25 +23,30 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="b8921c08-91d7-4236-853e-76667afc8420">
+        <schema name="main" object-types="constraint, index, column, view, table, dataset trigger" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="f5f2ec8b-47af-43ed-92ed-1b10555cd88e">
-      <console name="tikketDB" type="STANDARD" schema="main" session="Main"><![CDATA[select
-    v."va_ID",
-    v.va_datum,
-    v.va_name,
-    v.va_ort,
-    v.va_vr
+    <connection id="b8921c08-91d7-4236-853e-76667afc8420">
+      <console name="tikketdb" type="STANDARD" schema="main" session="Main"><![CDATA[select
+    t."tkt_ID",
+    t."tkt_UUID",
+    t.tkt_created,
+    t."tkt_lastChanged",
+    t.tkt_status,
+    t.tkt_va
 from
-    veranstaltungen v;]]></console>
+    tickets t;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="f5f2ec8b-47af-43ed-92ed-1b10555cd88e" />
+    <connection id="b8921c08-91d7-4236-853e-76667afc8420" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -66,9 +71,9 @@ from
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="f5f2ec8b-47af-43ed-92ed-1b10555cd88e" active="true">
+      <connection id="b8921c08-91d7-4236-853e-76667afc8420" active="true">
         <database>
-          <name value="tikketDB" />
+          <name value="tikketdb" />
           <description value="" />
           <database-type value="SQLITE" />
           <config-type value="BASIC" />
@@ -81,7 +86,7 @@ from
           <port value="" />
           <database value="" />
           <files>
-            <file path="C:\Users\max.stockhausen\IdeaProjects\tikket\tikketClient\src\resources\database\tikket_db.db" schema="main" />
+            <file path="C:\Users\max.stockhausen\IdeaProjects\tikket\tikketServer\resources\database\tikket_db.db" schema="main" />
           </files>
           <os-authentication value="false" />
           <empty-authentication value="false" />

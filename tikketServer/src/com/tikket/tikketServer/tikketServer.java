@@ -101,8 +101,30 @@ public class tikketServer {
 
                     }
                     if (line.contains("ticketAuslass")) { // TODO: 28.03.2019 schreiben
+                        String[] split = line.split(":");
+                        int uuid = Integer.parseInt(split[1]);
+                        if (TicketEinlass(uuid)) {
+                            os.write("-->>OK");
+                            os.newLine();
+                            os.flush();
+                        } else {
+                            os.write("-->>NOK");
+                            os.newLine();
+                            os.flush();
+                        }
                     }
-                    if (line.contains("ticketEinlass")) { // TODO: 28.03.2019 schreiben
+                    if (line.contains("ticketEinlass")) { // TODO: 28.03.2019 testen
+                        String[] split = line.split(":");
+                        int uuid = Integer.parseInt(split[1]);
+                        if (TicketEinlass(uuid)) {
+                            os.write("-->>OK");
+                            os.newLine();
+                            os.flush();
+                        } else {
+                            os.write("-->>NOK");
+                            os.newLine();
+                            os.flush();
+                        }
                     }
                     if (line.equals("aktuelleVeranstaltungAuslesen")) {
                         int id = SrvVa_ID;
@@ -226,6 +248,26 @@ public class tikketServer {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    public boolean TicketEinlass(int tUUID) {
+        String sql = "UPDATE tickets SET tkt_status = 2 WHERE tkt_UUID = " + tUUID + " AND tkt_va = " + SrvVa_ID;
+
+        try (Connection conn = DBconnect()) {
+            try (Statement stmt = conn.createStatement()) {
+                ResultSet rs = stmt.executeQuery(sql);
+                if (!rs.isClosed()) { // TODO: 28.03.2019 Rückgabe auf Erfolg machen
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } catch (SQLException e) {
+            if (e.getMessage().equals("ResultSet closed")) {
+                System.out.println(e.getMessage());
+            }
+            return false;
+        }
     }
 
     public void veranstaltungErstellen(String va_name, String va_datum, String va_ort, int va_vr) {

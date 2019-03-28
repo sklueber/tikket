@@ -95,7 +95,7 @@ public class tikketClient {
             // Aus InputStream lesen, empfangen
             String responseLine;
             while ((responseLine = is.readLine()) != null) {
-                System.out.println("Server: " + responseLine);
+                System.out.println("ticketErstellen: " + responseLine);
                 if (responseLine.equals("-->>OK")) {
                     return;
                 }
@@ -123,7 +123,7 @@ public class tikketClient {
             String responseLine;
 
             while ((responseLine = is.readLine()) != null) {
-                System.out.println("Server: " + responseLine);
+                System.out.println("ticketAusgeben: " + responseLine);
                 if (responseLine.contains("-->>OK")) {
                     return;
                 }
@@ -174,7 +174,36 @@ public class tikketClient {
         return false;
     }
 
-    private void ticketEinlass() {
+    public boolean ticketEinlass(int UUID) {
+        try {
+            // In OutputStream schreiben, senden
+            os.write("ticketEinlass:" + UUID);
+            os.newLine();
+            os.flush();
+
+            // Aus InputStream lesen, empfangen
+            String responseLine;
+            while ((responseLine = is.readLine()) != null) {
+                System.out.println("ticketEinlass: " + responseLine);
+                if (responseLine.equals("-->>OK")) {
+                    System.out.println("true");
+                    return true;
+                } else {
+                    System.out.println("false");
+                    return false;
+                }
+            }
+            os.close();
+            is.close();
+            socketOfClient.close();
+        } catch (UnknownHostException e) {
+            System.err.println("Server nicht gefunden: " + e);
+        } catch (IOException e) {
+            System.err.println("I/O Fehler:  " + e);
+        } catch (NullPointerException e) {
+            System.out.println("NPE; Vermutlich wurde kein Socket gefunden: " + e);
+        }
+        return false;
     }
 
     private void veranstalterErstellen() {

@@ -28,16 +28,16 @@ Command | Parameter | Response | Status
 ticketErstellen||-->>OK|Fertig
 ticketAusgeben||*[ID]//[UUID]//[status]|Fertig
 ticketPruefen|[:UUID]|-->>TRUE / -->>FALSE|Fertig
-ticketAuslass|[:UUID]|-->>OK / -->>NOK|Nicht geschrieben
-ticketEinlass|[:UUID]|-->>OK / -->>NOK|Nicht geschrieben
+ticketAuslass|[:UUID]|-->>OK / -->>NOK|In Bearbeitung
+ticketEinlass|[:UUID]|-->>OK / -->>NOK|In Bearbeitung, geht aber schon grundsätzlich
 |||
 veranstalterErstellen|[:name]|-->>OK|Nicht geschrieben
 veranstalterAusgeben||*[:ID]//[:name]|Nicht geschrieben
-veranstalterLoeschen|[:ID]|-->>OK / -->>NOK(Abhängigkeiten)|
+veranstalterLoeschen|[:ID]|-->>OK / -->>NOK(Abhängigkeiten)|Nicht geschrieben; extra
 |||
 veranstaltungErstellen|[:name][datum][ort][vr_ID]|-->>OK|Nicht geschrieben
 veranstaltungAusgeben||*[ID]//[name]//[datum]//[ort]//[vr_ID]|Fertig
-veranstaltungLoeschen|[:ID]|-->>OK / -->>NOK (Abhängigkeiten)|Nicht geschrieben
+veranstaltungLoeschen|[:ID]|-->>OK / -->>NOK (Abhängigkeiten)|Nicht geschrieben; extra
 veranstaltungSetzen|[:ID]|-->>OK / -->>NOK (ID nicht gefunden)|NOK fehlt noch
 aktuelleVeranstaltungAuslesen||[ID]//[name]|Fertig
 |||

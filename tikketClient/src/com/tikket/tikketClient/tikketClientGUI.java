@@ -71,8 +71,15 @@ public class tikketClientGUI {
             public void actionPerformed(ActionEvent e) {
                 int scan = Integer.parseInt((tScaneingabeEinlass.getText()));
                 if (gestartetVon.ticketPruefen(scan)) {
-                    System.out.println("komm rein");
-                }
+                    gestartetVon.ticketEinlass(scan);
+                    System.out.println("Ticket erfolgreich eingelassen.");
+                }// TODO: 28.03.2019 Auf Erfolg überprüfen
+            }
+        });
+        bTicketNeu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gestartetVon.ticketErstellen();
             }
         });
     }
