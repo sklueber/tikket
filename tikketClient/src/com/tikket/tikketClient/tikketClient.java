@@ -143,36 +143,17 @@ public class tikketClient {
     //Prüft ob das gegebene Ticket gültig ist. Wenn ja wird true zurückgegeben.
     public boolean ticketPruefen(int scan_UUID) {
         try {
-            socketOfClient = new Socket(tikketServerHost, tikketServerPort);
-
-            // Create output stream at the client (to send data to the server)
-            os = new BufferedWriter(new OutputStreamWriter(socketOfClient.getOutputStream()));
-
-            // Input stream at Client (Receive data from the server).
-            is = new BufferedReader(new InputStreamReader(socketOfClient.getInputStream()));
-
-            System.out.println("ServerSocket erstellt");
-        } catch (UnknownHostException e) {
-            System.err.println("Unbekannter Host: " + tikketServerHost);
-            return false;
-        } catch (IOException e) {
-            System.err.println("I/O Fehler: " + tikketServerHost);
-            return false;
-        }
-
-        try {
             // In OutputStream schreiben, senden
-            os.write("ticketPruefen;" + scan_UUID);
+            os.write("ticketPruefen:" + scan_UUID);
             os.newLine();
             os.flush();
 
             // Aus InputStream lesen, empfangen
             String responseLine;
             while ((responseLine = is.readLine()) != null) {
-                System.out.println("Server: " + responseLine);
-                if (responseLine.equals("true")) {
+                if (responseLine.equals("-->>TRUE")) {
                     return true;
-                } else if (responseLine.equals("false")) {
+                } else if (responseLine.equals("-->>FALSE")) {
                     return false;
                 }
             }

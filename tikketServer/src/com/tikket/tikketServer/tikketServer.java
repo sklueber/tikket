@@ -86,9 +86,19 @@ public class tikketServer {
                         os.newLine();
                         os.flush();
                     }
-                    if (line.contains("ticketPruefen")) { // TODO: 27.03.2019 schreiben
+                    if (line.contains("ticketPruefen")) {
                         String[] split = line.split(":");
-                        System.out.println(split[1]);
+                        int uuid = Integer.parseInt(split[1]);
+                        if (ticketPruefen(uuid)) {
+                            os.write("-->>TRUE");
+                            os.newLine();
+                            os.flush();
+                        } else {
+                            os.write("-->>FALSE");
+                            os.newLine();
+                            os.flush();
+                        }
+
                     }
                     if (line.contains("ticketAuslass")) { // TODO: 28.03.2019 schreiben
                     }
@@ -173,7 +183,7 @@ public class tikketServer {
     }
 
     private boolean ticketPruefen(int UUID) {
-        String sql = "SELECT tkt_ID, tkt_UUID, tkt_status, tkt_created, tkt_va FROM  tickets WHERE tkt_UUID = " + UUID + " AND tkt_va = " + SrvVa_ID;
+        String sql = "SELECT tkt_ID, tkt_UUID, tkt_status FROM  tickets WHERE tkt_UUID = " + UUID + " AND tkt_va = " + SrvVa_ID;
 
         try (Connection conn = DBconnect()) {
             try (Statement stmt = conn.createStatement()) {

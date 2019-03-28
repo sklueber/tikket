@@ -5,6 +5,8 @@ package com.tikket.tikketClient;/*
  */
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 
 public class tikketClientGUI {
@@ -26,6 +28,9 @@ public class tikketClientGUI {
     private JList listVeranstaltungen;
     private JButton bTicketNeu;
     private JButton bTEMPauslesen;
+    private JButton erstellenButton;
+    private JButton bVeranstaltungAuslesen;
+    private JButton bVeranstaltungSetzen;
 
     public tikketClientGUI(tikketClient client) {
         this.gestartetVon = client;
@@ -48,5 +53,27 @@ public class tikketClientGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
+        bTEMPauslesen.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gestartetVon.ticketAusgeben();
+            }
+        });
+        bVeranstaltungAuslesen.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gestartetVon.veranstaltungAusgeben();
+            }
+        });
+        bScan.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int scan = Integer.parseInt((tScaneingabeEinlass.getText()));
+                if (gestartetVon.ticketPruefen(scan)) {
+                    System.out.println("komm rein");
+                }
+            }
+        });
     }
 }

@@ -27,7 +27,7 @@ Command | Parameter | Response | Status
 --------|-----------|----------|-------
 ticketErstellen||-->>OK|Fertig
 ticketAusgeben||[ID][UUID][status]|Fertig
-ticketPruefen|[:UUID]|-->>OK / -->>NOK|
+ticketPruefen|[:UUID]|-->>TRUE / -->>FALSE|Fertig
 ticketAuslass|[UUID]|-->>OK / -->>NOK|Nicht geschrieben
 ticketEinlass|[UUID]|-->>OK / -->>NOK|Nicht geschrieben
 |||
