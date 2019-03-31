@@ -4,7 +4,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -23,8 +22,8 @@ public class ClientAsync{
         taskVerbinden.execute("");
     }
 
-    public void asyncTicketPreuefen(int pTktNr){
-        AsyncTikketPruefen pruef = new AsyncTikketPruefen();
+    public void asyncTicketPreuefen(int pTktNr, MainActivity a){
+        AsyncTikketPruefen pruef = new AsyncTikketPruefen(a);
         pruef.execute(pTktNr);
     }
 
@@ -57,7 +56,10 @@ public class ClientAsync{
 
     class AsyncTikketPruefen extends AsyncTask<Integer, String, Boolean> { //Prüft ob das gegebene Ticket gültig ist. Wenn ja wird true zurückgegeben.
 
-        public AsyncTikketPruefen() {
+        public MainActivity aktivitaet;
+
+        public AsyncTikketPruefen(MainActivity a) {
+            this.aktivitaet = a;
         }
 
         @Override
@@ -92,13 +94,9 @@ public class ClientAsync{
 
         }
 
-        protected void onPostExecute(Boolean result) { //erhält das Ergebnis von doInBackground nachdem es vorliegt
+        protected void onPostExecute(Boolean result) { //erhält das Ergebnis von doInBackground nachdem es vorliegt, läuft im UI-Thread
             Log.d("ClientAsync", "es ist in der Post!");
-            if (result) {
-        MainActivity.tktGueltig();
-            } else {
-               MainActivity.tktUngueltig();
-            }
+            aktivitaet.tktGueltigAnzeige(result);
         }
     }
 

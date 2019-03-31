@@ -1,24 +1,14 @@
 package com.tikket.tikketscan;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,29 +30,43 @@ public class MainActivity extends AppCompatActivity {
             TextView tktNr = findViewById(R.id.textViewTktNr);
             if(result.getContents() == null) {
                 tktNr.setText(R.string.cancelled);
-                statusAnzeigen("ERROR");
+                codePruefen("ERROR"); //codePruefen erhält ERROR, um die Statusanzeige entsprechend zu färben
             } else {
                 tktNr.setText(result.getContents());
-                statusAnzeigen(result.getContents());
+                codePruefen(result.getContents());
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
-    public void statusAnzeigen(String pTicketnummer){ //Das Ergebnis des Barcode-Aufrufs wird hier nach Gültigkeit überprüft
+    public void codePruefen(String pTicketnummer){ //Das Ergebnis des Barcode-Aufrufs wird hier nach Gültigkeit überprüft TODO alles
         TextView status = findViewById(R.id.textViewStatus);
-        GradientDrawable drawable = (GradientDrawable) status.getBackground();
+        GradientDrawable drawable = (GradientDrawable) status.getBackground(); //"Status"-Anzeige der GUI
         int ticketnummer;
         try{  //ob das gescannte Ergebnis überhaupt aus Zahlen besteht
             ticketnummer = Integer.parseInt(pTicketnummer);
         }
-        catch (NumberFormatException e){ //Ticketnummer war keine Zahl oder Scan wurde abgebrochen
+        catch (NumberFormatException e){ //gescannter Code war keine Zahl oder Scan wurde abgebrochen
             drawable.setColor(ContextCompat.getColor(this, R.color.colorCancelYellow));
             status.setText(R.string.cancelled);
             return;
         }
-        if(true){
+        client.asyncTicketPreuefen(ticketnummer, this); //Verbindung zum Server über AsyncTasks, wenn der Code eine gültige Zahl war
+    }
+
+    public void clientOnClick(View view) { //Button Client Starten
+        client = new ClientAsync("192.168.178.109", 2001);
+    }
+
+    public void testOnClick(View view) { //Button Test
+       codePruefen("770331234");
+    }
+
+    public void tktGueltigAnzeige(boolean gueltig){ //wird in ClientAsync aufgerufen und stellt in GUI dar, ob das Ticket gueltig ist
+        TextView status = findViewById(R.id.textViewStatus);
+        GradientDrawable drawable = (GradientDrawable) status.getBackground(); //"Status"-Anzeige der GUI
+        if(gueltig){
             drawable.setColor(ContextCompat.getColor(this, R.color.colorValidGreen));
             status.setText(R.string.valid); //TODO schöne Sounds
         } else {
@@ -73,21 +77,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void clientOnClick(View view) { //Button Client Starten
-        client = new ClientAsync("192.168.178.109", 2001);
-    }
-
-    public void testOnClick(View view) {
-        client.asyncTicketPreuefen(770333234);
-    }
-
-    public static void tktGueltig() {
-        Log.d("myTag", "yeah dude komm rein");
-    }
-    public static void tktUngueltig(){
-        Log.d("myTag", "du kommst hier nicht rein");
-    }
-
     private void starteGUI(){ //abgerundete Ecken!
         setContentView(R.layout.activity_main);
         TextView status = findViewById(R.id.textViewStatus);
@@ -95,5 +84,6 @@ public class MainActivity extends AppCompatActivity {
         GradientDrawable drawable = (GradientDrawable) status.getBackground();
         drawable.setColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
     }
+
 
 }

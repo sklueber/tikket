@@ -70,27 +70,28 @@
         android:id="@+id/buttonClient"
         android:layout_width="155dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
         android:onClick="clientOnClick"
         android:text="Client starten"
         app:layout_constraintBottom_toTopOf="@+id/buttonScanlos"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewStatus" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="173dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="29dp"
-        android:layout_marginEnd="51dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="17dp"
         android:onClick="testOnClick"
         android:text="TEST"
-        app:layout_constraintBottom_toTopOf="@+id/textViewtTest"
-        app:layout_constraintEnd_toStartOf="@+id/buttonClient"
+        app:layout_constraintBottom_toTopOf="@+id/buttonScanlos"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewStatus" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewStatus"
+        app:layout_constraintVertical_bias="0.453" />
 
     <TextView
         android:id="@+id/textViewtTest"
