@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,23 +41,28 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void codePruefen(String pTicketnummer){ //Das Ergebnis des Barcode-Aufrufs wird hier nach Gültigkeit überprüft
+    public void codePruefen(String pTicketnummer) { //Das Ergebnis des Barcode-Aufrufs wird hier nach Gültigkeit überprüft
         TextView status = findViewById(R.id.textViewStatus);
         GradientDrawable drawable = (GradientDrawable) status.getBackground(); //"Status"-Anzeige der GUI
         int ticketnummer;
-        try{  //ob das gescannte Ergebnis überhaupt aus Zahlen besteht
+        try {  //ob das gescannte Ergebnis überhaupt aus Zahlen besteht
             ticketnummer = Integer.parseInt(pTicketnummer);
-        }
-        catch (NumberFormatException e){ //gescannter Code war keine Zahl oder Scan wurde abgebrochen
+        } catch (NumberFormatException e) { //gescannter Code war keine Zahl oder Scan wurde abgebrochen
             drawable.setColor(ContextCompat.getColor(this, R.color.colorCancelYellow));
             status.setText(R.string.cancelled);
             return;
         }
-        client.asyncTicketPreuefen(ticketnummer, this); //Verbindung zum Server über AsyncTasks, wenn der Code eine gültige Zahl war
+        if (client.verbunden()) {
+            client.asyncTicketPreuefen(ticketnummer, this); //Verbindung zum Server über AsyncTasks, wenn der Code eine gültige Zahl war
+        } else {
+            drawable.setColor(ContextCompat.getColor(this, R.color.colorCancelYellow));
+            status.setText(R.string.disconnected);
+        }
     }
 
     public void clientOnClick(View view) { //Button Client Starten
-        client = new ClientAsync("192.168.178.109", 2001, this);
+        EditText ip = (EditText)findViewById(R.id.editTextIP);
+        client = new ClientAsync(ip.getText().toString(), 2001, this);
     }
 
     public void testOnClick(View view) { //Button Test
@@ -88,6 +94,15 @@ public class MainActivity extends AppCompatActivity {
     public void setzeTktNrTxt(String s){
         TextView tktNr = findViewById(R.id.textViewTktNr);
         tktNr.setText(s);
+    }
+
+    public void ipOnClick(View view){
+        EditText ip = findViewById(R.id.editTextIP);
+        if(ip.getVisibility() == View.INVISIBLE){
+            ip.setVisibility(View.VISIBLE);
+        } else if(ip.getVisibility()==View.VISIBLE){
+            ip.setVisibility(View.INVISIBLE);
+        }
     }
 
 }

@@ -10,4 +10,9 @@
     <string name="tikket_logo">Tikket.-Logo</string>
     <string name="client_starten">Client starten</string>
     <string name="test">TEST</string>
+    <string name="serverip">ServerIP</string>
+    <string name="meineIP">192.168.178.109</string>
+    <string name="server_ip">Server-IP</string>
+    <string name="ip_des_servers">IP des Servers</string>
+    <string name="disconnected">nicht verbunden</string>
 </resources>
