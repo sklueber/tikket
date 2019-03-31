@@ -10,13 +10,14 @@
         android:id="@+id/buttonScanlos"
         android:layout_width="298dp"
         android:layout_height="85dp"
-        android:layout_marginBottom="34dp"
-        android:layout_marginEnd="57dp"
-        android:layout_marginStart="56dp"
+        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:onClick="scanOnClick"
         android:text="@string/scan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -71,36 +72,15 @@
         android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:onClick="clientOnClick"
-        android:text="Client starten"
+        android:text="@string/client_starten"
         app:layout_constraintBottom_toTopOf="@+id/buttonScanlos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewStatus" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="173dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="17dp"
-        android:onClick="testOnClick"
-        android:text="TEST"
-        app:layout_constraintBottom_toTopOf="@+id/buttonScanlos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewStatus"
-        app:layout_constraintVertical_bias="0.453" />
-
-    <TextView
-        android:id="@+id/textViewtTest"
-        android:layout_width="110dp"
-        android:layout_height="18dp"
-        android:layout_marginBottom="25dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/buttonScanlos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>

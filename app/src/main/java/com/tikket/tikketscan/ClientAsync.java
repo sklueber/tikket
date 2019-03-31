@@ -15,10 +15,10 @@ public class ClientAsync{
     BufferedWriter os;
     BufferedReader is;
 
-    ClientAsync(String hostIP, int port) {
+    ClientAsync(String hostIP, int port, MainActivity a) {
         tikketServerHost = hostIP;
         tikketServerPort = port;
-        AsyncVerbinden taskVerbinden = new AsyncVerbinden();
+        AsyncVerbinden taskVerbinden = new AsyncVerbinden(a);
         taskVerbinden.execute("");
     }
 
@@ -30,12 +30,17 @@ public class ClientAsync{
     class AsyncVerbinden extends AsyncTask<String, Integer, String> { //Async verlagert Netzwerkaufgaben in Nebenthreads um UI nicht zu stören, Pflicht bei Android
 //Erklaerung der Variablen: https://stackoverflow.com/a/29559386
 
+        public  MainActivity aktivitaet;
+
+        public AsyncVerbinden(MainActivity a){
+            this.aktivitaet = a;
+        }
         @Override
         protected String doInBackground(String... strings) {
             Log.d("myTag", "wenigstens in doBackground"); //Log.d() ~ System.out.println in Android
 
             Socket socketOfClient;
-
+            String result;
             try {
                 socketOfClient = new Socket(tikketServerHost, tikketServerPort);
                 // Create output stream at the client (to send data to the server)
@@ -43,13 +48,20 @@ public class ClientAsync{
 
                 // Input stream at Client (Receive data from the server).
                 is = new BufferedReader(new InputStreamReader(socketOfClient.getInputStream()));
+                result = "Verbunden";
             } catch (UnknownHostException e) {
                 Log.d("myTag", "Unbekannter Host: " + tikketServerHost);
+                result = "Fehler: unbekannter Host";
             } catch (IOException e) {
                 Log.d("myTag", "I/O Fehler: " + tikketServerHost);
                 Log.d("myTag", e.getStackTrace()[0].toString());
+                result = "Fehler";
             }
-            return ""; //benutzen wir nicht, wird aber von AsyncTask gefordert
+            return result; //benutzen wir nicht, wird aber von AsyncTask gefordert
+        }
+        @Override
+        protected void onPostExecute(String s){
+            aktivitaet.setzeTktNrTxt(s);
         }
     }
 

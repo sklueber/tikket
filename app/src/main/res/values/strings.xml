@@ -8,4 +8,6 @@
     <string name="invalid">Ungültig</string>
     <string name="used">Verwendet</string>
     <string name="tikket_logo">Tikket.-Logo</string>
+    <string name="client_starten">Client starten</string>
+    <string name="test">TEST</string>
 </resources>

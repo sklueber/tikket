@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void codePruefen(String pTicketnummer){ //Das Ergebnis des Barcode-Aufrufs wird hier nach Gültigkeit überprüft TODO alles
+    public void codePruefen(String pTicketnummer){ //Das Ergebnis des Barcode-Aufrufs wird hier nach Gültigkeit überprüft
         TextView status = findViewById(R.id.textViewStatus);
         GradientDrawable drawable = (GradientDrawable) status.getBackground(); //"Status"-Anzeige der GUI
         int ticketnummer;
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clientOnClick(View view) { //Button Client Starten
-        client = new ClientAsync("192.168.178.109", 2001);
+        client = new ClientAsync("192.168.178.109", 2001, this);
     }
 
     public void testOnClick(View view) { //Button Test
@@ -85,5 +85,9 @@ public class MainActivity extends AppCompatActivity {
         drawable.setColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
     }
 
+    public void setzeTktNrTxt(String s){
+        TextView tktNr = findViewById(R.id.textViewTktNr);
+        tktNr.setText(s);
+    }
 
 }
