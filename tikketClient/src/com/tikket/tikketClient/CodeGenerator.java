@@ -18,11 +18,9 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 
-import java.awt.Graphics;
-
 
 public class CodeGenerator {
-    private static final String barcodePfad = "./MyBarcode.png";
+    private static final String barcodePfad = "./TEMP_Barcode.png";
 
     private static void generateBarcodeImage(String text, int width, int height, String filePath)
             throws WriterException, IOException {
@@ -50,8 +48,8 @@ public class CodeGenerator {
 
         {
             try {
-                image = ImageIO.read(new File(path, "MyBarcode.png"));
-                overlay = ImageIO.read(new File(path, "overlay.png"));
+                image = ImageIO.read(new File(path, barcodePfad));
+                overlay = ImageIO.read(CodeGenerator.class.getClassLoader().getResource("barcode/overlay.png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -68,7 +66,7 @@ public class CodeGenerator {
 
 // Save as new image
         try {
-            ImageIO.write(combined, "PNG", new File(path, "combined.png"));
+            ImageIO.write(combined, "PNG", new File(path, "Tikket_Barcode.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
