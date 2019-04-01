@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.tikket.tikketClient.tikketClientGUI">
   <grid id="27dc6" binding="tikketClientGUI" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="10" left="10" bottom="10" right="10"/>
+    <margin top="20" left="20" bottom="20" right="20"/>
     <constraints>
-      <xy x="20" y="20" width="586" height="400"/>
+      <xy x="20" y="20" width="911" height="627"/>
     </constraints>
     <properties>
       <background color="-13619152"/>
@@ -13,13 +13,12 @@
     <children>
       <tabbedpane id="ac638" binding="tabPane">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="200" height="200"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="286"/>
           </grid>
         </constraints>
         <properties>
           <background color="-13619152"/>
-          <toolTipText value=""/>
         </properties>
         <border type="none"/>
         <children>
@@ -103,14 +102,12 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="ba06e" class="javax.swing.JList" binding="listTickets">
+              <component id="f85" class="javax.swing.JButton" binding="bTicketAktualisieren">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <selectionMode value="0"/>
+                  <text value="Aktualisieren"/>
                 </properties>
               </component>
               <component id="bba49" class="javax.swing.JButton" binding="bTicketNeu">
@@ -121,14 +118,23 @@
                   <text value="Erstellen"/>
                 </properties>
               </component>
-              <component id="f85" class="javax.swing.JButton" binding="bTEMPauslesen">
+              <scrollpane id="7d5cc" binding="spTickets">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="453" height="149"/>
+                  </grid>
                 </constraints>
-                <properties>
-                  <text value="Auslesen"/>
-                </properties>
-              </component>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="875ad" class="javax.swing.JTable" binding="tableTickets">
+                    <constraints/>
+                    <properties>
+                      <autoCreateRowSorter value="true"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
             </children>
           </grid>
           <grid id="dedd4" binding="panelVeranstaltungen" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -143,30 +149,12 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="387b2" class="javax.swing.JList" binding="listVeranstaltungen">
-                <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <selectionMode value="0"/>
-                </properties>
-              </component>
               <component id="458e7" class="javax.swing.JButton" binding="erstellenButton" default-binding="true">
                 <constraints>
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Erstellen"/>
-                </properties>
-              </component>
-              <component id="9897d" class="javax.swing.JButton" binding="bVeranstaltungAuslesen">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <text value="Auslesen"/>
                 </properties>
               </component>
               <component id="b4c57" class="javax.swing.JButton" binding="bVeranstaltungSetzen">
@@ -177,6 +165,31 @@
                   <text value="Als Veranstaltung setzen"/>
                 </properties>
               </component>
+              <component id="9897d" class="javax.swing.JButton" binding="bVeranstaltungAktualisieren">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Aktualisieren"/>
+                </properties>
+              </component>
+              <scrollpane id="e02f7" binding="spVeranstaltungen">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="f9971" class="javax.swing.JTable" binding="tableVeranstaltungen" custom-create="true">
+                    <constraints/>
+                    <properties>
+                      <autoCreateRowSorter value="true"/>
+                      <focusable value="false"/>
+                      <rowSelectionAllowed value="true"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
             </children>
           </grid>
           <grid id="91599" binding="panelInfo" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">

@@ -36,7 +36,7 @@ veranstalterAusgeben||*[:ID]//[:name]|Nicht geschrieben
 veranstalterLoeschen|[:ID]|-->>OK / -->>NOK(Abhängigkeiten)|Nicht geschrieben; extra
 |||
 veranstaltungErstellen|[:name][datum][ort][vr_ID]|-->>OK|Nicht geschrieben
-veranstaltungAusgeben||*[ID]//[name]//[datum]//[ort]//[vr_ID]|Fertig
+veranstaltungAusgeben||*[ID]//[name]//[datum]//[ort]//[vr_ID]|In GUI
 veranstaltungLoeschen|[:ID]|-->>OK / -->>NOK (Abhängigkeiten)|Nicht geschrieben; extra
 veranstaltungSetzen|[:ID]|-->>OK / -->>NOK (ID nicht gefunden)|NOK fehlt noch
 aktuelleVeranstaltungAuslesen||[ID]//[name]|Fertig

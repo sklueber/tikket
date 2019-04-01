@@ -1,3 +1,9 @@
+/*
+ * Informatikprojekt aus 2019. Erstellt von Simon und Max.
+ * Zuletzt bearbeitet 02.04.19 00:16 .
+ * Keiner klaut das hier! Copyright tikket (c) 2019.
+ */
+
 package com.tikket.tikketClient;/*
  * Informatikprojekt aus 2019. Erstellt von Simon, und Max.
  * Zuletzt bearbeitet 24.03.19 22:29.
@@ -20,7 +26,7 @@ import java.nio.file.Path;
 
 
 public class CodeGenerator {
-    private static final String barcodePfad = "./TEMP_Barcode.png";
+    private static final String barcodePfad = "./raw_Barcode.png";
 
     private static void generateBarcodeImage(String text, int width, int height, String filePath)
             throws WriterException, IOException {

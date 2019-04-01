@@ -1,7 +1,7 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 26.03.19 01:08.
- * Keiner klaut das hier! Copyright oder so (c) 2019.
+ * Zuletzt bearbeitet 02.04.19 00:16 .
+ * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
 package com.tikket.tikketClient;
@@ -49,7 +49,7 @@ public class tikketClient {
         } catch (UnknownHostException e) {
             System.err.println("Unbekannter Host: " + tikketServerHost);
         } catch (IOException e) {
-            System.err.println("I/O Fehler: " + tikketServerHost);
+//            System.err.println("I/O Fehler: " + tikketServerHost);
         }
     }
 
@@ -58,31 +58,36 @@ public class tikketClient {
     }
 
     public void starten() {
-        System.out.println("tikketClient wird gestartet");
-        new tikketClientGUI(this);
-//        firstSync();
+        if (socketOfClient != null) {
+            System.out.println("tikketClient ist verbunden");
+            tikketClientGUI gui = new tikketClientGUI(this);
+        } else {
+            System.err.println("Keine Serververbindung");
+        }
     }
 
     public void beenden() {
-        try {
-            os.write("-->>QUIT");
-            os.newLine();
-            os.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            String responseLine;
-            while ((responseLine = is.readLine()) != null) {
-                if (responseLine.equals("-->>OK")) {
-                    System.out.println("Alle Sockets werden geschlossen");
-                    return;
-                }
+        if (socketOfClient != null) {
+            try {
+                os.write("-->>QUIT");
+                os.newLine();
+                os.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            try {
+                String responseLine;
+                while ((responseLine = is.readLine()) != null) {
+                    if (responseLine.equals("-->>OK")) {
+                        System.out.println("Alle Sockets werden geschlossen");
+                        return;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
+        }
     }
 
     public void ticketErstellen() {
@@ -218,7 +223,7 @@ public class tikketClient {
     private void veranstaltungErstellen() {
     }
 
-    public void veranstaltungAusgeben() {
+    public String veranstaltungAusgeben() {
         try {
             // In OutputStream schreiben, senden
             os.write("veranstaltungAusgeben");
@@ -229,9 +234,8 @@ public class tikketClient {
             String responseLine;
 
             while ((responseLine = is.readLine()) != null) {
-                System.out.println("Server: " + responseLine);
                 if (responseLine.contains("-->>OK")) {
-                    return;
+                    return responseLine;
                 }
             }
             os.close();
@@ -244,6 +248,7 @@ public class tikketClient {
         } catch (NullPointerException e) {
             System.out.println("NPE; Vermutlich wurde kein Socket gefunden: " + e);
         }
+        return null;
     }
 
     private void veranstaltungLoeschen() {
