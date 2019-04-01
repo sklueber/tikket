@@ -46,13 +46,13 @@ public class MainActivity extends AppCompatActivity {
         GradientDrawable drawable = (GradientDrawable) status.getBackground(); //"Status"-Anzeige der GUI
         int ticketnummer;
         try {  //ob das gescannte Ergebnis überhaupt aus Zahlen besteht
-            ticketnummer = Integer.parseInt(pTicketnummer);
+            ticketnummer = Integer.parseInt(pTicketnummer); //geht nur bei Zahlen bis 9 Stellen
         } catch (NumberFormatException e) { //gescannter Code war keine Zahl oder Scan wurde abgebrochen
             drawable.setColor(ContextCompat.getColor(this, R.color.colorCancelYellow));
             status.setText(R.string.cancelled);
             return;
         }
-        if (client.verbunden()) {
+        if (client.istVerbunden()) {
             client.asyncTicketPreuefen(ticketnummer, this); //Verbindung zum Server über AsyncTasks, wenn der Code eine gültige Zahl war
         } else {
             drawable.setColor(ContextCompat.getColor(this, R.color.colorCancelYellow));
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clientOnClick(View view) { //Button Client Starten
-        EditText ip = (EditText)findViewById(R.id.editTextIP);
+        EditText ip = findViewById(R.id.editTextIP);
         client = new ClientAsync(ip.getText().toString(), 2001, this);
     }
 

@@ -11,11 +11,13 @@ public class ClientAsync{
 
     private String tikketServerHost;
     private int tikketServerPort;
+    private boolean verbunden;
     Socket socketOfClient;
     BufferedWriter os;
     BufferedReader is;
 
     ClientAsync(String hostIP, int port, MainActivity a) {
+        verbunden = false;
         tikketServerHost = hostIP;
         tikketServerPort = port;
         AsyncVerbinden taskVerbinden = new AsyncVerbinden(a);
@@ -27,12 +29,12 @@ public class ClientAsync{
         pruef.execute(pTktNr);
     }
 
-    public boolean verbunden(){ //TODO muss wahrheitsgemaess antworten
-        return socketOfClient.isBound();
+    public boolean istVerbunden(){ //TODO muss wahrheitsgemaess antworten
+        return verbunden;
     }
 
     class AsyncVerbinden extends AsyncTask<String, Integer, String> { //Async verlagert Netzwerkaufgaben in Nebenthreads um UI nicht zu stören, Pflicht bei Android
-//Erklaerung der Variablen: https://stackoverflow.com/a/29559386
+                                                                    //Erklaerung der Variablen: https://stackoverflow.com/a/29559386
 
         public  MainActivity aktivitaet;
 
@@ -53,13 +55,16 @@ public class ClientAsync{
                 // Input stream at Client (Receive data from the server).
                 is = new BufferedReader(new InputStreamReader(socketOfClient.getInputStream()));
                 result = "Verbunden";
+                verbunden = true;
             } catch (UnknownHostException e) {
                 Log.d("myTag", "Unbekannter Host: " + tikketServerHost);
                 result = "Fehler: unbekannter Host";
+                verbunden = false;
             } catch (IOException e) {
                 Log.d("myTag", "I/O Fehler: " + tikketServerHost);
                 Log.d("myTag", e.getStackTrace()[0].toString());
                 result = "Fehler";
+                verbunden = false;
             }
             return result; //benutzen wir nicht, wird aber von AsyncTask gefordert
         }
@@ -116,7 +121,7 @@ public class ClientAsync{
         }
     }
 
- class AsyncTktErstellen extends AsyncTask<Void, Boolean, Boolean> {
+ /*class AsyncTktErstellen extends AsyncTask<Void, Boolean, Boolean> { //aus Gruenden der Funktionstrennung nicht verwendet
 
         public AsyncTktErstellen() {
         }
@@ -149,6 +154,6 @@ public class ClientAsync{
             }
             return false;
         }
-    }
+    }*/
 }
 
