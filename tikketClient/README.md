@@ -29,7 +29,7 @@ ticketErstellen||-->>OK|Fertig
 ticketAusgeben||*[ID]//[UUID]//[status]|Fertig
 ticketPruefen|[:UUID]|-->>TRUE / -->>FALSE|Fertig
 ticketAuslass|[:UUID]|-->>OK / -->>NOK|In Bearbeitung
-ticketEinlass|[:UUID]|-->>OK / -->>NOK|In Bearbeitung, geht aber schon grundsätzlich
+ticketEinlass|[:UUID]|-->>OK|In GUI
 |||
 veranstalterErstellen|[:name]|-->>OK|Nicht geschrieben
 veranstalterAusgeben||*[:ID]//[:name]|Nicht geschrieben

@@ -1,14 +1,10 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 00:32 .
+ * Zuletzt bearbeitet 02.04.19 01:36 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
-package com.tikket.tikketServer;/*
- * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 26.03.19 00:38.
- * Keiner klaut das hier! Copyright oder so (c) 2019.
- */
+package com.tikket.tikketServer;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -109,28 +105,18 @@ public class tikketServer {
                     if (line.contains("ticketAuslass")) { // TODO: 28.03.2019 schreiben
                         String[] split = line.split(":");
                         int uuid = Integer.parseInt(split[1]);
-                        if (TicketEinlass(uuid)) {
-                            os.write("-->>OK");
-                            os.newLine();
-                            os.flush();
-                        } else {
-                            os.write("-->>NOK");
-                            os.newLine();
-                            os.flush();
-                        }
+                        TicketEinlass(uuid);
+                        os.write("-->>OK");
+                        os.newLine();
+                        os.flush();
                     }
                     if (line.contains("ticketEinlass")) { // TODO: 28.03.2019 testen
                         String[] split = line.split(":");
                         int uuid = Integer.parseInt(split[1]);
-                        if (TicketEinlass(uuid)) {
-                            os.write("-->>OK");
-                            os.newLine();
-                            os.flush();
-                        } else {
-                            os.write("-->>NOK");
-                            os.newLine();
-                            os.flush();
-                        }
+                        TicketEinlass(uuid);
+                        os.write("-->>OK");
+                        os.newLine();
+                        os.flush();
                     }
                     if (line.equals("aktuelleVeranstaltungAuslesen")) {
                         int id = SrvVa_ID;
@@ -226,7 +212,7 @@ public class tikketServer {
             }
         } catch (SQLException e) {
             if (e.getMessage().equals("ResultSet closed")) {
-                System.out.println(e.getMessage());
+                System.err.println(e.getMessage());
             }
             return false;
         }
@@ -256,23 +242,21 @@ public class tikketServer {
         return null;
     }
 
-    public boolean TicketEinlass(int tUUID) {
+    public void TicketEinlass(int tUUID) {
         String sql = "UPDATE tickets SET tkt_status = 2 WHERE tkt_UUID = " + tUUID + " AND tkt_va = " + SrvVa_ID;
 
         try (Connection conn = DBconnect()) {
             try (Statement stmt = conn.createStatement()) {
                 ResultSet rs = stmt.executeQuery(sql);
-                if (!rs.isClosed()) { // TODO: 28.03.2019 Rückgabe auf Erfolg machen
-                    return true;
-                } else {
-                    return false;
+                if (rs.isAfterLast()) {
+                    System.out.println("Ticket serverseitig eingelassen");
                 }
             }
         } catch (SQLException e) {
             if (e.getMessage().equals("ResultSet closed")) {
                 System.out.println(e.getMessage());
             }
-            return false;
+            return;
         }
     }
 

@@ -1,12 +1,13 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 00:32 .
+ * Zuletzt bearbeitet 02.04.19 01:36 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
 package com.tikket.tikketClient;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
@@ -77,10 +78,21 @@ public class tikketClientGUI {
         bScan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int scan = Integer.parseInt((tScaneingabeEinlass.getText()));
-                if (gestartetVon.ticketPruefen(scan)) {
-                    gestartetVon.ticketEinlass(scan);
-                    System.out.println("Ticket erfolgreich eingelassen.");
+                if (tScaneingabeEinlass.getText().matches("\\d{9}")) {
+                    int scan = Integer.parseInt((tScaneingabeEinlass.getText()));
+
+                    if (gestartetVon.ticketPruefen(scan)) {
+                        if (gestartetVon.ticketEinlass(scan)) {
+                            bScan.setForeground(Color.green);
+                            System.out.println("Ticket erfolgreich eingelassen.");
+                        } else {
+                            System.err.println("Ticket gültig, aber nicht erfolgreich eingelassen.");
+                        }
+                    } else {
+                        bScan.setForeground(Color.red);
+                    }
+                } else {
+                    System.err.println("Bitte gültige UUID eingeben");
                 }
             }
         });
@@ -95,7 +107,7 @@ public class tikketClientGUI {
     private JTable createTicketsTable() {
 
         String tkt = gestartetVon.ticketAusgeben();
-        System.out.println(tkt);
+//        System.out.println(tkt);
         String[] einzelneStrings = tkt.split("//");
 
         String[] ueberschriften = new String[]{"ID", "UUID", "Statuscode"};
@@ -126,7 +138,7 @@ public class tikketClientGUI {
     private JTable createVeranstaltungsTable() {
 
         String va = gestartetVon.veranstaltungAusgeben();
-        System.out.println(va);
+//        System.out.println(va);
         String[] einzelneStrings = va.split("//");
 
         String[] ueberschriften = new String[]{"ID", "Name", "Datum", "Ort"};

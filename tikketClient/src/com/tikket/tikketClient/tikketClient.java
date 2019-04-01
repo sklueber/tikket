@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 00:32 .
+ * Zuletzt bearbeitet 02.04.19 01:36 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -127,7 +127,6 @@ public class tikketClient {
             // Aus InputStream lesen, empfangen
             String responseLine;
             while ((responseLine = is.readLine()) != null) {
-                System.out.println("ticketAusgeben: " + responseLine);
                 if (responseLine.contains("-->>OK")) {
                     return responseLine;
                 }
@@ -190,12 +189,11 @@ public class tikketClient {
             // Aus InputStream lesen, empfangen
             String responseLine;
             while ((responseLine = is.readLine()) != null) {
-                System.out.println("ticketEinlass: " + responseLine);
                 if (responseLine.equals("-->>OK")) {
-                    System.out.println("true");
+                    System.out.println("ticketEinlass: true");
                     return true;
                 } else {
-                    System.out.println("false");
+                    System.out.println("ticketEinlass: false");
                     return false;
                 }
             }
