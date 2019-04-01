@@ -40,3 +40,9 @@ veranstaltungAusgeben||[ID][name][datum][ort][vr_ID]
 veranstaltungLoeschen|[ID]|OK / NOK (Abhängigkeiten)
 veranstaltungSetzen|[ID]|OK / NOK (ID nicht gefunden)
 veranstaltungAuslesen||[ID][name]
+
+# Open-Source-Lizenzen
+* Java Database Connectivity (JDBC): https://www.apache.org/licenses/LICENSE-2.0.txt
+* ZXing ("Zebra Crossing"): https://www.apache.org/licenses/LICENSE-2.0.txt
+* Java Mail API: https://oss.oracle.com/licenses/CDDL+GPL-1.1
+* Java SE: https://javaee.github.io/glassfish/LICENSE
