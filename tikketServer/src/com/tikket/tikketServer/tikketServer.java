@@ -1,3 +1,9 @@
+/*
+ * Informatikprojekt aus 2019. Erstellt von Simon und Max.
+ * Zuletzt bearbeitet 02.04.19 00:32 .
+ * Keiner klaut das hier! Copyright tikket (c) 2019.
+ */
+
 package com.tikket.tikketServer;/*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
  * Zuletzt bearbeitet 26.03.19 00:38.
@@ -238,7 +244,7 @@ public class tikketServer {
                         rslt =
                                 rs.getInt("tkt_ID") + "*" +
                                         rs.getInt("tkt_UUID") + "*" +
-                                        rs.getInt("tkt_status") + "*" +
+                                        rs.getInt("tkt_status") + "//" +
                                         rslt;
                     }
                     return rslt + "-->>OK";

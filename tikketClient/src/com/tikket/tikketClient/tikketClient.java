@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 00:16 .
+ * Zuletzt bearbeitet 02.04.19 00:32 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -117,7 +117,7 @@ public class tikketClient {
         }
     }
 
-    public void ticketAusgeben() {
+    public String ticketAusgeben() {
         try {
             // In OutputStream schreiben, senden
             os.write("ticketAusgeben");
@@ -126,11 +126,10 @@ public class tikketClient {
 
             // Aus InputStream lesen, empfangen
             String responseLine;
-
             while ((responseLine = is.readLine()) != null) {
                 System.out.println("ticketAusgeben: " + responseLine);
                 if (responseLine.contains("-->>OK")) {
-                    return;
+                    return responseLine;
                 }
             }
             os.close();
@@ -143,6 +142,7 @@ public class tikketClient {
         } catch (NullPointerException e) {
             System.out.println("NPE; Vermutlich wurde kein Socket gefunden: " + e);
         }
+        return null;
     }
 
     //Prüft ob das gegebene Ticket gültig ist. Wenn ja wird true zurückgegeben.
@@ -155,6 +155,7 @@ public class tikketClient {
 
             // Aus InputStream lesen, empfangen
             String responseLine;
+
             while ((responseLine = is.readLine()) != null) {
                 if (responseLine.equals("-->>TRUE")) {
                     return true;

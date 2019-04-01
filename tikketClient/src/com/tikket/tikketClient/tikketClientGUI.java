@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 00:16 .
+ * Zuletzt bearbeitet 02.04.19 00:32 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -62,7 +62,8 @@ public class tikketClientGUI {
         bTicketAktualisieren.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gestartetVon.ticketAusgeben();
+                tableTickets = createTicketsTable();
+                frame.pack();
             }
         });
         bVeranstaltungAktualisieren.addActionListener(new ActionListener() {
@@ -80,7 +81,7 @@ public class tikketClientGUI {
                 if (gestartetVon.ticketPruefen(scan)) {
                     gestartetVon.ticketEinlass(scan);
                     System.out.println("Ticket erfolgreich eingelassen.");
-                }// TODO: 28.03.2019 Auf Erfolg überprüfen
+                }
             }
         });
         bTicketNeu.addActionListener(new ActionListener() {
@@ -91,6 +92,36 @@ public class tikketClientGUI {
         });
     }
 
+    private JTable createTicketsTable() {
+
+        String tkt = gestartetVon.ticketAusgeben();
+        System.out.println(tkt);
+        String[] einzelneStrings = tkt.split("//");
+
+        String[] ueberschriften = new String[]{"ID", "UUID", "Statuscode"};
+
+        //Fügt die Elemente aus dem empfangenem String in ein 2d Array. Das war eine Scheißarbeit xD
+        Object[][] ticketsDaten = new Object[einzelneStrings.length - 1][einzelneStrings[0].split("\\*").length];
+
+        for (int i = 0; i < einzelneStrings.length - 1; i++) {
+
+            String[] einzelneBefehle = einzelneStrings[i].split("\\*");
+            for (int j = 0; j < einzelneBefehle.length; j++) {
+                ticketsDaten[i][j] = einzelneBefehle[j];
+//                System.out.println(ticketsDaten[i][j]);
+            }
+        }
+
+        Class[] columnClass = new Class[]{
+                Integer.class, String.class, String.class, String.class
+        };
+
+        JTable table = new JTable(ticketsDaten, ueberschriften);
+        table.setRowSelectionAllowed(false);
+        table.setFillsViewportHeight(true);
+        table.setEditingRow(gestartetVon.verantaltungIDausgeben());
+        return table;
+    }
 
     private JTable createVeranstaltungsTable() {
 
@@ -125,5 +156,6 @@ public class tikketClientGUI {
 
     private void createUIComponents() {
         tableVeranstaltungen = createVeranstaltungsTable();
+        tableTickets = createTicketsTable();
     }
 }
