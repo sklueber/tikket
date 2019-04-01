@@ -1,5 +1,5 @@
 # tikket
-tikket (working title). Ein Informatik-Projekt von Simon Kleber, Nico Plump und Max Cockhausen
+tikket (working title). Ein Informatik-Projekt von Simon Klüber und Max Stockhausen
 
 # Zielbestimmung
 Tickets werden in Form eines Barcodes mit einer einzigartigen Nummer versehen, was Sicherheit vor Fälschungen bietet. Die ausgestellten bzw. eingelösten Tickets können mithilfe einer App, auf Android, und einer Software mit Hilfe eines Barcode-Scanners, auf Windows, überprüft werden. Es lässt sich eine Übersicht über gekaufte und eingelöste Tickets anzeigen.
