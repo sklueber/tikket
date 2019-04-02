@@ -23,7 +23,7 @@ public class ClientStarten extends JFrame {
     private String ip;
     private int port;
 
-    public ClientStarten(tikketClient client) {
+    public ClientStarten(tikketClient client) { //TODO (von Simon) Rueckmeldung bei Verbindungsfehler anzeigen, Konsole ist ja nicht sichtbar
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException e) {

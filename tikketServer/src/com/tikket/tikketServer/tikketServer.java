@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 03:29 .
+ * Zuletzt bearbeitet 02.04.19 05:11 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -21,7 +21,7 @@ public class tikketServer {
     private String SrvVa_name;
     private final ServerSocket server;
 
-    public tikketServer(int port) throws IOException {
+    public tikketServer(int port) throws IOException { //TODO (von Simon) Server kann nicht geschlossen werden
         ServerSocket listener = null;
 
         //TEST
@@ -121,7 +121,6 @@ public class tikketServer {
                         os.flush();
                     }
                     if (line.contains("ticketSenden")) {
-                        System.out.println("angekommen");
                         String[] split = line.split(":");
                         ticketSenden(split[1], Integer.parseInt(split[2]));
                         System.out.println("verarbeitet");
@@ -273,7 +272,7 @@ public class tikketServer {
 
     private void ticketSenden(String mail, int UUID) {
         CodeGenerator.barcodeErstellen(Integer.toString(UUID));
-        Mailversand.main(new String[]{mail, "Ihr digitales Ticket ist da!"});
+        Mailversand.main(new String[]{mail, "Ihr digitales Ticket ist da!"}); //TODO (von Simon) Veranstaltung wieder mitschicken?
     }
 
     public void veranstaltungErstellen(String va_name, String va_datum, String va_ort, int va_vr) {

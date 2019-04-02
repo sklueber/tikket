@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 03:29 .
+ * Zuletzt bearbeitet 02.04.19 05:11 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -213,7 +213,6 @@ public class tikketClient {
             os.newLine();
             os.flush();
 
-            System.out.println("Anforderung gesendet");
             // Aus InputStream lesen, empfangen
             String responseLine;
 
@@ -280,7 +279,7 @@ public class tikketClient {
     private void veranstaltungSetzen() {
     }
 
-    public int verantaltungIDausgeben() {
+    public int veranstaltungIDausgeben() {
         return SrvVa_ID;
     }
 

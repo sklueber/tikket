@@ -1,12 +1,13 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 03:29 .
+ * Zuletzt bearbeitet 02.04.19 05:11 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
 package com.tikket.tikketClient;
 
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -103,10 +104,25 @@ public class tikketClientGUI {
                 gestartetVon.ticketErstellen();
             }
         });
-        bTicketsVersenden.addActionListener(new ActionListener() {
+        bTicketsVersenden.addActionListener(new ActionListener() { // TODO: 02.04.2019 Email eingeben lassen
             @Override
             public void actionPerformed(ActionEvent e) {
-                gestartetVon.ticketSenden("test@max-stockhausen.de", 123456789); // TODO: 02.04.2019 richtige Nummer verwenden
+                int row = tableTickets.getSelectedRow();
+                Object rslt = tableTickets.getValueAt(row, 1);
+                String str = rslt.toString();
+                int uuid = Integer.parseInt(str);
+                gestartetVon.ticketSenden("test@max-stockhausen.de", uuid);
+            }
+        });
+        bTicketsDrucken.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = tableTickets.getSelectedRow();
+                Object rslt = tableTickets.getValueAt(row, 1);
+                String str = rslt.toString();
+                CodeGenerator.barcodeErstellen(str);
+                Drucker drucker = new Drucker();
+                drucker.drucken("Tikket_Barcode.png");
             }
         });
     }
@@ -129,18 +145,43 @@ public class tikketClientGUI {
             }
         }
 
-        Class[] columnClass = new Class[]{
-                Integer.class, String.class, String.class, String.class
-        };
+        class TicketModel extends AbstractTableModel {
+            public int getRowCount() {
+                return ticketsDaten.length;
+            }
 
-        JTable table = new JTable(ticketsDaten, ueberschriften);
-        table.setRowSelectionAllowed(false);
+            public int getColumnCount() {
+                return ueberschriften.length;
+            }
+
+            public Object getValueAt(int row, int column) {
+                return ticketsDaten[row][column];
+            }
+
+            public String getColumnName(int column) {
+                return ueberschriften[column];
+            }
+
+            public Class getColumnClass(int c) {
+                return getValueAt(0, c).getClass();
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+
+        }
+
+        JTable table = new JTable(new TicketModel());
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.setCellSelectionEnabled(false);
+        table.setRowSelectionAllowed(true);
         table.setFillsViewportHeight(true);
-        table.setEditingRow(gestartetVon.verantaltungIDausgeben());
+        table.setEditingRow(gestartetVon.veranstaltungIDausgeben());
         return table;
     }
 
-    private JTable createVeranstaltungsTable() {
+    private JTable createVeranstaltungsTable() { // TODO: 02.04.2019 Auf neues TabelModel updaten
 
         String va = gestartetVon.veranstaltungAusgeben();
         String[] einzelneStrings = va.split("//");
@@ -165,7 +206,7 @@ public class tikketClientGUI {
         JTable table = new JTable(veranstaltungsDaten, ueberschriften);
         table.setRowSelectionAllowed(false);
         table.setFillsViewportHeight(true);
-        table.setEditingRow(gestartetVon.verantaltungIDausgeben());
+        table.setEditingRow(gestartetVon.veranstaltungIDausgeben());
         return table;
     }
 
