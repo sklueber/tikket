@@ -21,7 +21,7 @@ public class tikketServer {
     private String SrvVa_name;
     private final ServerSocket server;
 
-    public tikketServer(int port) throws IOException {
+    public tikketServer(int port) throws IOException { //TODO (von Simon) Server kann nicht geschlossen werden
         ServerSocket listener = null;
 
         //TEST
@@ -272,7 +272,7 @@ public class tikketServer {
 
     private void ticketSenden(String mail, int UUID) {
         CodeGenerator.barcodeErstellen(Integer.toString(UUID));
-        Mailversand.main(new String[]{mail, "Ihr digitales Ticket ist da!"});
+        Mailversand.main(new String[]{mail, "Ihr digitales Ticket ist da!"}); //TODO (von Simon) Veranstaltung wieder mitschicken?
     }
 
     public void veranstaltungErstellen(String va_name, String va_datum, String va_ort, int va_vr) {
