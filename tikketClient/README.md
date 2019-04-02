@@ -30,6 +30,7 @@ ticketAusgeben||*[ID]//[UUID]//[status]|Fertig
 ticketPruefen|[:UUID]|-->>TRUE / -->>FALSE|Fertig
 ticketAuslass|[:UUID]|-->>OK / -->>NOK|In Bearbeitung
 ticketEinlass|[:UUID]|-->>OK|In GUI
+ticketSenden|[:Mail-Adresse][:UUID]||In Bearbeitung
 |||
 veranstalterErstellen|[:name]|-->>OK|Nicht geschrieben
 veranstalterAusgeben||*[:ID]//[:name]|Nicht geschrieben

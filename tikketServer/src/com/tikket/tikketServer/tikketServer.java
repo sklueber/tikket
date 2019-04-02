@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 01:36 .
+ * Zuletzt bearbeitet 02.04.19 03:29 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -13,6 +13,8 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
+
+import static java.lang.Integer.parseInt;
 
 public class tikketServer {
     private int SrvVa_ID;
@@ -70,7 +72,7 @@ public class tikketServer {
                 BufferedWriter os = new BufferedWriter(new OutputStreamWriter(socketOfServer.getOutputStream()));
 
                 while (true) {
-                    /*Hier wird auf die Befehle aus dem Protokoll reagiert*/
+                    /*Hier wird auf die Befehle aus dem Protokoll reagiert und die passenden Methoden aufgerufen*/
                     String line = is.readLine();
                     if (line.equals("serverTest")) {
                         os.write("-->>OK");
@@ -90,7 +92,7 @@ public class tikketServer {
                     }
                     if (line.contains("ticketPruefen")) {
                         String[] split = line.split(":");
-                        int uuid = Integer.parseInt(split[1]);
+                        int uuid = parseInt(split[1]);
                         if (ticketPruefen(uuid)) {
                             os.write("-->>TRUE");
                             os.newLine();
@@ -104,16 +106,25 @@ public class tikketServer {
                     }
                     if (line.contains("ticketAuslass")) { // TODO: 28.03.2019 schreiben
                         String[] split = line.split(":");
-                        int uuid = Integer.parseInt(split[1]);
+                        int uuid = parseInt(split[1]);
                         TicketEinlass(uuid);
                         os.write("-->>OK");
                         os.newLine();
                         os.flush();
                     }
-                    if (line.contains("ticketEinlass")) { // TODO: 28.03.2019 testen
+                    if (line.contains("ticketEinlass")) {
                         String[] split = line.split(":");
-                        int uuid = Integer.parseInt(split[1]);
+                        int uuid = parseInt(split[1]);
                         TicketEinlass(uuid);
+                        os.write("-->>OK");
+                        os.newLine();
+                        os.flush();
+                    }
+                    if (line.contains("ticketSenden")) {
+                        System.out.println("angekommen");
+                        String[] split = line.split(":");
+                        ticketSenden(split[1], Integer.parseInt(split[2]));
+                        System.out.println("verarbeitet");
                         os.write("-->>OK");
                         os.newLine();
                         os.flush();
@@ -185,7 +196,7 @@ public class tikketServer {
         try (Connection conn = DBconnect()) {
             String sqlInsertTicket = "INSERT INTO tickets(tkt_UUID, tkt_status, tkt_created, tkt_va) VALUES(?, ?,?,?)";
             try (PreparedStatement pstmt = conn.prepareStatement(sqlInsertTicket)) {
-                pstmt.setInt(1, zufall); //TODO in Java schon Unique machen. Ist bisher "nur" random
+                pstmt.setInt(1, zufall);
                 pstmt.setInt(2, 1);
                 pstmt.setString(3, currentDate);
                 pstmt.setInt(4, SrvVa_ID);
@@ -254,10 +265,15 @@ public class tikketServer {
             }
         } catch (SQLException e) {
             if (e.getMessage().equals("ResultSet closed")) {
-                System.out.println(e.getMessage());
+                System.err.println(e.getMessage());
             }
             return;
         }
+    }
+
+    private void ticketSenden(String mail, int UUID) {
+        CodeGenerator.barcodeErstellen(Integer.toString(UUID));
+        Mailversand.main(new String[]{mail, "Ihr digitales Ticket ist da!"});
     }
 
     public void veranstaltungErstellen(String va_name, String va_datum, String va_ort, int va_vr) {
@@ -272,7 +288,7 @@ public class tikketServer {
                 pstmt.executeUpdate();
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
@@ -295,7 +311,7 @@ public class tikketServer {
                 }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         return null;
     }

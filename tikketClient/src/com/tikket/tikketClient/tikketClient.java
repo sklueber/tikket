@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 01:36 .
+ * Zuletzt bearbeitet 02.04.19 03:29 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -53,10 +53,6 @@ public class tikketClient {
         }
     }
 
-    public void firstSync() {
-
-    }
-
     public void starten() {
         if (socketOfClient != null) {
             System.out.println("tikketClient ist verbunden");
@@ -64,6 +60,7 @@ public class tikketClient {
         } else {
             System.err.println("Keine Serververbindung");
         }
+        // TODO: 02.04.2019 Aktuelle VA
     }
 
     public void beenden() {
@@ -100,7 +97,6 @@ public class tikketClient {
             // Aus InputStream lesen, empfangen
             String responseLine;
             while ((responseLine = is.readLine()) != null) {
-                System.out.println("ticketErstellen: " + responseLine);
                 if (responseLine.equals("-->>OK")) {
                     return;
                 }
@@ -208,6 +204,34 @@ public class tikketClient {
             System.out.println("NPE; Vermutlich wurde kein Socket gefunden: " + e);
         }
         return false;
+    }
+
+    public void ticketSenden(String mail, int UUID) {
+        try {
+            // In OutputStream schreiben, senden
+            os.write("ticketSenden:" + mail + ":" + UUID);
+            os.newLine();
+            os.flush();
+
+            System.out.println("Anforderung gesendet");
+            // Aus InputStream lesen, empfangen
+            String responseLine;
+
+            while ((responseLine = is.readLine()) != null) {
+                if (responseLine.contains("-->>OK")) {
+                    return;
+                }
+            }
+            os.close();
+            is.close();
+            socketOfClient.close();
+        } catch (UnknownHostException e) {
+            System.err.println("Server nicht gefunden: " + e);
+        } catch (IOException e) {
+            System.err.println("I/O Fehler:  " + e);
+        } catch (NullPointerException e) {
+            System.out.println("NPE; Vermutlich wurde kein Socket gefunden: " + e);
+        }
     }
 
     private void veranstalterErstellen() {

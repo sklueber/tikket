@@ -1,8 +1,10 @@
-package com.tikket.tikketServer;/*
- * Informatikprojekt aus 2019. Erstellt von Simon, und Max.
- * Zuletzt bearbeitet 24.03.19 22:29.
- * Keiner klaut das hier! Copyright oder so (c) 2019.
+/*
+ * Informatikprojekt aus 2019. Erstellt von Simon und Max.
+ * Zuletzt bearbeitet 02.04.19 03:29 .
+ * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
+
+package com.tikket.tikketServer;
 
 import javax.print.*;
 import javax.print.attribute.HashPrintRequestAttributeSet;
@@ -61,7 +63,7 @@ class MyPrintable implements Printable {
     private ImageIcon printImage;
 
     MyPrintable(String pPfad) {
-        printImage = new javax.swing.ImageIcon("./" + pPfad);
+        printImage = new ImageIcon("./" + pPfad);
     }
 
 

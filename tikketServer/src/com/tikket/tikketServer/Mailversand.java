@@ -1,8 +1,10 @@
-package com.tikket.tikketServer;/*
- * Informatikprojekt aus 2019. Erstellt von Simon, und Max.
- * Zuletzt bearbeitet 24.03.19 22:31.
- * Keiner klaut das hier! Copyright oder so (c) 2019.
+/*
+ * Informatikprojekt aus 2019. Erstellt von Simon und Max.
+ * Zuletzt bearbeitet 02.04.19 03:29 .
+ * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
+
+package com.tikket.tikketServer;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -13,8 +15,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Properties;
 
 public class Mailversand {
@@ -24,7 +26,6 @@ public class Mailversand {
         String[] arr = new String[0];
         for (int i = 0; i < 4; i++) {
             arr = Mailversand.txtLesen();
-            //System.out.println(arr[i]);
         }
         txtfrom = arr[0].replaceAll("\\bfrom: \\b", "");
         txtusername = arr[1].replaceAll("\\busername: \\b", "");
@@ -81,7 +82,7 @@ public class Mailversand {
             // Now set the actual message
             messageBodyPart.setText("Ihr digitales Ticket finden Sie im Anhang.");
 
-            // Create a multipar message
+            // Create a multipart message
             Multipart multipart = new MimeMultipart();
 
             // Set text message part
@@ -89,10 +90,10 @@ public class Mailversand {
 
             // Part two is attachment
             messageBodyPart = new MimeBodyPart();
-            String filename = "tikketClient/src/resources/development/MyBarcode.png";
+            String filename = "Tikket_Barcode.png";
             DataSource source = new FileDataSource(filename);
             messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName("E-Ticket by tikket. (working title)");
+            messageBodyPart.setFileName("E-Ticket by tikket.png");
             multipart.addBodyPart(messageBodyPart);
 
             // Send the complete message parts
@@ -101,7 +102,7 @@ public class Mailversand {
             // Send message
             Transport.send(message);
 
-            System.out.println("Sent message successfully....");
+            System.out.println("E-Mail ist raus :)");
 
         } catch (MessagingException e) {
             throw new RuntimeException(e);
@@ -111,7 +112,7 @@ public class Mailversand {
     private static String[] txtLesen() {
         String[] serverdaten = new String[5];
         int i = 0;
-        try (BufferedReader br = new BufferedReader(new FileReader("tikketClient/src/resources/config/MailserverSettings.txt"))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(Mailversand.class.getClassLoader().getResourceAsStream("config/MailserverSettings.txt")))) {
             String line;
             while ((line = br.readLine()) != null) {
                 serverdaten[i] = line;

@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 01:36 .
+ * Zuletzt bearbeitet 02.04.19 03:29 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -36,6 +36,8 @@ public class tikketClientGUI {
     private JScrollPane spTickets;
     private JTable tableTickets;
     private JTable tableVeranstaltungen;
+    private JButton bTicketsDrucken;
+    private JButton bTicketsVersenden;
 
     public tikketClientGUI(tikketClient client) {
         this.gestartetVon = client;
@@ -60,18 +62,17 @@ public class tikketClientGUI {
         frame.pack();
         frame.setVisible(true);
 
-        bTicketAktualisieren.addActionListener(new ActionListener() {
+        bTicketAktualisieren.addActionListener(new ActionListener() { // TODO: 02.04.2019 Aktualisieren Button fähig machen
             @Override
             public void actionPerformed(ActionEvent e) {
                 tableTickets = createTicketsTable();
-                frame.pack();
             }
         });
-        bVeranstaltungAktualisieren.addActionListener(new ActionListener() {
+        bVeranstaltungAktualisieren.addActionListener(new ActionListener() { // TODO: 02.04.2019 Aktualisieren Button fähig machen
             @Override
             public void actionPerformed(ActionEvent e) {
                 tableVeranstaltungen = createVeranstaltungsTable();
-                frame.pack();
+                frame.repaint();
             }
         });
 
@@ -102,12 +103,17 @@ public class tikketClientGUI {
                 gestartetVon.ticketErstellen();
             }
         });
+        bTicketsVersenden.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gestartetVon.ticketSenden("test@max-stockhausen.de", 123456789); // TODO: 02.04.2019 richtige Nummer verwenden
+            }
+        });
     }
 
     private JTable createTicketsTable() {
 
         String tkt = gestartetVon.ticketAusgeben();
-//        System.out.println(tkt);
         String[] einzelneStrings = tkt.split("//");
 
         String[] ueberschriften = new String[]{"ID", "UUID", "Statuscode"};
@@ -120,7 +126,6 @@ public class tikketClientGUI {
             String[] einzelneBefehle = einzelneStrings[i].split("\\*");
             for (int j = 0; j < einzelneBefehle.length; j++) {
                 ticketsDaten[i][j] = einzelneBefehle[j];
-//                System.out.println(ticketsDaten[i][j]);
             }
         }
 
@@ -138,7 +143,6 @@ public class tikketClientGUI {
     private JTable createVeranstaltungsTable() {
 
         String va = gestartetVon.veranstaltungAusgeben();
-//        System.out.println(va);
         String[] einzelneStrings = va.split("//");
 
         String[] ueberschriften = new String[]{"ID", "Name", "Datum", "Ort"};
@@ -151,7 +155,6 @@ public class tikketClientGUI {
             String[] einzelneBefehle = einzelneStrings[i].split("\\*");
             for (int j = 0; j < einzelneBefehle.length; j++) {
                 veranstaltungsDaten[i][j] = einzelneBefehle[j];
-//                System.out.println(veranstaltungsDaten[i][j]);
             }
         }
 

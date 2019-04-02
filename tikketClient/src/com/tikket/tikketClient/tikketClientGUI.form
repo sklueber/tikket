@@ -90,7 +90,7 @@
             <border type="none"/>
             <children/>
           </grid>
-          <grid id="c75c7" binding="panelTickets" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="c75c7" binding="panelTickets" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title="Tickets">
@@ -104,7 +104,7 @@
             <children>
               <component id="f85" class="javax.swing.JButton" binding="bTicketAktualisieren">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Aktualisieren"/>
@@ -120,7 +120,7 @@
               </component>
               <scrollpane id="7d5cc" binding="spTickets">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                  <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
                     <preferred-size width="453" height="149"/>
                   </grid>
                 </constraints>
@@ -135,6 +135,22 @@
                   </component>
                 </children>
               </scrollpane>
+              <component id="b61f8" class="javax.swing.JButton" binding="bTicketsDrucken">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Drucken"/>
+                </properties>
+              </component>
+              <component id="56025" class="javax.swing.JButton" binding="bTicketsVersenden">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Per E-Mail senden"/>
+                </properties>
+              </component>
             </children>
           </grid>
           <grid id="dedd4" binding="panelVeranstaltungen" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
