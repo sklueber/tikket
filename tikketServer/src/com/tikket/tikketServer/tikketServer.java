@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 03:29 .
+ * Zuletzt bearbeitet 02.04.19 05:11 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -121,7 +121,6 @@ public class tikketServer {
                         os.flush();
                     }
                     if (line.contains("ticketSenden")) {
-                        System.out.println("angekommen");
                         String[] split = line.split(":");
                         ticketSenden(split[1], Integer.parseInt(split[2]));
                         System.out.println("verarbeitet");
