@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 03.04.19 03:34 .
+ * Zuletzt bearbeitet 03.04.19 03:57 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -48,10 +48,6 @@ public class tikketServer {
         }
     }
 
-    private void log(String message) {
-        System.out.println(message);
-    }
-
     private class ServiceThread extends Thread {
 
         private int clientNumber;
@@ -62,7 +58,7 @@ public class tikketServer {
             this.socketOfServer = socketOfServer;
 
             // Log
-            log("Neuer tikketClient registriert. tikketClient# " + this.clientNumber + " auf " + socketOfServer);
+            System.out.println("Neuer tikketClient registriert. tikketClient# " + this.clientNumber + " auf " + socketOfServer);
         }
 
         @Override
@@ -102,12 +98,11 @@ public class tikketServer {
                             os.newLine();
                             os.flush();
                         }
-
                     }
-                    if (line.contains("ticketAuslass")) { // TODO: 28.03.2019 schreiben
+                    if (line.contains("ticketAuslass")) {
                         String[] split = line.split(":");
                         int uuid = parseInt(split[1]);
-                        TicketEinlass(uuid);
+                        TicketAuslass(uuid);
                         os.write("-->>OK");
                         os.newLine();
                         os.flush();
@@ -136,7 +131,6 @@ public class tikketServer {
                         os.flush();
                     }
                     if (line.equals("veranstaltungSetzen")) { // TODO: 28.03.2019 NOK Fall hinzufügen
-
                         veranstaltungWechseln(1);
                         os.write("-->>OK");
                         os.newLine();
@@ -258,15 +252,25 @@ public class tikketServer {
         try (Connection conn = DBconnect()) {
             try (Statement stmt = conn.createStatement()) {
                 ResultSet rs = stmt.executeQuery(sql);
-                if (rs.isAfterLast()) {
-                    System.out.println("Ticket serverseitig eingelassen");
-                }
             }
         } catch (SQLException e) {
             if (e.getMessage().equals("ResultSet closed")) {
                 System.err.println(e.getMessage());
             }
-            return;
+        }
+    }
+
+    public void TicketAuslass(int tUUID) {
+        String sql = "UPDATE tickets SET tkt_status = 1 WHERE tkt_UUID = " + tUUID + " AND tkt_va = " + SrvVa_ID;
+
+        try (Connection conn = DBconnect()) {
+            try (Statement stmt = conn.createStatement()) {
+                ResultSet rs = stmt.executeQuery(sql);
+            }
+        } catch (SQLException e) {
+            if (e.getMessage().equals("ResultSet closed")) {
+                System.err.println(e.getMessage());
+            }
         }
     }
 

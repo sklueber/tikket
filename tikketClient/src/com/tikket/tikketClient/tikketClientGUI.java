@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 03.04.19 03:34 .
+ * Zuletzt bearbeitet 03.04.19 03:57 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -25,9 +25,9 @@ public class tikketClientGUI {
     private JPanel panelInfo;
     private JPanel panelStatus;
     private JLabel lStatistik;
-    private JLabel lScanergebnis;
-    private JTextField tScaneingabeEinlass;
-    private JButton bScan;
+    private JLabel lScanEinlass;
+    private JTextField tScaninputEinlass;
+    private JButton bScanEinlass;
     private JButton bTicketNeu;
     private JButton bTicketAktualisieren;
     private JButton erstellenButton;
@@ -40,6 +40,9 @@ public class tikketClientGUI {
     private JButton bTicketsDrucken;
     private JButton bTicketsVersenden;
     private JTextField tMailTickets;
+    private JButton bScanAuslass;
+    private JTextField tScaninputAuslass;
+    private JLabel lScanAuslass;
 
     public tikketClientGUI(tikketClient client) {
         this.gestartetVon = client;
@@ -82,25 +85,30 @@ public class tikketClientGUI {
             }
         });
 
-        bScan.addActionListener(new ActionListener() {
+        bScanEinlass.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (tScaneingabeEinlass.getText().matches("\\d{9}")) {
-                    int scan = Integer.parseInt((tScaneingabeEinlass.getText()));
+                if (tScaninputEinlass.getText().matches("\\d{9}")) {
+                    int scan = Integer.parseInt((tScaninputEinlass.getText()));
 
                     if (gestartetVon.ticketPruefen(scan)) {
                         if (gestartetVon.ticketEinlass(scan)) {
-                            bScan.setForeground(Color.green);
-                            System.out.println("Ticket erfolgreich eingelassen.");
+                            bScanEinlass.setForeground(Color.green);
+                            tScaninputEinlass.setText("");
                         } else {
                             System.err.println("Ticket gültig, aber nicht erfolgreich eingelassen.");
                         }
                     } else {
-                        bScan.setForeground(Color.red);
+                        bScanEinlass.setForeground(Color.red);
+                        tScaninputEinlass.setText("");
+
                     }
                 } else {
                     System.err.println("Bitte gültige UUID eingeben");
+                    bScanEinlass.setForeground(Color.yellow);
+                    tScaninputEinlass.setText("");
                 }
+                tScaninputEinlass.requestFocus();
             }
         });
         bTicketNeu.addActionListener(new ActionListener() {
@@ -134,6 +142,23 @@ public class tikketClientGUI {
                 CodeGenerator.barcodeErstellen(str);
                 Drucker drucker = new Drucker();
                 drucker.drucken("Tikket_Barcode.png");
+            }
+        });
+        bScanAuslass.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (tScaninputAuslass.getText().matches("\\d{9}")) {
+                    int scan = Integer.parseInt((tScaninputAuslass.getText()));
+                    if (gestartetVon.ticketAuslass(scan)) {
+                        bScanAuslass.setForeground(Color.green);
+                        tScaninputAuslass.setText("");
+                    }
+                } else {
+                    System.err.println("Bitte gültige UUID eingeben");
+                    bScanAuslass.setForeground(Color.yellow);
+                    tScaninputAuslass.setText("");
+                }
+                tScaninputAuslass.requestFocus();
             }
         });
     }

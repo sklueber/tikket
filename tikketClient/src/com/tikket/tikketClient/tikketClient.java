@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 03.04.19 03:34 .
+ * Zuletzt bearbeitet 03.04.19 03:57 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -171,11 +171,6 @@ public class tikketClient {
         return false;
     }
 
-    //Lässt das Ticket aus. Setzt somit den Status wieder auf 1
-    private boolean ticketAuslass() {
-        return false;
-    }
-
     //Lässt das Ticket ein. Setzt den Status auf 2
     public boolean ticketEinlass(int UUID) {
         try {
@@ -188,11 +183,7 @@ public class tikketClient {
             String responseLine;
             while ((responseLine = is.readLine()) != null) {
                 if (responseLine.equals("-->>OK")) {
-                    System.out.println("ticketEinlass: true");
                     return true;
-                } else {
-                    System.out.println("ticketEinlass: false");
-                    return false;
                 }
             }
             os.close();
@@ -203,7 +194,35 @@ public class tikketClient {
         } catch (IOException e) {
             System.err.println("I/O Fehler:  " + e);
         } catch (NullPointerException e) {
-            System.out.println("NPE; Vermutlich wurde kein Socket gefunden: " + e);
+            System.err.println("NPE; Vermutlich wurde kein Socket gefunden: " + e);
+        }
+        return false;
+    }
+
+    //Lässt das Ticket aus. Setzt somit den Status wieder auf 1
+    public boolean ticketAuslass(int UUID) {
+        try {
+            // In OutputStream schreiben, senden
+            os.write("ticketAuslass:" + UUID);
+            os.newLine();
+            os.flush();
+
+            // Aus InputStream lesen, empfangen
+            String responseLine;
+            while ((responseLine = is.readLine()) != null) {
+                if (responseLine.equals("-->>OK")) {
+                    return true;
+                }
+            }
+            os.close();
+            is.close();
+            socketOfClient.close();
+        } catch (UnknownHostException e) {
+            System.err.println("Server nicht gefunden: " + e);
+        } catch (IOException e) {
+            System.err.println("I/O Fehler:  " + e);
+        } catch (NullPointerException e) {
+            System.err.println("NPE; Vermutlich wurde kein Socket gefunden: " + e);
         }
         return false;
     }
