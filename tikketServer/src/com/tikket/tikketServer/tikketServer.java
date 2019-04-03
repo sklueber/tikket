@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 03.04.19 06:59 .
+ * Zuletzt bearbeitet 03.04.19 07:00 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -398,7 +398,7 @@ public class tikketServer {
 
     private int AnzahlEingelasseneTickets() {
         try (Connection conn = DBconnect()) {
-            String sql = "SELECT COUNT(tkt_ID) FROM tickets WHERE tkt_va = " + SrvVa_ID + "AND tkt_status = 2";
+            String sql = "SELECT COUNT(tkt_ID) FROM tickets WHERE tkt_va = " + SrvVa_ID + " AND tkt_status = 2";
             try (Statement stmt = conn.createStatement()) {
                 try (ResultSet rs = stmt.executeQuery(sql)) {
                     while (rs.next()) {

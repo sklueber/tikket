@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 03.04.19 06:59 .
+ * Zuletzt bearbeitet 03.04.19 07:00 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -124,6 +124,12 @@ public class tikketClientGUI {
                     bScanEinlass.setForeground(Color.yellow);
                     tScaninputEinlass.setText("");
                 }
+                String verkauft = Integer.toString(gestartetVon.GibVerkaufteTickets());
+                String eingelassen = Integer.toString(gestartetVon.GibEingelasseneTickets());
+
+                lVerkauftWert.setText(verkauft);
+                lEingelassenWert.setText(eingelassen);
+
                 tScaninputEinlass.requestFocus();
             }
         });
