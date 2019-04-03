@@ -265,7 +265,35 @@ public class tikketClient {
     private void veranstalterLoeschen() {
     }
 
-    private void veranstaltungErstellen() {
+    public void VeranstaltungErstellen(String va_name, String va_datum, String va_ort, int va_vr) {
+        try {
+            // In OutputStream schreiben, senden
+            os.write("veranstaltungErstellen:" +
+                    va_name + ":" +
+                    va_datum + ":" +
+                    va_ort + ":" +
+                    va_vr
+            );
+            os.newLine();
+            os.flush();
+
+            // Aus InputStream lesen, empfangen
+            String responseLine;
+            while ((responseLine = is.readLine()) != null) {
+                if (responseLine.equals("-->>OK")) {
+                    return;
+                }
+            }
+            os.close();
+            is.close();
+            socketOfClient.close();
+        } catch (UnknownHostException e) {
+            System.err.println("Server nicht gefunden: " + e);
+        } catch (IOException e) {
+            System.err.println("I/O Fehler:  " + e);
+        } catch (NullPointerException e) {
+            System.out.println("NPE; Vermutlich wurde kein Socket gefunden: " + e);
+        }
     }
 
     public String veranstaltungAusgeben() {
@@ -352,6 +380,10 @@ public class tikketClient {
         } catch (NullPointerException e) {
             System.out.println("NPE; Vermutlich wurde kein Socket gefunden: " + e);
         }
+    }
+
+    public int veranstaltungIDausgeben() {
+        return SrvVa_ID;
     }
 
     public String veranstaltungNameAusgeben() {

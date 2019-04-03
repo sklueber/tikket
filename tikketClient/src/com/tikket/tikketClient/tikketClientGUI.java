@@ -203,6 +203,14 @@ public class tikketClientGUI {
                 }
             }
         });
+        erstellenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tikketClient[] args = new tikketClient[1];
+                args[0] = gestartetVon;
+                new veranstaltungErstellen().main(args);
+            }
+        });
     }
 
     private JTable createTicketsTable() {

@@ -123,6 +123,20 @@ public class tikketServer {
                         os.newLine();
                         os.flush();
                     }
+                    if (line.contains("veranstaltungErstellen")) {
+                        String[] split = line.split(":");
+                        veranstaltungErstellen(split[1], split[2], split[3], Integer.parseInt(split[4]));
+                        os.write("-->>OK");
+                        os.newLine();
+                        os.flush();
+                    }
+                    if (line.equals("aktuelleVeranstaltungAuslesen")) {
+                        int id = SrvVa_ID;
+                        String name = SrvVa_name;
+                        os.write(id + ":" + name);
+                        os.newLine();
+                        os.flush();
+                    }
                     if (line.contains("veranstaltungSetzen")) {
                         String[] split = line.split(":");
                         veranstaltungWechseln(Integer.parseInt(split[1]));
@@ -290,7 +304,7 @@ public class tikketServer {
 
     private void ticketSenden(String mail, int UUID) {
         CodeGenerator.barcodeErstellen(Integer.toString(UUID));
-        Mailversand.main(new String[]{mail, "Ihr digitales Ticket ist da!"}); //TODO (von Simon) Veranstaltung wieder mitschicken?
+        Mailversand.main(new String[]{mail, SrvVa_name});
     }
 
     public void veranstaltungErstellen(String va_name, String va_datum, String va_ort, int va_vr) {

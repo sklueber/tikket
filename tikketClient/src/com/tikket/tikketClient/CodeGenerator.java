@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 00:16 .
+ * Zuletzt bearbeitet 03.04.19 05:57 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -46,7 +46,7 @@ public class CodeGenerator {
             System.out.println("Could not generate Code, IOException :: " + e.getMessage());
         }
 
-        File path = new File("./"); // base path of the images //TODO auf echten path setzen
+        File path = new File("./"); // base path of the images
 
         // load source images
         BufferedImage image = null;
