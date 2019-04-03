@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 03.04.19 03:57 .
+ * Zuletzt bearbeitet 03.04.19 04:58 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -56,11 +56,12 @@ public class tikketClient {
     public void starten() {
         if (socketOfClient != null) {
             System.out.println("tikketClient ist verbunden");
+            AktuelleVeranstaltungAuslesen();
             tikketClientGUI gui = new tikketClientGUI(this);
         } else {
             System.err.println("Keine Serververbindung");
         }
-        // TODO: 02.04.2019 Aktuelle VA
+
     }
 
     public void beenden() {
@@ -295,10 +296,62 @@ public class tikketClient {
         return null;
     }
 
+    public void AktuelleVeranstaltungAuslesen() {
+        try {
+            // In OutputStream schreiben, senden
+            os.write("aktuelleVeranstaltungAuslesen");
+            os.newLine();
+            os.flush();
+
+            // Aus InputStream lesen, empfangen
+            String responseLine;
+            while ((responseLine = is.readLine()) != null) {
+                String split[] = responseLine.split(":");
+                SrvVa_ID = Integer.parseInt(split[0]);
+                SrvVa_name = split[1];
+                return;
+            }
+            os.close();
+            is.close();
+            socketOfClient.close();
+        } catch (UnknownHostException e) {
+            System.err.println("Server nicht gefunden: " + e);
+        } catch (IOException e) {
+            System.err.println("I/O Fehler:  " + e);
+        } catch (NullPointerException e) {
+            System.err.println("NPE; Vermutlich wurde kein Socket gefunden: " + e);
+        }
+    }
+
     private void veranstaltungLoeschen() {
     }
 
-    private void veranstaltungSetzen() {
+    //Setzt die Veranstaltung auf die gewünschte ID. tikket verwaltet somit dann eine andere VA
+    public void VeranstaltungSetzen(int id) {
+        try {
+            // In OutputStream schreiben, senden
+            os.write("veranstaltungSetzen:" + id);
+            os.newLine();
+            os.flush();
+
+            // Aus InputStream lesen, empfangen
+            String responseLine;
+            while ((responseLine = is.readLine()) != null) {
+                if (responseLine.equals("-->>OK")) {
+                    AktuelleVeranstaltungAuslesen();
+                    return;
+                }
+            }
+            os.close();
+            is.close();
+            socketOfClient.close();
+        } catch (UnknownHostException e) {
+            System.err.println("Server nicht gefunden: " + e);
+        } catch (IOException e) {
+            System.err.println("I/O Fehler:  " + e);
+        } catch (NullPointerException e) {
+            System.out.println("NPE; Vermutlich wurde kein Socket gefunden: " + e);
+        }
     }
 
     public int veranstaltungIDausgeben() {

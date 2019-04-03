@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 03.04.19 03:57 .
+ * Zuletzt bearbeitet 03.04.19 04:58 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -43,6 +43,7 @@ public class tikketClientGUI {
     private JButton bScanAuslass;
     private JTextField tScaninputAuslass;
     private JLabel lScanAuslass;
+    private JLabel laktVA;
 
     public tikketClientGUI(tikketClient client) {
         this.gestartetVon = client;
@@ -64,6 +65,8 @@ public class tikketClientGUI {
         frame.setIconImage(icon.getImage()); //Icon einfügen
         frame.setContentPane(this.tikketClientGUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //Aktuelle VA darstellen
+        laktVA.setText("Veranstaltung: " + gestartetVon.veranstaltungNameAusgeben());
         frame.pack();
         frame.setVisible(true);
 
@@ -79,8 +82,8 @@ public class tikketClientGUI {
         bVeranstaltungAktualisieren.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JTable newTable = createVeranstaltungsTable();
-                spVeranstaltungen.setViewportView(newTable);
+                tableVeranstaltungen = createVeranstaltungsTable();
+                spVeranstaltungen.setViewportView(tableVeranstaltungen);
                 frame.repaint();
             }
         });
@@ -159,6 +162,26 @@ public class tikketClientGUI {
                     tScaninputAuslass.setText("");
                 }
                 tScaninputAuslass.requestFocus();
+            }
+        });
+        bVeranstaltungSetzen.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (tableVeranstaltungen.getSelectedRows().length != 0) {
+                    int row = tableVeranstaltungen.getSelectedRow();
+                    Object rslt = tableVeranstaltungen.getValueAt(row, 0);
+                    String str = rslt.toString();
+                    int iID = Integer.parseInt(str);
+                    gestartetVon.VeranstaltungSetzen(iID);
+
+                    tableTickets = createTicketsTable();
+                    spTickets.setViewportView(tableTickets);
+                    frame.repaint();
+
+                    laktVA.setText("Veranstaltung: " + gestartetVon.veranstaltungNameAusgeben());
+
+                    panelStatus.repaint();
+                }
             }
         });
     }
