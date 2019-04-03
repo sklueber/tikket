@@ -49,16 +49,17 @@
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <component id="26760" class="javax.swing.JLabel" binding="lScanergebnis">
+              <component id="26760" class="javax.swing.JLabel" binding="lScanEinlass">
                 <constraints>
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <foreground color="-1"/>
+                  <labelFor value="11402"/>
                   <text value="Scan"/>
                 </properties>
               </component>
-              <component id="11402" class="javax.swing.JTextField" binding="tScaneingabeEinlass">
+              <component id="11402" class="javax.swing.JTextField" binding="tScaninputEinlass">
                 <constraints>
                   <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -66,7 +67,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="34cdd" class="javax.swing.JButton" binding="bScan">
+              <component id="34cdd" class="javax.swing.JButton" binding="bScanEinlass">
                 <constraints>
                   <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -77,7 +78,7 @@
               </component>
             </children>
           </grid>
-          <grid id="e1bf6" binding="panelAuslass" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="e1bf6" binding="panelAuslass" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title="Auslass">
@@ -88,9 +89,37 @@
               <background color="-13619152"/>
             </properties>
             <border type="none"/>
-            <children/>
+            <children>
+              <component id="35a06" class="javax.swing.JButton" binding="bScanAuslass">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Prüfen"/>
+                  <toolTipText value="Überprüft ob das Ticket gültig ist und lässt es bei Gültig ein"/>
+                </properties>
+              </component>
+              <component id="8771a" class="javax.swing.JTextField" binding="tScaninputAuslass">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="b0c71" class="javax.swing.JLabel" binding="lScanAuslass">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <foreground color="-1"/>
+                  <labelFor value="8771a"/>
+                  <text value="Scan"/>
+                </properties>
+              </component>
+            </children>
           </grid>
-          <grid id="c75c7" binding="panelTickets" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="c75c7" binding="panelTickets" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title="Tickets">
@@ -112,7 +141,7 @@
               </component>
               <component id="bba49" class="javax.swing.JButton" binding="bTicketNeu">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Erstellen"/>
@@ -137,7 +166,7 @@
               </scrollpane>
               <component id="b61f8" class="javax.swing.JButton" binding="bTicketsDrucken">
                 <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Drucken"/>
@@ -145,10 +174,22 @@
               </component>
               <component id="56025" class="javax.swing.JButton" binding="bTicketsVersenden">
                 <constraints>
-                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Per E-Mail senden"/>
+                </properties>
+              </component>
+              <component id="e4c03" class="javax.swing.JTextField" binding="tMailTickets">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="70" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <enabled value="true"/>
+                  <text value="testCase1@max-stockhausen.de"/>
+                  <toolTipText value="E-Mail Adresse des Empfängers"/>
                 </properties>
               </component>
             </children>
@@ -178,7 +219,11 @@
                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <background color="-65536"/>
+                  <focusable value="false"/>
+                  <opaque value="true"/>
                   <text value="Als Veranstaltung setzen"/>
+                  <toolTipText value="Setzt für das gesamte tikket-System die Veranstaltung"/>
                 </properties>
               </component>
               <component id="9897d" class="javax.swing.JButton" binding="bVeranstaltungAktualisieren">
@@ -229,10 +274,26 @@
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <background color="-13619152"/>
+          <foreground color="-13619152"/>
+          <opaque value="false"/>
         </properties>
         <border type="none"/>
-        <children/>
+        <children>
+          <component id="fc3c4" class="javax.swing.JLabel" binding="laktVA">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Roboto" size="24" style="1"/>
+              <foreground color="-1"/>
+              <requestFocusEnabled value="false"/>
+              <text value="Keine Veranstaltung gesetzt"/>
+              <toolTipText value="Veranstaltung die tikket. aktuell verwaltet"/>
+              <verifyInputWhenFocusTarget value="false"/>
+              <visible value="true"/>
+            </properties>
+          </component>
+        </children>
       </grid>
     </children>
   </grid>
