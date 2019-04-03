@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -62,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void clientOnClick(View view) { //Button Client Starten
         EditText ip = findViewById(R.id.editTextIP);
-        client = new ClientAsync(ip.getText().toString(), 2001, this);
+        EditText portEdit = findViewById(R.id.editTextPort);
+        int port = Integer.parseInt(portEdit.getText().toString());
+        client = new ClientAsync(ip.getText().toString(), port, this);
     }
 
     public void testOnClick(View view) { //Button Test
@@ -74,12 +77,10 @@ public class MainActivity extends AppCompatActivity {
         GradientDrawable drawable = (GradientDrawable) status.getBackground(); //"Status"-Anzeige der GUI
         if(gueltig){
             drawable.setColor(ContextCompat.getColor(this, R.color.colorValidGreen));
-            status.setText(R.string.valid); //TODO schöne Sounds
+            status.setText(R.string.valid);
         } else {
             drawable.setColor(ContextCompat.getColor(this, R.color.colorInvalidRed));
             status.setText(R.string.invalid);
-            final ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100);
-            tg.startTone(ToneGenerator.TONE_PROP_BEEP2); //vlt durch was cooleres ersetzen
         }
     }
 
@@ -96,13 +97,32 @@ public class MainActivity extends AppCompatActivity {
         tktNr.setText(s);
     }
 
-    public void ipOnClick(View view){
+    public void ipOnClick(View view){ //Toggle der Sichtbarkeit der Server-IP
         EditText ip = findViewById(R.id.editTextIP);
+        EditText port = findViewById(R.id.editTextPort);
         if(ip.getVisibility() == View.INVISIBLE){
             ip.setVisibility(View.VISIBLE);
         } else if(ip.getVisibility()==View.VISIBLE){
             ip.setVisibility(View.INVISIBLE);
         }
+        if(port.getVisibility() == View.INVISIBLE){
+            port.setVisibility(View.VISIBLE);
+        } else if(port.getVisibility()==View.VISIBLE){
+            port.setVisibility(View.INVISIBLE);
+        }
     }
 
+    public void githubOnClick(View view){
+        Uri uri = Uri.parse("https://github.com/sklueber/tikketScan");
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
+
+    public void tktEingelassenAnzeige(boolean erfolg){
+        if(erfolg){
+            setzeTktNrTxt("Ticket eingelassen");
+        } else {
+            setzeTktNrTxt("Fehler beim Einlassen");
+        }
+    }
 }

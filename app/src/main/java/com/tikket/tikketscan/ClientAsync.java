@@ -7,7 +7,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class ClientAsync{
+public class ClientAsync {
 
     private String tikketServerHost;
     private int tikketServerPort;
@@ -24,23 +24,29 @@ public class ClientAsync{
         taskVerbinden.execute("");
     }
 
-    public void asyncTicketPreuefen(int pTktNr, MainActivity a){
+    public void asyncTicketPreuefen(int pTktNr, MainActivity a) {
         AsyncTikketPruefen pruef = new AsyncTikketPruefen(a);
         pruef.execute(pTktNr);
     }
 
-    public boolean istVerbunden(){ //TODO muss wahrheitsgemaess antworten
+    public void asyncTicketEinlassen(int pTktNr, MainActivity a){
+        AsyncTikketEinlassen einlass = new AsyncTikketEinlassen(a);
+        einlass.execute(pTktNr);
+    }
+
+    public boolean istVerbunden() {
         return verbunden;
     }
 
     class AsyncVerbinden extends AsyncTask<String, Integer, String> { //Async verlagert Netzwerkaufgaben in Nebenthreads um UI nicht zu stören, Pflicht bei Android
-                                                                    //Erklaerung der Variablen: https://stackoverflow.com/a/29559386
+        //Erklaerung der Variablen: https://stackoverflow.com/a/29559386
 
-        public  MainActivity aktivitaet;
+        public MainActivity aktivitaet;
 
-        public AsyncVerbinden(MainActivity a){
+        public AsyncVerbinden(MainActivity a) {
             this.aktivitaet = a;
         }
+
         @Override
         protected String doInBackground(String... strings) {
             Log.d("myTag", "wenigstens in doBackground"); //Log.d() ~ System.out.println in Android
@@ -68,8 +74,9 @@ public class ClientAsync{
             }
             return result; //benutzen wir nicht, wird aber von AsyncTask gefordert
         }
+
         @Override
-        protected void onPostExecute(String s){
+        protected void onPostExecute(String s) {
             aktivitaet.setzeTktNrTxt(s);
         }
     }
@@ -77,17 +84,19 @@ public class ClientAsync{
 
     class AsyncTikketPruefen extends AsyncTask<Integer, String, Boolean> { //Prüft ob das gegebene Ticket gültig ist. Wenn ja wird true zurückgegeben.
 
-        public MainActivity aktivitaet;
+        MainActivity aktivitaet;
+        int tktNr;
 
         public AsyncTikketPruefen(MainActivity a) {
             this.aktivitaet = a;
         }
 
         @Override
-        protected Boolean doInBackground(Integer... pUUID) {
+        protected Boolean doInBackground(Integer... pUUID) { //Async verlagert Netzwerkaufgaben in Nebenthreads um UI nicht zu stören, Pflicht bei Android
+            tktNr = pUUID[0];
             try {
                 // In OutputStream schreiben, senden
-                os.write("ticketPruefen:" + pUUID[0]);
+                os.write("ticketPruefen:" + tktNr);
                 os.newLine();
                 os.flush();
 
@@ -101,9 +110,9 @@ public class ClientAsync{
                         return false;
                     }
                 }
-             //   os.close();
-             //   is.close();
-             //   socketOfClient.close();
+                   os.close();
+                 is.close();
+                  socketOfClient.close();
             } catch (UnknownHostException e) {
                 Log.d("myTag", "Unbekannter Host: " + e);
                 return false;
@@ -118,8 +127,52 @@ public class ClientAsync{
         protected void onPostExecute(Boolean result) { //erhält das Ergebnis von doInBackground nachdem es vorliegt, läuft im UI-Thread
             Log.d("ClientAsync", "es ist in der Post!");
             aktivitaet.tktGueltigAnzeige(result);
+            asyncTicketEinlassen(tktNr, aktivitaet);
         }
     }
+
+    class AsyncTikketEinlassen extends AsyncTask<Integer, String, Boolean> {
+        MainActivity aktivitaet;
+        public AsyncTikketEinlassen(MainActivity a){
+            this.aktivitaet = a;
+        }
+        @Override
+        protected Boolean doInBackground(Integer... pUUID) {
+            try {
+                // In OutputStream schreiben, senden
+                os.write("ticketEinlass:" + pUUID[0]);
+                os.newLine();
+                os.flush();
+
+                // Aus InputStream lesen, empfangen
+                String responseLine;
+                while ((responseLine = is.readLine()) != null) {
+                    if (responseLine.equals("-->>OK")) {
+                        System.out.println("ticketEinlass: true");
+                        return true;
+                    } else {
+                        System.out.println("ticketEinlass: false");
+                        return false;
+                    }
+                }
+                os.close();
+                is.close();
+                socketOfClient.close();
+            } catch (UnknownHostException e) {
+                System.err.println("Server nicht gefunden: " + e);
+            } catch (IOException e) {
+                System.err.println("I/O Fehler:  " + e);
+            } catch (NullPointerException e) {
+                System.out.println("NPE; Vermutlich wurde kein Socket gefunden: " + e);
+            }
+            return false;
+        }
+        protected void onPostExecute(Boolean result) { //erhält das Ergebnis von doInBackground nachdem es vorliegt, läuft im UI-Thread
+            Log.d("ClientAsync", "es ist in der Post!");
+            aktivitaet.tktEingelassenAnzeige(result);
+        }
+    }
+}
 
  /*class AsyncTktErstellen extends AsyncTask<Void, Boolean, Boolean> { //aus Gruenden der Funktionstrennung nicht verwendet
 
@@ -155,5 +208,4 @@ public class ClientAsync{
             return false;
         }
     }*/
-}
 

@@ -84,12 +84,29 @@
     <EditText
         android:id="@+id/editTextIP"
         style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
-        android:layout_width="wrap_content"
+        android:layout_width="164dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/ip_des_servers"
         android:inputType="textNoSuggestions"
-        android:text="@string/meineIP"
+        android:text="@string/ip_schule"
+        android:textAlignment="center"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPort"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextPort"
+        style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
+        android:layout_width="88dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="@string/port"
+        android:inputType="number"
+        android:text="@string/Port"
         android:textAlignment="center"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/buttonIP"
@@ -106,6 +123,20 @@
         android:text="@string/server_ip"
         app:layout_constraintBottom_toTopOf="@+id/buttonClient"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="78dp"
+        android:layout_height="36dp"
+        android:fontFamily="serif-monospace"
+        android:gravity="bottom|start"
+        android:onClick="githubOnClick"
+        android:text="@string/github"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

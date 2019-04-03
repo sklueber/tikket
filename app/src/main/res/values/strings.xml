@@ -15,4 +15,8 @@
     <string name="server_ip">Server-IP</string>
     <string name="ip_des_servers">IP des Servers</string>
     <string name="disconnected">Nicht verbunden</string>
+    <string name="github">GitHub</string>
+    <string name="Port">2001</string>
+    <string name="port">Port</string>
+    <string name="ip_schule">192.168.5.99</string>
 </resources>
