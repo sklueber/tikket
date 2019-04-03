@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 03:29 .
+ * Zuletzt bearbeitet 03.04.19 05:57 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -80,7 +80,8 @@ public class Mailversand {
             BodyPart messageBodyPart = new MimeBodyPart();
 
             // Now set the actual message
-            messageBodyPart.setText("Ihr digitales Ticket finden Sie im Anhang.");
+            messageBodyPart.setText("Ihr digitales Ticket finden Sie im Anhang." +
+                    " Viel Spaß bei " + args[1]);
 
             // Create a multipart message
             Multipart multipart = new MimeMultipart();

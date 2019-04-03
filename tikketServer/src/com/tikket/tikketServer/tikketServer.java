@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 03.04.19 05:45 .
+ * Zuletzt bearbeitet 03.04.19 05:57 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -291,7 +291,7 @@ public class tikketServer {
 
     private void ticketSenden(String mail, int UUID) {
         CodeGenerator.barcodeErstellen(Integer.toString(UUID));
-        Mailversand.main(new String[]{mail, "Ihr digitales Ticket ist da!"}); //TODO (von Simon) Veranstaltung wieder mitschicken?
+        Mailversand.main(new String[]{mail, SrvVa_name});
     }
 
     public void veranstaltungErstellen(String va_name, String va_datum, String va_ort, int va_vr) {
