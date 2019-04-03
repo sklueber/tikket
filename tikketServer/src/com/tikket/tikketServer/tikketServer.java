@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 05:11 .
+ * Zuletzt bearbeitet 03.04.19 03:34 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -190,7 +190,7 @@ public class tikketServer {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
         String currentDate = dateFormat.format(date);
 
-        int zufall = ThreadLocalRandom.current().nextInt(0, 1000000000);
+        int zufall = ThreadLocalRandom.current().nextInt(100000000, 999999999);
 
         try (Connection conn = DBconnect()) {
             String sqlInsertTicket = "INSERT INTO tickets(tkt_UUID, tkt_status, tkt_created, tkt_va) VALUES(?, ?,?,?)";

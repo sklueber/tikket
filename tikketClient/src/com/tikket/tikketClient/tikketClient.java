@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 05:11 .
+ * Zuletzt bearbeitet 03.04.19 03:34 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -140,7 +140,7 @@ public class tikketClient {
         return null;
     }
 
-    //Prüft ob das gegebene Ticket gültig ist. Wenn ja wird true zurückgegeben.
+    //Prüft ob das gegebene Ticket gültig ist. Wenn ja wird true zurückgegeben. Lässt es aber nicht ein
     public boolean ticketPruefen(int scan_UUID) {
         try {
             // In OutputStream schreiben, senden
@@ -171,10 +171,12 @@ public class tikketClient {
         return false;
     }
 
+    //Lässt das Ticket aus. Setzt somit den Status wieder auf 1
     private boolean ticketAuslass() {
         return false;
     }
 
+    //Lässt das Ticket ein. Setzt den Status auf 2
     public boolean ticketEinlass(int UUID) {
         try {
             // In OutputStream schreiben, senden
@@ -206,6 +208,7 @@ public class tikketClient {
         return false;
     }
 
+    //Sendet das Ticket die gewünschte Adresse
     public void ticketSenden(String mail, int UUID) {
         try {
             // In OutputStream schreiben, senden

@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 03.04.19 03:19 .
+ * Zuletzt bearbeitet 03.04.19 03:34 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -39,6 +39,7 @@ public class tikketClientGUI {
     private JTable tableVeranstaltungen;
     private JButton bTicketsDrucken;
     private JButton bTicketsVersenden;
+    private JTextField tMailTickets;
 
     public tikketClientGUI(tikketClient client) {
         this.gestartetVon = client;
@@ -111,15 +112,16 @@ public class tikketClientGUI {
                 frame.repaint();
             }
         });
-        bTicketsVersenden.addActionListener(new ActionListener() { // TODO: 02.04.2019 Email eingeben lassen
+        bTicketsVersenden.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = tableTickets.getSelectedRow();
-                if (tableTickets.getSelectedRows().length != 0) {
+                if (tableTickets.getSelectedRows().length != 0 && !tMailTickets.getText().isEmpty()) {
+                    String mail = tMailTickets.getText();
                     Object rslt = tableTickets.getValueAt(row, 1);
                     String str = rslt.toString();
                     int uuid = Integer.parseInt(str);
-                    gestartetVon.ticketSenden("test@max-stockhausen.de", uuid);
+                    gestartetVon.ticketSenden(mail, uuid);
                 }
             }
         });

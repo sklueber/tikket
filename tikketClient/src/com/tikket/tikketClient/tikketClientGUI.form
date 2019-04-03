@@ -90,7 +90,7 @@
             <border type="none"/>
             <children/>
           </grid>
-          <grid id="c75c7" binding="panelTickets" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="c75c7" binding="panelTickets" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title="Tickets">
@@ -112,7 +112,7 @@
               </component>
               <component id="bba49" class="javax.swing.JButton" binding="bTicketNeu">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Erstellen"/>
@@ -137,7 +137,7 @@
               </scrollpane>
               <component id="b61f8" class="javax.swing.JButton" binding="bTicketsDrucken">
                 <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Drucken"/>
@@ -145,10 +145,22 @@
               </component>
               <component id="56025" class="javax.swing.JButton" binding="bTicketsVersenden">
                 <constraints>
-                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Per E-Mail senden"/>
+                </properties>
+              </component>
+              <component id="e4c03" class="javax.swing.JTextField" binding="tMailTickets">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="70" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <enabled value="true"/>
+                  <text value="testCase1@max-stockhausen.de"/>
+                  <toolTipText value="E-Mail Adresse des Empfängers"/>
                 </properties>
               </component>
             </children>
