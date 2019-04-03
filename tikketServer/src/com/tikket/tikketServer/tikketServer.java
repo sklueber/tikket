@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 03.04.19 04:58 .
+ * Zuletzt bearbeitet 03.04.19 06:59 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -123,13 +123,6 @@ public class tikketServer {
                         os.newLine();
                         os.flush();
                     }
-                    if (line.equals("aktuelleVeranstaltungAuslesen")) {
-                        int id = SrvVa_ID;
-                        String name = SrvVa_name;
-                        os.write(id + ":" + name);
-                        os.newLine();
-                        os.flush();
-                    }
                     if (line.contains("veranstaltungSetzen")) {
                         String[] split = line.split(":");
                         veranstaltungWechseln(Integer.parseInt(split[1]));
@@ -154,6 +147,19 @@ public class tikketServer {
                     if (line.equals("veranstalterAusgeben")) { // TODO: 28.03.2019 schreiben
                     }
                     if (line.contains("veranstaltungLoeschen")) {// TODO: 28.03.2019 schreiben
+                    }
+                    if (line.equals("anzVerkaufteTickets")) {
+                        int verkauft = AnzahlVerkaufteTickets();
+                        os.write(Integer.toString(verkauft));
+                        os.newLine();
+                        os.flush();
+                    }
+                    if (line.equals("anzEingelassseneTickets")) {
+                        int eingelassen = AnzahlEingelasseneTickets();
+
+                        os.write(Integer.toString(eingelassen));
+                        os.newLine();
+                        os.flush();
                     }
                     if (line.equals("serverTest")) {
                         os.write("-->>OK");
@@ -372,5 +378,37 @@ public class tikketServer {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private int AnzahlVerkaufteTickets() {
+        try (Connection conn = DBconnect()) {
+            String sql = "SELECT COUNT(tkt_ID) FROM tickets WHERE tkt_va = " + SrvVa_ID;
+            try (Statement stmt = conn.createStatement()) {
+                try (ResultSet rs = stmt.executeQuery(sql)) {
+                    while (rs.next()) {
+                        return rs.getInt(1);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    private int AnzahlEingelasseneTickets() {
+        try (Connection conn = DBconnect()) {
+            String sql = "SELECT COUNT(tkt_ID) FROM tickets WHERE tkt_va = " + SrvVa_ID + "AND tkt_status = 2";
+            try (Statement stmt = conn.createStatement()) {
+                try (ResultSet rs = stmt.executeQuery(sql)) {
+                    while (rs.next()) {
+                        return rs.getInt(1);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

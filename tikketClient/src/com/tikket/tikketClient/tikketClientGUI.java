@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 03.04.19 04:58 .
+ * Zuletzt bearbeitet 03.04.19 06:59 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -44,6 +44,12 @@ public class tikketClientGUI {
     private JTextField tScaninputAuslass;
     private JLabel lScanAuslass;
     private JLabel laktVA;
+    private JLabel lTikket;
+    private JLabel lPersonen;
+    private JLabel lVerkauftLabel;
+    private JLabel lVerkauftWert;
+    private JLabel lEingelassenWert;
+    private JLabel lEingelassenLabel;
 
     public tikketClientGUI(tikketClient client) {
         this.gestartetVon = client;
@@ -67,6 +73,13 @@ public class tikketClientGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //Aktuelle VA darstellen
         laktVA.setText("Veranstaltung: " + gestartetVon.veranstaltungNameAusgeben());
+        //Statistik darstellen
+        String verkauft = Integer.toString(gestartetVon.GibVerkaufteTickets());
+
+        String eingelassen = Integer.toString(gestartetVon.GibEingelasseneTickets());
+
+        lVerkauftWert.setText(verkauft);
+        lEingelassenWert.setText(eingelassen);
         frame.pack();
         frame.setVisible(true);
 

@@ -23,11 +23,15 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="b8921c08-91d7-4236-853e-76667afc8420">
+        <schema name="main" object-types="table, view" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="b8921c08-91d7-4236-853e-76667afc8420">
-      <console name="tikketdb" type="STANDARD" schema="main" session="Main" />
+      <console name="tikketdb" type="STANDARD" schema="main" session="Main"><![CDATA[SELECT COUNT(tkt_ID) FROM tickets WHERE tkt_status = 1]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
