@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 03.04.19 04:58 .
+ * Zuletzt bearbeitet 03.04.19 05:45 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -182,6 +182,14 @@ public class tikketClientGUI {
 
                     panelStatus.repaint();
                 }
+            }
+        });
+        erstellenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tikketClient[] args = new tikketClient[1];
+                args[0] = gestartetVon;
+                new veranstaltungErstellen().main(args);
             }
         });
     }
