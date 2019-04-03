@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 05:11 .
+ * Zuletzt bearbeitet 03.04.19 04:58 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -48,10 +48,6 @@ public class tikketServer {
         }
     }
 
-    private void log(String message) {
-        System.out.println(message);
-    }
-
     private class ServiceThread extends Thread {
 
         private int clientNumber;
@@ -62,7 +58,7 @@ public class tikketServer {
             this.socketOfServer = socketOfServer;
 
             // Log
-            log("Neuer tikketClient registriert. tikketClient# " + this.clientNumber + " auf " + socketOfServer);
+            System.out.println("Neuer tikketClient registriert. tikketClient# " + this.clientNumber + " auf " + socketOfServer);
         }
 
         @Override
@@ -102,12 +98,11 @@ public class tikketServer {
                             os.newLine();
                             os.flush();
                         }
-
                     }
-                    if (line.contains("ticketAuslass")) { // TODO: 28.03.2019 schreiben
+                    if (line.contains("ticketAuslass")) {
                         String[] split = line.split(":");
                         int uuid = parseInt(split[1]);
-                        TicketEinlass(uuid);
+                        TicketAuslass(uuid);
                         os.write("-->>OK");
                         os.newLine();
                         os.flush();
@@ -131,14 +126,21 @@ public class tikketServer {
                     if (line.equals("aktuelleVeranstaltungAuslesen")) {
                         int id = SrvVa_ID;
                         String name = SrvVa_name;
-                        os.write(id + "*" + name);
+                        os.write(id + ":" + name);
                         os.newLine();
                         os.flush();
                     }
-                    if (line.equals("veranstaltungSetzen")) { // TODO: 28.03.2019 NOK Fall hinzufügen
-
-                        veranstaltungWechseln(1);
+                    if (line.contains("veranstaltungSetzen")) {
+                        String[] split = line.split(":");
+                        veranstaltungWechseln(Integer.parseInt(split[1]));
                         os.write("-->>OK");
+                        os.newLine();
+                        os.flush();
+
+                        System.out.println("tikket verwaltet jetzt VA mit der ID: " + split[1]);
+                    }
+                    if (line.equals("aktuelleVeranstaltungAuslesen")) {
+                        os.write(SrvVa_ID + ":" + SrvVa_name);
                         os.newLine();
                         os.flush();
                     }
@@ -190,7 +192,7 @@ public class tikketServer {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
         String currentDate = dateFormat.format(date);
 
-        int zufall = ThreadLocalRandom.current().nextInt(0, 1000000000);
+        int zufall = ThreadLocalRandom.current().nextInt(100000000, 999999999);
 
         try (Connection conn = DBconnect()) {
             String sqlInsertTicket = "INSERT INTO tickets(tkt_UUID, tkt_status, tkt_created, tkt_va) VALUES(?, ?,?,?)";
@@ -258,15 +260,25 @@ public class tikketServer {
         try (Connection conn = DBconnect()) {
             try (Statement stmt = conn.createStatement()) {
                 ResultSet rs = stmt.executeQuery(sql);
-                if (rs.isAfterLast()) {
-                    System.out.println("Ticket serverseitig eingelassen");
-                }
             }
         } catch (SQLException e) {
             if (e.getMessage().equals("ResultSet closed")) {
                 System.err.println(e.getMessage());
             }
-            return;
+        }
+    }
+
+    public void TicketAuslass(int tUUID) {
+        String sql = "UPDATE tickets SET tkt_status = 1 WHERE tkt_UUID = " + tUUID + " AND tkt_va = " + SrvVa_ID;
+
+        try (Connection conn = DBconnect()) {
+            try (Statement stmt = conn.createStatement()) {
+                ResultSet rs = stmt.executeQuery(sql);
+            }
+        } catch (SQLException e) {
+            if (e.getMessage().equals("ResultSet closed")) {
+                System.err.println(e.getMessage());
+            }
         }
     }
 
@@ -315,6 +327,23 @@ public class tikketServer {
         return null;
     }
 
+    private void veranstaltungWechseln(int va_id) {
+        String sql = "SELECT va_ID, va_name FROM  veranstaltungen WHERE va_ID = " + va_id;
+
+        try (Connection conn = DBconnect()) {
+            try (Statement stmt = conn.createStatement()) {
+                try (ResultSet rs = stmt.executeQuery(sql)) {
+                    SrvVa_name = rs.getString("va_name");
+                    SrvVa_ID = va_id;
+                } catch (SQLException e) {
+                    System.err.println("Keine Veranstaltung mit der ID gefunden. Error: " + e.getMessage());
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     void veranstalterErstellen(String vr_name) {
         String sql = "INSERT INTO veranstalter(vr_name) VALUES(?)";
 
@@ -338,23 +367,6 @@ public class tikketServer {
                     while (rs.next()) {
                         System.out.println(rs.getInt("vr_ID") + "\t" + rs.getString("vr_name") + "\t");
                     }
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    private void veranstaltungWechseln(int va_id) {
-        String sql = "SELECT va_ID, va_name FROM  veranstaltungen WHERE va_ID = " + va_id;
-
-        try (Connection conn = DBconnect()) {
-            try (Statement stmt = conn.createStatement()) {
-                try (ResultSet rs = stmt.executeQuery(sql)) {
-                    SrvVa_name = rs.getString("va_name");
-                    SrvVa_ID = va_id;
-                } catch (SQLException e) {
-                    System.out.println("Keine Veranstaltung mit der ID gefunden. Error: " + e.getMessage());
                 }
             }
         } catch (SQLException e) {

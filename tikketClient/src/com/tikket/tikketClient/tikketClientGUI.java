@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 05:11 .
+ * Zuletzt bearbeitet 03.04.19 04:58 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -25,9 +25,9 @@ public class tikketClientGUI {
     private JPanel panelInfo;
     private JPanel panelStatus;
     private JLabel lStatistik;
-    private JLabel lScanergebnis;
-    private JTextField tScaneingabeEinlass;
-    private JButton bScan;
+    private JLabel lScanEinlass;
+    private JTextField tScaninputEinlass;
+    private JButton bScanEinlass;
     private JButton bTicketNeu;
     private JButton bTicketAktualisieren;
     private JButton erstellenButton;
@@ -39,6 +39,11 @@ public class tikketClientGUI {
     private JTable tableVeranstaltungen;
     private JButton bTicketsDrucken;
     private JButton bTicketsVersenden;
+    private JTextField tMailTickets;
+    private JButton bScanAuslass;
+    private JTextField tScaninputAuslass;
+    private JLabel lScanAuslass;
+    private JLabel laktVA;
 
     public tikketClientGUI(tikketClient client) {
         this.gestartetVon = client;
@@ -60,58 +65,75 @@ public class tikketClientGUI {
         frame.setIconImage(icon.getImage()); //Icon einfügen
         frame.setContentPane(this.tikketClientGUI);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //Aktuelle VA darstellen
+        laktVA.setText("Veranstaltung: " + gestartetVon.veranstaltungNameAusgeben());
         frame.pack();
         frame.setVisible(true);
 
-        bTicketAktualisieren.addActionListener(new ActionListener() { // TODO: 02.04.2019 Aktualisieren Button fähig machen
+        bTicketAktualisieren.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tableTickets = createTicketsTable();
+                spTickets.setViewportView(tableTickets);
+                frame.repaint();
+
             }
         });
-        bVeranstaltungAktualisieren.addActionListener(new ActionListener() { // TODO: 02.04.2019 Aktualisieren Button fähig machen
+        bVeranstaltungAktualisieren.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tableVeranstaltungen = createVeranstaltungsTable();
+                spVeranstaltungen.setViewportView(tableVeranstaltungen);
                 frame.repaint();
             }
         });
 
-        bScan.addActionListener(new ActionListener() {
+        bScanEinlass.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (tScaneingabeEinlass.getText().matches("\\d{9}")) {
-                    int scan = Integer.parseInt((tScaneingabeEinlass.getText()));
+                if (tScaninputEinlass.getText().matches("\\d{9}")) {
+                    int scan = Integer.parseInt((tScaninputEinlass.getText()));
 
                     if (gestartetVon.ticketPruefen(scan)) {
                         if (gestartetVon.ticketEinlass(scan)) {
-                            bScan.setForeground(Color.green);
-                            System.out.println("Ticket erfolgreich eingelassen.");
+                            bScanEinlass.setForeground(Color.green);
+                            tScaninputEinlass.setText("");
                         } else {
                             System.err.println("Ticket gültig, aber nicht erfolgreich eingelassen.");
                         }
                     } else {
-                        bScan.setForeground(Color.red);
+                        bScanEinlass.setForeground(Color.red);
+                        tScaninputEinlass.setText("");
+
                     }
                 } else {
                     System.err.println("Bitte gültige UUID eingeben");
+                    bScanEinlass.setForeground(Color.yellow);
+                    tScaninputEinlass.setText("");
                 }
+                tScaninputEinlass.requestFocus();
             }
         });
         bTicketNeu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gestartetVon.ticketErstellen();
+                tableTickets = createTicketsTable();
+                spTickets.setViewportView(tableTickets);
+                frame.repaint();
             }
         });
-        bTicketsVersenden.addActionListener(new ActionListener() { // TODO: 02.04.2019 Email eingeben lassen
+        bTicketsVersenden.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = tableTickets.getSelectedRow();
-                Object rslt = tableTickets.getValueAt(row, 1);
-                String str = rslt.toString();
-                int uuid = Integer.parseInt(str);
-                gestartetVon.ticketSenden("test@max-stockhausen.de", uuid);
+                if (tableTickets.getSelectedRows().length != 0 && !tMailTickets.getText().isEmpty()) {
+                    String mail = tMailTickets.getText();
+                    Object rslt = tableTickets.getValueAt(row, 1);
+                    String str = rslt.toString();
+                    int uuid = Integer.parseInt(str);
+                    gestartetVon.ticketSenden(mail, uuid);
+                }
             }
         });
         bTicketsDrucken.addActionListener(new ActionListener() {
@@ -125,10 +147,46 @@ public class tikketClientGUI {
                 drucker.drucken("Tikket_Barcode.png");
             }
         });
+        bScanAuslass.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (tScaninputAuslass.getText().matches("\\d{9}")) {
+                    int scan = Integer.parseInt((tScaninputAuslass.getText()));
+                    if (gestartetVon.ticketAuslass(scan)) {
+                        bScanAuslass.setForeground(Color.green);
+                        tScaninputAuslass.setText("");
+                    }
+                } else {
+                    System.err.println("Bitte gültige UUID eingeben");
+                    bScanAuslass.setForeground(Color.yellow);
+                    tScaninputAuslass.setText("");
+                }
+                tScaninputAuslass.requestFocus();
+            }
+        });
+        bVeranstaltungSetzen.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (tableVeranstaltungen.getSelectedRows().length != 0) {
+                    int row = tableVeranstaltungen.getSelectedRow();
+                    Object rslt = tableVeranstaltungen.getValueAt(row, 0);
+                    String str = rslt.toString();
+                    int iID = Integer.parseInt(str);
+                    gestartetVon.VeranstaltungSetzen(iID);
+
+                    tableTickets = createTicketsTable();
+                    spTickets.setViewportView(tableTickets);
+                    frame.repaint();
+
+                    laktVA.setText("Veranstaltung: " + gestartetVon.veranstaltungNameAusgeben());
+
+                    panelStatus.repaint();
+                }
+            }
+        });
     }
 
     private JTable createTicketsTable() {
-
         String tkt = gestartetVon.ticketAusgeben();
         String[] einzelneStrings = tkt.split("//");
 
@@ -169,7 +227,6 @@ public class tikketClientGUI {
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return false;
             }
-
         }
 
         JTable table = new JTable(new TicketModel());
@@ -177,12 +234,10 @@ public class tikketClientGUI {
         table.setCellSelectionEnabled(false);
         table.setRowSelectionAllowed(true);
         table.setFillsViewportHeight(true);
-        table.setEditingRow(gestartetVon.veranstaltungIDausgeben());
         return table;
     }
 
-    private JTable createVeranstaltungsTable() { // TODO: 02.04.2019 Auf neues TabelModel updaten
-
+    private JTable createVeranstaltungsTable() {
         String va = gestartetVon.veranstaltungAusgeben();
         String[] einzelneStrings = va.split("//");
 
@@ -199,14 +254,38 @@ public class tikketClientGUI {
             }
         }
 
-        Class[] columnClass = new Class[]{
-                Integer.class, String.class, String.class, String.class
-        };
+        class VeranstaltungsModel extends AbstractTableModel {
+            public int getRowCount() {
+                return veranstaltungsDaten.length;
+            }
 
-        JTable table = new JTable(veranstaltungsDaten, ueberschriften);
-        table.setRowSelectionAllowed(false);
+            public int getColumnCount() {
+                return ueberschriften.length;
+            }
+
+            public Object getValueAt(int row, int column) {
+                return veranstaltungsDaten[row][column];
+            }
+
+            public String getColumnName(int column) {
+                return ueberschriften[column];
+            }
+
+            public Class getColumnClass(int c) {
+                return getValueAt(0, c).getClass();
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        }
+
+
+        JTable table = new JTable(new VeranstaltungsModel());
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.setCellSelectionEnabled(false);
+        table.setRowSelectionAllowed(true);
         table.setFillsViewportHeight(true);
-        table.setEditingRow(gestartetVon.veranstaltungIDausgeben());
         return table;
     }
 

@@ -25,12 +25,12 @@ Als Ausgabemedium stehen eine *Druckfunktion* und ein *E-Mail-Versand* zur Verf�
 # Protokoll Client -> Server
 Command | Parameter | Response | Status
 --------|-----------|----------|-------
-ticketErstellen||-->>OK|Fertig
+ticketErstellen||-->>OK|In GUI
 ticketAusgeben||*[ID]//[UUID]//[status]|Fertig
-ticketPruefen|[:UUID]|-->>TRUE / -->>FALSE|Fertig
-ticketAuslass|[:UUID]|-->>OK / -->>NOK|In Bearbeitung
+ticketPruefen|[:UUID]|-->>TRUE / -->>FALSE|In GUI
+ticketAuslass|[:UUID]|-->>OK / -->>NOK|In GUI
 ticketEinlass|[:UUID]|-->>OK|In GUI
-ticketSenden|[:Mail-Adresse][:UUID]||In Bearbeitung
+ticketSenden|[:Mail-Adresse][:UUID]||In GUI
 |||
 veranstalterErstellen|[:name]|-->>OK|Nicht geschrieben
 veranstalterAusgeben||*[:ID]//[:name]|Nicht geschrieben
@@ -39,8 +39,8 @@ veranstalterLoeschen|[:ID]|-->>OK / -->>NOK(Abhängigkeiten)|Nicht geschrieben; 
 veranstaltungErstellen|[:name][datum][ort][vr_ID]|-->>OK|Nicht geschrieben
 veranstaltungAusgeben||*[ID]//[name]//[datum]//[ort]//[vr_ID]|In GUI
 veranstaltungLoeschen|[:ID]|-->>OK / -->>NOK (Abhängigkeiten)|Nicht geschrieben; extra
-veranstaltungSetzen|[:ID]|-->>OK / -->>NOK (ID nicht gefunden)|NOK fehlt noch
-aktuelleVeranstaltungAuslesen||[ID]//[name]|Fertig
+veranstaltungSetzen|[:ID]|-->>OK / -->>NOK (ID nicht gefunden)|Fertig
+aktuelleVeranstaltungAuslesen||[ID]:[name]|Fertig
 |||
 serverTest| |-->>OK|Fertig
 -->>QUIT | | -->>OK|Fertig
