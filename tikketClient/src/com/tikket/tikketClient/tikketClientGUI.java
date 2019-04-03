@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 03.04.19 03:04 .
+ * Zuletzt bearbeitet 03.04.19 03:19 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -177,7 +177,6 @@ public class tikketClientGUI {
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return false;
             }
-
         }
 
         JTable table = new JTable(new TicketModel());
@@ -185,12 +184,10 @@ public class tikketClientGUI {
         table.setCellSelectionEnabled(false);
         table.setRowSelectionAllowed(true);
         table.setFillsViewportHeight(true);
-        table.setEditingRow(gestartetVon.veranstaltungIDausgeben());
         return table;
     }
 
-    private JTable createVeranstaltungsTable() { // TODO: 02.04.2019 Auf neues TabelModel updaten
-
+    private JTable createVeranstaltungsTable() {
         String va = gestartetVon.veranstaltungAusgeben();
         String[] einzelneStrings = va.split("//");
 
@@ -207,10 +204,38 @@ public class tikketClientGUI {
             }
         }
 
-        JTable table = new JTable(veranstaltungsDaten, ueberschriften);
-        table.setRowSelectionAllowed(false);
+        class VeranstaltungsModel extends AbstractTableModel {
+            public int getRowCount() {
+                return veranstaltungsDaten.length;
+            }
+
+            public int getColumnCount() {
+                return ueberschriften.length;
+            }
+
+            public Object getValueAt(int row, int column) {
+                return veranstaltungsDaten[row][column];
+            }
+
+            public String getColumnName(int column) {
+                return ueberschriften[column];
+            }
+
+            public Class getColumnClass(int c) {
+                return getValueAt(0, c).getClass();
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        }
+
+
+        JTable table = new JTable(new VeranstaltungsModel());
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.setCellSelectionEnabled(false);
+        table.setRowSelectionAllowed(true);
         table.setFillsViewportHeight(true);
-        table.setEditingRow(gestartetVon.veranstaltungIDausgeben());
         return table;
     }
 
