@@ -23,23 +23,11 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="b8921c08-91d7-4236-853e-76667afc8420">
-        <schema name="main" object-types="view, table, constraint, column, dataset trigger, index" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="b8921c08-91d7-4236-853e-76667afc8420">
-      <console name="tikketdb" type="STANDARD" schema="main" session="Main">select
-    t.&quot;tkt_ID&quot;,
-    t.&quot;tkt_UUID&quot;,
-    t.tkt_created,
-    t.&quot;tkt_lastChanged&quot;,
-    t.tkt_status,
-    t.tkt_va
-from
-    tickets t;</console>
+      <console name="tikketdb" type="STANDARD" schema="main" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

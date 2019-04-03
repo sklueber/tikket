@@ -1,6 +1,6 @@
 /*
  * Informatikprojekt aus 2019. Erstellt von Simon und Max.
- * Zuletzt bearbeitet 02.04.19 05:11 .
+ * Zuletzt bearbeitet 03.04.19 03:04 .
  * Keiner klaut das hier! Copyright tikket (c) 2019.
  */
 
@@ -63,16 +63,20 @@ public class tikketClientGUI {
         frame.pack();
         frame.setVisible(true);
 
-        bTicketAktualisieren.addActionListener(new ActionListener() { // TODO: 02.04.2019 Aktualisieren Button fähig machen
+        bTicketAktualisieren.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 tableTickets = createTicketsTable();
+                spTickets.setViewportView(tableTickets);
+                frame.repaint();
+
             }
         });
-        bVeranstaltungAktualisieren.addActionListener(new ActionListener() { // TODO: 02.04.2019 Aktualisieren Button fähig machen
+        bVeranstaltungAktualisieren.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                tableVeranstaltungen = createVeranstaltungsTable();
+                JTable newTable = createVeranstaltungsTable();
+                spVeranstaltungen.setViewportView(newTable);
                 frame.repaint();
             }
         });
@@ -102,16 +106,21 @@ public class tikketClientGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gestartetVon.ticketErstellen();
+                tableTickets = createTicketsTable();
+                spTickets.setViewportView(tableTickets);
+                frame.repaint();
             }
         });
         bTicketsVersenden.addActionListener(new ActionListener() { // TODO: 02.04.2019 Email eingeben lassen
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = tableTickets.getSelectedRow();
-                Object rslt = tableTickets.getValueAt(row, 1);
-                String str = rslt.toString();
-                int uuid = Integer.parseInt(str);
-                gestartetVon.ticketSenden("test@max-stockhausen.de", uuid);
+                if (tableTickets.getSelectedRows().length != 0) {
+                    Object rslt = tableTickets.getValueAt(row, 1);
+                    String str = rslt.toString();
+                    int uuid = Integer.parseInt(str);
+                    gestartetVon.ticketSenden("test@max-stockhausen.de", uuid);
+                }
             }
         });
         bTicketsDrucken.addActionListener(new ActionListener() {
@@ -128,7 +137,6 @@ public class tikketClientGUI {
     }
 
     private JTable createTicketsTable() {
-
         String tkt = gestartetVon.ticketAusgeben();
         String[] einzelneStrings = tkt.split("//");
 
@@ -198,10 +206,6 @@ public class tikketClientGUI {
                 veranstaltungsDaten[i][j] = einzelneBefehle[j];
             }
         }
-
-        Class[] columnClass = new Class[]{
-                Integer.class, String.class, String.class, String.class
-        };
 
         JTable table = new JTable(veranstaltungsDaten, ueberschriften);
         table.setRowSelectionAllowed(false);
