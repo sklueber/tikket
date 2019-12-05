@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">tikket. Scan</string>
+    <string name="scan">Scan</string>
+    <string name="number">Ticketnummer</string>
+    <string name="status">Bereit</string>
+    <string name="cancelled">Scan abgebrochen</string>
+    <string name="valid">Gültig</string>
+    <string name="invalid">Ungültig</string>
+    <string name="used">Verwendet</string>
+    <string name="tikket_logo">Tikket.-Logo</string>
+    <string name="client_starten">Client starten</string>
+    <string name="test">TEST</string>
+    <string name="serverip">ServerIP</string>
+    <string name="meineIP">192.168.178.109</string>
+    <string name="server_ip">Server-IP</string>
+    <string name="ip_des_servers">IP des Servers</string>
+    <string name="disconnected">Nicht verbunden</string>
+    <string name="github">GitHub</string>
+    <string name="Port">2001</string>
+    <string name="port">Port</string>
+    <string name="ip_schule">192.168.5.99</string>
+</resources>

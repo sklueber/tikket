@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/buttonScanlos"
+        android:layout_width="298dp"
+        android:layout_height="85dp"
+        android:layout_marginBottom="48dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:onClick="scanOnClick"
+        android:text="@string/scan"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewTktNr"
+        android:layout_width="187dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:padding="1dp"
+        android:text="@string/number"
+        android:textAlignment="center"
+        android:textIsSelectable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textViewStatus"
+        style="@android:style/Widget.TextView.PopupMenu"
+        android:layout_width="290dp"
+        android:layout_height="149dp"
+        android:layout_marginEnd="97dp"
+        android:layout_marginStart="97dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:focusableInTouchMode="false"
+        android:gravity="center_vertical|center"
+        android:text="@string/status"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTktNr" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="302dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/tikket_logo"
+        android:cropToPadding="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/grosseslogo" />
+
+    <Button
+        android:id="@+id/buttonClient"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:onClick="clientOnClick"
+        android:text="@string/client_starten"
+        app:layout_constraintBottom_toTopOf="@+id/buttonScanlos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextIP"
+        style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/ip_des_servers"
+        android:inputType="textNoSuggestions"
+        android:text="@string/ip_schule"
+        android:textAlignment="center"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPort"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextPort"
+        style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
+        android:layout_width="88dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="@string/port"
+        android:inputType="number"
+        android:text="@string/Port"
+        android:textAlignment="center"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/buttonIP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonIP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:onClick="ipOnClick"
+        android:text="@string/server_ip"
+        app:layout_constraintBottom_toTopOf="@+id/buttonClient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="78dp"
+        android:layout_height="36dp"
+        android:fontFamily="serif-monospace"
+        android:gravity="bottom|start"
+        android:onClick="githubOnClick"
+        android:text="@string/github"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

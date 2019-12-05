@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3b693d</color>
+    <color name="colorPrimaryDark">#3b693d</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorCancelYellow">#FFc69a15</color>
+    <color name="colorValidGreen">#FF33691e</color>
+    <color name="colorInvalidRed">#FFb71c1c</color>
+    <color name="colorPrimaryMaterialDark">#FF212121</color>
+    <color name="colorBackgroundGrey">#FF303030</color>
+    <color name="primary_material_dark">#3b693d</color>
+    <color name="primary_dark_material_dark">#3b693d</color>
+</resources>
