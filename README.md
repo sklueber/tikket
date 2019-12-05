@@ -1,4 +1,4 @@
-![tikket logo](logo.png)
+![custom logo](app/src/main/res/drawable/grosseslogo.png)
 
 # tikket
 tikket (working title). An event ticketing system  (and school project) by Simon Klüber and Max Stockhausen 
