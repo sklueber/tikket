@@ -6,7 +6,7 @@ tikket (working title). An event ticketing system  (and school project) by Simon
 # Features
 
 _tikket. (working title)_ allows the user to generate, manage and check tickets for events using a SQLite database stored on a local server.
-Every ticket has an individual randomly generated ID represented by a barcode to prevent fraud. Tickets may be scanned using the Android app _tikket. Scan_ or with an external scanning device connected to a Windows PC. 
+Every ticket has an individual randomly generated ID represented by a barcode to prevent fraud. Tickets may be scanned using the Android app _tikket. Scan_ with _ZXing_ or with an external scanning device connected to a Windows PC. 
 
 * Generating in presale and right at the box office
 * checking and invalidating tickets via Android and Windows
